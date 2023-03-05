@@ -1,0 +1,15 @@
+.footer__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+.link__github {
+  display: flex;
+  align-items: center;
+  font-size: large;
+}
+.link__github span {
+  margin-left: 1rem;
+}

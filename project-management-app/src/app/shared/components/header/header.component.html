@@ -2,7 +2,7 @@
   <div class="container">
     <div class="header__wrapper">
       <!-- Logo -->
-      <a routerlink="/" class="link logo" href="/">PMApp</a>
+      <a routerLink="" class="link logo">PMApp</a>
       <!-- Language -->
       <div class="header__language">
         <mat-button-toggle-group (change)="onSiteLanguageChange($event.value)" aria-label="Favorite Language">
@@ -12,9 +12,9 @@
       </div>
       <!-- Log In -->
       <div class="header__register">
-        <button mat-raised-button color="primary"
+        <button mat-raised-button color="primary" routerLink="/auth/signup"
         >{{t('header.singUpBtn')}}</button>
-        <button mat-raised-button color="primary">{{t('header.logInBtn')}}</button>
+        <button mat-raised-button color="primary" routerLink="/auth/login">{{t('header.logInBtn')}}</button>
       </div>
     </div>
   </div>

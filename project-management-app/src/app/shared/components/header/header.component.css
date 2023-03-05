@@ -2,11 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 0;
+  padding: 2rem 0;
 }
 .header__register {
   display: flex;
-  gap: 10px;
+  gap: 1rem;
 }
 .logo {
   font-size: xx-large;
@@ -14,7 +14,7 @@
 }
 
 .mat-button-toggle-group {
-  height: 36px;
+  height: 3.6rem;
   align-items: center;
 }
 .mat-button-toggle {

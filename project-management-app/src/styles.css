@@ -22,6 +22,7 @@ html {
 }
 html, body {
   height: 100%;
+  font-size: 10px;
 }
 body {
   margin: 0;
@@ -29,18 +30,20 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: var(--primary);
 }
+/* press the footer to the bottom of the page */
 .wrapper {
   min-height: 100%;
   display: flex;
   flex-direction: column;
 }
+main {
+  flex: 1 1 auto;
+  padding: 2rem 0;
+}
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 15px;
-}
-.main {
-  flex: 1 1 auto;
+  padding: 0 2rem;
 }
 .link {
   text-align: center;
@@ -50,25 +53,4 @@ body {
 }
 .link:hover {
   text-decoration: underline;
-}
-
-/* ADditional */
-section {
-  display: table;
-}
-
-.example-label {
-  display: table-cell;
-  font-size: 14px;
-  margin-left: 8px;
-  min-width: 120px;
-}
-
-.example-button-row {
-  display: table-cell;
-  max-width: 600px;
-}
-
-.example-button-row .mat-mdc-button-base {
-  margin: 8px 8px 8px 0;
 }

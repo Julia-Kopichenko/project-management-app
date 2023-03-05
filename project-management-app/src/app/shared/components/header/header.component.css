@@ -13,6 +13,13 @@
   font-family: Pacifico,cursive;
 }
 
+.mat-button-toggle-group {
+  height: 36px;
+  align-items: center;
+}
 .mat-button-toggle {
+  background:var(--secondary);
+}
+.mat-button-toggle-checked {
   background:var(--primary);
 }

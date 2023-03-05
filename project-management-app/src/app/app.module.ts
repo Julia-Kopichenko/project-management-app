@@ -11,6 +11,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 // Own Components
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslocoRootModule } from './transloco-root.module';
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [
@@ -20,6 +22,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     MatButtonToggleModule,
     MatToolbarModule,
     MatSlideToggleModule,
+    HttpClientModule,
+    TranslocoRootModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

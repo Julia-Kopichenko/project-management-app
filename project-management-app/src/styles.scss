@@ -1,0 +1,41 @@
+@import './variables';
+
+* {
+  box-sizing: border-box
+}
+html {
+  scroll-behavior: smooth;
+}
+html, body {
+  height: 100%;
+  font-size: 10px;
+}
+body {
+  background: linear-gradient(0deg,#fff,$color-primary-x-light 100%);
+  color: $color-primary;
+  margin: 0;
+}
+
+/* press the footer to the bottom of the page */
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 1 auto;
+  padding: 3rem 0;
+}
+.container {
+  max-width: 140rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.link {
+  text-align: center;
+  text-decoration: none;
+  transition: all .2s ease-out;
+}
+.link:hover {
+  text-decoration: underline;
+}

@@ -1,6 +1,18 @@
 {
-  "header": {
-    "singUpBtn": "Sign Up",
-    "logInBtn": "Log In"
+  "signUp": "Sign Up",
+  "logIn": "Log In",
+  "login": "Login",
+  "name": "Name",
+  "password": "Password",
+
+  "forms": {
+    "errors": {
+      "enterName": "Please enter your name",
+      "enterLogin": "Please enter a login",
+      "enterPassword": "Please enter a password",
+      "lengthName": "Name should be at least 3 characters",
+      "lengthLogin": "Login should be at least 5 characters",
+      "lengthPassword": "Password should be at least 8 characters"
+    }
   }
 }

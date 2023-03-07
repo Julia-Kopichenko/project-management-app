@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+// Include non-theme styles for core.
+@include mat.core();
+// Define a theme.
+$primary: mat.define-palette(mat.$purple-palette, 800, 600, 400);
+$accent:  mat.define-palette(mat.$green-palette, A200, A100, A400);
+
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent
+  ),
+  typography: mat.define-typography-config($font-family:"'Roboto', sans-serif"),
+  density: 0,
+));
+// Include all theme styles for the components.
+@include mat.all-component-themes($theme);
+
+$color-primary-dark: mat.get-color-from-palette($primary, 600);
+$color-primary: mat.get-color-from-palette($primary, 800);
+$color-primary-light: mat.get-color-from-palette($primary, 400);
+$color-primary-x-light: #CE93D8;
+$color-accent-dark: mat.get-color-from-palette($accent, A400);
+$color-accent: mat.get-color-from-palette($accent, A200);
+$color-accent-light: mat.get-color-from-palette($accent, A100);

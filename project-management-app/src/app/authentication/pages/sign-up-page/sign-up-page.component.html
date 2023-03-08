@@ -19,7 +19,6 @@
             type="text"
             formControlName="name"
             maxlength="20"
-            minlength="2"
             required
           />
           <!-- error message -->
@@ -29,6 +28,7 @@
               {{ t("forms.errors.enterName") }}
             </span>
             <span *ngIf="userRegisterForm.get('name')?.errors?.['minlength']">{{ t("forms.errors.lengthName") }}</span>
+            <span *ngIf="userRegisterForm.get('name')?.errors?.['maxlength']">{{ t("forms.errors.lengthName") }}</span>
           </mat-error>
         </mat-form-field>
         <!-- lOGIN -->
@@ -39,7 +39,6 @@
             type="login"
             formControlName="login"
             maxlength="20"
-            minlength="5"
             required
           />
           <!-- error message -->
@@ -58,7 +57,6 @@
           [type]="hide ? 'password' : 'text'"
           formControlName="password"
           maxlength="20"
-          minlength="8"
           required
           >
           <button

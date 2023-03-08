@@ -12,17 +12,14 @@ export class SignUpPageComponent {
   userRegisterForm: FormGroup = new FormGroup({
     name: new FormControl('', [
       Validators.required,
-      Validators.maxLength(20),
       Validators.minLength(3),
     ]),
     login: new FormControl('', [
       Validators.required,
-      Validators.maxLength(20),
       Validators.minLength(5),
     ]),
     password: new FormControl('', [
       Validators.required,
-      Validators.maxLength(20),
       Validators.minLength(8),
     ]),
     passwordDuplicate: new FormControl(''),

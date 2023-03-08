@@ -6,6 +6,7 @@ import { TranslocoService } from '@ngneat/transloco';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
+
 export class HeaderComponent {
   public siteLanguage: string = 'en';
 

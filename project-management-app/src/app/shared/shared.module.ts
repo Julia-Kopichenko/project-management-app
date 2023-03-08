@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from './material/material.module';
-import { TranslocoRootModule } from './transloco/transloco-root.module';
+import { MaterialModule } from '@shared/material/material.module';
+import { TranslocoRootModule } from '@shared/transloco/transloco-root.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -14,4 +14,5 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [MaterialModule, TranslocoRootModule, ReactiveFormsModule],
 })
+
 export class SharedModule {}

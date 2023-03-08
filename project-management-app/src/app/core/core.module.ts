@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { SharedModule } from '../shared/shared.module';
-import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
-import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { CoreRoutingModule } from './core-routing.module';
+import { HeaderComponent } from '@core/components/header/header.component';
+import { FooterComponent } from '@core/components/footer/footer.component';
+import { SharedModule } from '@shared/shared.module';
+import { WelcomePageComponent } from '@core/pages/welcome-page/welcome-page.component';
+import { NotFoundPageComponent } from '@core/pages/not-found-page/not-found-page.component';
+import { CoreRoutingModule } from '@core/core-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,4 +22,5 @@ import { CoreRoutingModule } from './core-routing.module';
     NotFoundPageComponent,
   ],
 })
+
 export class CoreModule {}

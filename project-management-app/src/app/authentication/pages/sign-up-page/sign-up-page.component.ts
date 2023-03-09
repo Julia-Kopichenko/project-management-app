@@ -22,7 +22,6 @@ export class SignUpPageComponent {
       Validators.required,
       Validators.minLength(8),
     ]),
-    passwordDuplicate: new FormControl(''),
   });
   submit() {
     console.log('SUBMIT');

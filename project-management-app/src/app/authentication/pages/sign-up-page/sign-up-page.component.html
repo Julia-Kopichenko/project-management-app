@@ -18,9 +18,7 @@
             matInput
             type="text"
             formControlName="name"
-            maxlength="20"
-            required
-          />
+            maxlength="20"/>
           <!-- error message -->
           <mat-error
             *ngIf="userRegisterForm.get('name')?.invalid">
@@ -38,9 +36,7 @@
             matInput
             type="login"
             formControlName="login"
-            maxlength="20"
-            required
-          />
+            maxlength="20"/>
           <!-- error message -->
           <mat-error *ngIf="userRegisterForm.get('login')?.invalid">
             <span *ngIf="userRegisterForm.get('login')?.hasError('required')">
@@ -56,9 +52,7 @@
           matInput
           [type]="hide ? 'password' : 'text'"
           formControlName="password"
-          maxlength="20"
-          required
-          >
+          maxlength="20">
           <button
             mat-icon-button
             color="accent"
@@ -85,5 +79,4 @@
       </form>
     </mat-card-content>
   </mat-card>
-
 </div>

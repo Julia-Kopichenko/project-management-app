@@ -10,7 +10,7 @@
     <!-- FORM BODY -->
     <mat-card-content class="auth-card__content">
         <!-- <form [formGroup]="userRegisterForm" (submit)="submit()"> -->
-        <form [formGroup]="userRegisterForm" (submit)="userRegisterForm.valid && submit()">
+        <form [formGroup]="userRegisterForm" (submit)="userRegisterForm.valid && onSubmit()">
         <!-- NAME -->
         <mat-form-field class="auth-card__field" appearance="fill">
           <mat-label>{{ t("name") }}</mat-label>

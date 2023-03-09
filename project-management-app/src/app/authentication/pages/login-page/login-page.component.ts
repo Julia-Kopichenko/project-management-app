@@ -6,17 +6,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
+
 export class LoginPageComponent {
   hide = true;
 
   userLoginForm: FormGroup = new FormGroup({
-       login: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    login: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5)
+    ]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
     ]),
   });
-  submit() {
+
+  onSubmit() {
     console.log('SUBMIT');
 
     console.log('FormGroup user =', this.userLoginForm);

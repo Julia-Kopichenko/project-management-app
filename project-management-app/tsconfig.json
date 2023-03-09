@@ -24,6 +24,9 @@
       "@app/*": ["src/app/*"],
       "@core/*": ["src/app/core/*"],
       "@shared/*": ["src/app/shared/*"],
+      "@services/*": ["src/app/shared/services/*"],
+      "@enams/*": ["src/app/shared/models/enams/*"],
+      "@interfaces/*": ["src/app/shared/models/interfaces/*"],
       "@authentication/*": ["src/app/authentication/*"],
     }
   },

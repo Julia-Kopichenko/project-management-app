@@ -10,7 +10,7 @@
     <!-- FORM BODY -->
     <mat-card-content class="auth-card__content">
       <form [formGroup]="userLoginForm"
-        (submit)="userLoginForm.valid && submit()">
+        (submit)="userLoginForm.valid && onSubmit()">
 
         <!-- lOGIN -->
         <mat-form-field class="auth-card__field" appearance="fill">

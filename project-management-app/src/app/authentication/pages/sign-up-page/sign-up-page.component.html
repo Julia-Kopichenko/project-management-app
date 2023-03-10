@@ -9,10 +9,14 @@
     </mat-card-header>
     <!-- FORM BODY -->
     <mat-card-content class="auth-card__content">
-        <!-- <form [formGroup]="userRegisterForm" (submit)="submit()"> -->
-        <form [formGroup]="userRegisterForm" (submit)="userRegisterForm.valid && onSubmit()">
+      <form
+        *ngIf="!isSuccessful"
+        [formGroup]="userRegisterForm"
+        (submit)="userRegisterForm.valid && onSubmit()">
         <!-- NAME -->
-        <mat-form-field class="auth-card__field" appearance="fill">
+        <mat-form-field
+          class="auth-card__field"
+          appearance="fill">
           <mat-label>{{ t("name") }}</mat-label>
           <input
             matInput
@@ -26,7 +30,6 @@
               {{ t("forms.errors.enterName") }}
             </span>
             <span *ngIf="userRegisterForm.get('name')?.errors?.['minlength']">{{ t("forms.errors.lengthName") }}</span>
-            <span *ngIf="userRegisterForm.get('name')?.errors?.['maxlength']">{{ t("forms.errors.lengthName") }}</span>
           </mat-error>
         </mat-form-field>
         <!-- lOGIN -->
@@ -77,6 +80,14 @@
           {{ t("signUp") }}
         </button>
       </form>
+      <div class="message message-warning" *ngIf="isSignUpFailed">
+        Signup failed!
+        <br/>
+        {{ errorMessage }}
+      </div>
+      <div class="message message-success" *ngIf="isSuccessful">
+        Your registration is successful!
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

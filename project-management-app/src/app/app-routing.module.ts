@@ -12,6 +12,13 @@ const appRoutes: Routes = [
         (m) => m.AuthenticationModule
       ),
   },
+  {
+    path: 'main',
+    loadChildren: () =>
+      import('./core/pages/main-page/main-page.module').then(
+        (m) => m.MainPageModule
+      ),
+  },
   { path: '**', component: NotFoundPageComponent },
 ];
 

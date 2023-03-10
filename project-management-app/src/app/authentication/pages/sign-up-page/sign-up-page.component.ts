@@ -9,6 +9,9 @@ import { AuthenticationService } from '@services/authentication/authentication.s
 })
 export class SignUpPageComponent {
   hide = true;
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
   userRegisterForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -22,17 +25,21 @@ export class SignUpPageComponent {
   constructor(private authenticationService: AuthenticationService) {}
 
   onSubmit() {
-    const userDataForm = {
+    const userData = {
       name: this.userRegisterForm.value.name,
       login: this.userRegisterForm.value.login,
       password: this.userRegisterForm.value.password,
     };
 
-    this.authenticationService.signUp(userDataForm).subscribe({
-      next: (data) => {
-        console.log('response data = ', data);
+    this.authenticationService.signUp(userData).subscribe({
+      next: () => {
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
       },
-      error: (error) => { }
-    })
+      error: (err) => {
+        this.isSignUpFailed = true;
+        this.errorMessage = err.error.message;
+      },
+    });
   }
 }

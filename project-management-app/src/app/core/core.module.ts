@@ -14,7 +14,7 @@ import { CoreRoutingModule } from '@core/core-routing.module';
     WelcomePageComponent,
     NotFoundPageComponent,
   ],
-  imports: [CommonModule, CoreRoutingModule,SharedModule],
+  imports: [CommonModule, CoreRoutingModule, SharedModule],
   exports: [
     HeaderComponent,
     FooterComponent,
@@ -22,5 +22,4 @@ import { CoreRoutingModule } from '@core/core-routing.module';
     NotFoundPageComponent,
   ],
 })
-
 export class CoreModule {}

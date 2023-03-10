@@ -1,6 +1,6 @@
 export enum UrlsEnum {
   baseURL = 'http://localhost:3000',
-  signUp = `http://localhost:3000/auth/signup`,
+  signUp = 'auth/signup',
   logIn = 'auth/signin', // user authorization
   users = 'users', // get all users
   boards = 'boards', // get all boards

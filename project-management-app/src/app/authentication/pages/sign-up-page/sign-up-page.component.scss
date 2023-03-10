@@ -25,3 +25,16 @@
    margin-bottom: 2rem;
   }
 }
+.message {
+ font-size: large;
+ text-align: center;
+ padding: 1rem;
+ border-radius: 1rem;
+ color: white;
+}
+.message-success {
+ background-color: $color-accent;
+}
+.message-warning {
+ background-color: red;
+}

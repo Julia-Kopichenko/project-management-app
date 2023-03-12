@@ -2,8 +2,11 @@
   "signUp": "Sign Up",
   "logIn": "Log In",
   "login": "Login",
+  "logOut": "Log Out",
   "name": "Name",
   "password": "Password",
+  "newBoard": "Create board",
+  "editProfile": "Edit profile",
 
   "forms": {
     "errors": {

@@ -1,10 +1,22 @@
 @import "variables";
 
 .header__wrapper {
+  padding: 2rem 0;
+}
+.header__wrapper,
+.header__nav-left,
+.header__nav-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0;
+  gap: 2rem;
+}
+.header__wrapper {
+  gap: 4rem;
+}
+.header__nav-right {
+  width: 100%;
+justify-content: flex-end;
 }
 .header__register {
   display: flex;
@@ -14,7 +26,6 @@
   font-size: xx-large;
   font-family: Pacifico,cursive;
 }
-
 .button-toggle-group {
   height: 3.6rem;
   align-items: center;

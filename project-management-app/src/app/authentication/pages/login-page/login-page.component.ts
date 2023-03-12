@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
+
 export class LoginPageComponent implements OnInit {
   hide = true;
   isLoggedIn = false;
@@ -24,8 +25,8 @@ export class LoginPageComponent implements OnInit {
   });
 
   constructor(
-    private authenticationService: AuthenticationService,
-    private tokenStorage: TokenStorageService,
+    private readonly authenticationService: AuthenticationService,
+    private readonly tokenStorage: TokenStorageService,
     private router: Router
   ) {}
 
@@ -35,11 +36,8 @@ export class LoginPageComponent implements OnInit {
     // }
   }
 
-  onSubmit() {
-    const userData = {
-      login: this.userLoginForm.value.login,
-      password: this.userLoginForm.value.password,
-    };
+  onSubmit(): void {
+    const userData = this.userLoginForm.value;
 
     this.authenticationService.logIn(userData).subscribe({
       next: (data) => {

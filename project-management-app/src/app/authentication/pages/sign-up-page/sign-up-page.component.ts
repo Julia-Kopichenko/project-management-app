@@ -22,9 +22,9 @@ export class SignUpPageComponent {
     ]),
   });
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private readonly authenticationService: AuthenticationService) {}
 
-  onSubmit() {
+  onSubmit():void {
     const userData = {
       name: this.userRegisterForm.value.name,
       login: this.userRegisterForm.value.login,

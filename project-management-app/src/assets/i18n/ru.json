@@ -2,8 +2,11 @@
   "signUp": "Регистрация",
   "logIn": "Войти",
   "login": "Логин",
+  "logOut": "Выйти",
   "name": "Имя",
   "password": "Пароль",
+  "newBoard": "Создать доску",
+  "editProfile": "Редактировать профиль",
 
   "forms": {
     "errors": {

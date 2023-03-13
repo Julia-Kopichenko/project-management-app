@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '@services/authentication/authentication.service';
+import { AuthService } from '@app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'sign-up-page',
@@ -22,16 +22,16 @@ export class SignUpPageComponent {
     ]),
   });
 
-  constructor(private readonly authenticationService: AuthenticationService) {}
+  constructor(private readonly authService: AuthService) {}
 
-  onSubmit():void {
+  onSubmit(): void {
     const userData = {
       name: this.userRegisterForm.value.name,
       login: this.userRegisterForm.value.login,
       password: this.userRegisterForm.value.password,
     };
 
-    this.authenticationService.signUp(userData).subscribe({
+    this.authService.signUp(userData).subscribe({
       next: () => {
         this.isSuccessful = true;
         this.isSignUpFailed = false;

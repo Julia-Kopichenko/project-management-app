@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '@app/shared/services/authentication/authentication.service';
-import { TokenStorageService } from '@services/tokenStorage/token-storage.service';
-import { Router } from '@angular/router';
+import { LoginService } from '@app/shared/services/login/login.service';
 
 @Component({
   selector: 'app-login-page',
@@ -10,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-page.component.scss'],
 })
 
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent  {
   hide = true;
   isLoggedIn = false;
   isLoginFailed = false;
@@ -25,34 +23,15 @@ export class LoginPageComponent implements OnInit {
   });
 
   constructor(
-    private readonly authenticationService: AuthenticationService,
-    private readonly tokenStorage: TokenStorageService,
-    private router: Router
+    private readonly loginService: LoginService
   ) {}
-
-  ngOnInit(): void {
-    // if (this.tokenStorage.getToken()) {
-    //   this.isLoggedIn = true;
-    // }
-  }
 
   onSubmit(): void {
     const userData = this.userLoginForm.value;
 
-    this.authenticationService.logIn(userData).subscribe({
-      next: (data) => {
-        this.tokenStorage.saveToken(data.token);
-        this.tokenStorage.saveUser(data);
+    this.isLoginFailed = false;
+    this.isLoggedIn = true;
 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-
-        this.router.navigate(['/main']);
-      },
-      error: (err) => {
-        this.isLoginFailed = true;
-        this.errorMessage = err.error.message;
-      },
-    });
+    this.loginService.logIn(userData);
   }
 }

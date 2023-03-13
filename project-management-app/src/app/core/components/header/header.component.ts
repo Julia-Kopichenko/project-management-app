@@ -1,61 +1,37 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Event, RouterEvent, Router } from '@angular/router';
-import { RoutesPath } from '@enams/routes-path';
-import { TokenStorageService } from '@services/tokenStorage/token-storage.service';
 import { TranslocoService } from '@ngneat/transloco';
-import { filter, Subscription } from 'rxjs';
-import { LoginService } from '@services/login/login.service';
+import { AuthService } from '@app/shared/services/auth/auth.service';
+import { LoginService } from '@app/shared/services/login/login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
   currentUrl: string = '';
   siteLanguage: string = 'en';
   isAuthorized: boolean = false;
 
-  subscription$: Subscription;
+  private subs!: Subscription;
 
   constructor(
     private readonly translate: TranslocoService,
-    private readonly tokenStorage: TokenStorageService,
-    private router: Router,
+    private readonly authService: AuthService,
     private readonly loginService: LoginService
-  ) {
-    this.subscription$ = this.router.events
-      .pipe(filter((e: Event): e is RouterEvent => e instanceof RouterEvent))
-      .subscribe((e: RouterEvent) => {
-        if (this.tokenStorage.getToken()) {
-          this.isAuthorized = true;
-        }
-
-        // this.currentUrl = e.url;
-        // if (
-        //   this.currentUrl === RoutesPath.welcomePage ||
-        //   this.currentUrl === RoutesPath.authPage ||
-        //   this.currentUrl === RoutesPath.logInPage ||
-        //   this.currentUrl === RoutesPath.signUpPage
-        // ) {
-        //   this.isAuthorized = false;
-        // } else {
-        //   if (this.tokenStorage.getToken()) {
-        //     this.isAuthorized = true;
-        //   }
-        // }
-        console.log(this.isAuthorized);
-      });
-  }
+  ) {}
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isAuthorized = true;
-    }
+    this.subs = this.loginService.isLoggedInStatus$.subscribe((isLoggedIn) => {
+      if (isLoggedIn) {
+        this.isAuthorized = true;
+      }
+    });
   }
 
-  ngOnDestroy() {
-    this.subscription$.unsubscribe();
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
   onSiteLanguageChange(language: string): void {
@@ -64,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logOut() {
-    this.loginService.logOut();
+    this.authService.logOut();
     this.isAuthorized = false;
   }
   newBoard() {

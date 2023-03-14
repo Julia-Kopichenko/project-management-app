@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
-import { AuthService } from '@app/shared/services/auth/auth.service';
-import { LoginService } from '@app/shared/services/login/login.service';
+import { AuthService } from '@services/auth/auth.service';
+import { LoginService } from '@services/login/login.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   currentUrl: string = '';
   siteLanguage: string = 'en';
   isAuthorized: boolean = false;

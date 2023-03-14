@@ -8,7 +8,9 @@ import { AuthenticationRoutingModule } from '@authentication/authentication-rout
 
 @NgModule({
   declarations: [SignUpPageComponent, LoginPageComponent],
+
   imports: [CommonModule, SharedModule, AuthenticationRoutingModule],
+
   providers: [],
 })
 export class AuthenticationModule {}

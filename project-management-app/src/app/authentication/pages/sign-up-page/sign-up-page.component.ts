@@ -15,12 +15,20 @@ export class SignUpPageComponent {
 
   userRegisterForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    login: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    login: new FormControl('', [Validators.required, Validators.minLength(1)]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.minLength(1),
     ]),
   });
+  // userRegisterForm: FormGroup = new FormGroup({
+  //   name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+  //   login: new FormControl('', [Validators.required, Validators.minLength(5)]),
+  //   password: new FormControl('', [
+  //     Validators.required,
+  //     Validators.minLength(8),
+  //   ]),
+  // });
 
   constructor(private readonly authService: AuthService) {}
 

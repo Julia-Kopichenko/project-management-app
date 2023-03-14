@@ -17,5 +17,18 @@
       "lengthLogin": "Login should be at least 5 characters",
       "lengthPassword": "Password should be at least 8 characters"
     }
+  },
+  "main": {
+    "title": "All projects",
+    "subtitle": "My boards",
+    "search-bar": {
+      "search": "search board"
+    },
+    "sort-bar": {
+      "sort": "Sort"
+    },
+    "board-list": {
+      "newBoard": "Create new board"
+    }
   }
 }

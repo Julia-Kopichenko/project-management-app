@@ -15,12 +15,19 @@ export class LoginPageComponent  {
   errorMessage = '';
 
   userLoginForm: FormGroup = new FormGroup({
-    login: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    login: new FormControl('', [Validators.required, Validators.minLength(1)]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.minLength(1),
     ]),
   });
+  // userLoginForm: FormGroup = new FormGroup({
+  //   login: new FormControl('', [Validators.required, Validators.minLength(5)]),
+  //   password: new FormControl('', [
+  //     Validators.required,
+  //     Validators.minLength(8),
+  //   ]),
+  // });
 
   constructor(
     private readonly loginService: LoginService

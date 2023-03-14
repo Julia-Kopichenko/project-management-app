@@ -19,7 +19,14 @@ $theme: mat.define-light-theme((
 $color-primary-dark: mat.get-color-from-palette($primary, 600);
 $color-primary: mat.get-color-from-palette($primary, 800);
 $color-primary-light: mat.get-color-from-palette($primary, 400);
-$color-primary-x-light: #CE93D8;
+$color-primary-x-light: #CE93D8; // 200
+$color-primary-xx-light: #F3E5F5; // 50
+
+
+$color-accent-x-dark: #43A047; // 600
 $color-accent-dark: mat.get-color-from-palette($accent, A400);
 $color-accent: mat.get-color-from-palette($accent, A200);
 $color-accent-light: mat.get-color-from-palette($accent, A100);
+$color-accent-x-light: #E8F5E9; // 50
+
+$shadow-card: 0.4em 0.4em 5px $color-primary;

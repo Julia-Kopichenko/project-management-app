@@ -4,11 +4,11 @@ import { MainPageComponent } from './main-page.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TranslocoModule } from '@ngneat/transloco';
+import { SharedModule } from '@shared/shared.module';
 import { BoardsListComponent } from './components/boards-list/boards-list.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SortBarComponent } from './components/sort-bar/sort-bar.component';
-import { SharedModule } from '@shared/shared.module';
-
+import { CreateBoardComponent } from './components/create-board/create-board.component';
 const routes: Routes = [{ path: '', component: MainPageComponent }];
 
 @NgModule({
@@ -17,6 +17,7 @@ const routes: Routes = [{ path: '', component: MainPageComponent }];
         BoardsListComponent,
         SearchBarComponent,
         SortBarComponent,
+        CreateBoardComponent,
     ],
     imports: [
         CommonModule,

@@ -8,7 +8,7 @@ import {
   LoginData,
   LoginResponse,
   UserData,
-} from '@app/shared/models/interfaces/auth-interface';
+} from '@interfaces/auth-interface';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 
 @Injectable({ providedIn: 'root' })

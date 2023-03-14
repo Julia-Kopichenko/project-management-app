@@ -2,13 +2,18 @@
   <div class="boards-list__container">
     <mat-card
     class="boards-list__item boards-list__create"
-    (click)="openDialog()" >
+    (click)="addNewBoard()" >
       <mat-card-title
         class="boards-list__title">
         {{ t('main.board-list.newBoard') }}
       </mat-card-title>
       <img src="../../../../../../assets/png/icons8-plus-96.png" alt="create" class="boards-list__img">
     </mat-card>
+
+    <app-board-item></app-board-item>
+    <app-board-item></app-board-item>
+    <app-board-item></app-board-item>
+    <app-board-item></app-board-item>
 
     <mat-card class="boards-list__item">
 

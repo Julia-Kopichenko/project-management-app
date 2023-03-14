@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { MainPageService } from '@services/main-page/main-page.service';
 import { CreateBoardComponent } from '../create-board/create-board.component';
 
 @Component({
@@ -11,11 +12,19 @@ import { CreateBoardComponent } from '../create-board/create-board.component';
   templateUrl: './boards-list.component.html',
   styleUrls: ['./boards-list.component.scss'],
 })
-export class BoardsListComponent {
+export class BoardsListComponent implements OnInit, OnDestroy {
+  constructor(
+    private mainPageService: MainPageService,
+    public dialog: MatDialog
+  ) {}
 
-  constructor(public dialog: MatDialog) {}
+  ngOnInit() {
+    this.mainPageService.getAllBoard();
+  }
 
-  openDialog(): void {
+  ngOnDestroy() {}
+
+  addNewBoard(): void {
     this.dialog.open(CreateBoardComponent);
 
     // dialogRef.afterClosed().subscribe((result) => {

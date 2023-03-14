@@ -1,36 +1,29 @@
 <article class="boards-list" *transloco="let t">
-  <div class="boards-list__container">
-    <mat-card
-    class="boards-list__item boards-list__create"
-    (click)="addNewBoard()" >
-      <mat-card-title
-        class="boards-list__title">
-        {{ t('main.board-list.newBoard') }}
-      </mat-card-title>
-      <img src="../../../../../../assets/png/icons8-plus-96.png" alt="create" class="boards-list__img">
-    </mat-card>
+  <ul class="boards-list__container">
+    <li>
+      <mat-card
+      class="board board-create"
+      (click)="addNewBoard()" >
+        <mat-card-title
+          class="board__title">
+          {{ t('main.board-list.newBoard') }}
+        </mat-card-title>
+        <img src="../../../../../../assets/png/icons8-plus-96.png" alt="create" class="board-create__img">
+      </mat-card>
+    </li>
 
-    <app-board-item></app-board-item>
-    <app-board-item></app-board-item>
-    <app-board-item></app-board-item>
-    <app-board-item></app-board-item>
+      <app-board-item
+        *ngFor="let board of (boards$ | async)!"
+        [board]="board"
+        (click)="openBoard(board)">
+      </app-board-item>
 
-    <mat-card class="boards-list__item">
+    <!-- ! как заменить на список? -->
+    <!-- <li *ngFor="let board of boards"; index as i;
+      (click)="openBoard(board)">
+      <app-board-item [board]="board" ></app-board-item>
+    </li> -->
 
-    </mat-card>
-    <mat-card class="boards-list__item">
-
-    </mat-card>
-    <mat-card class="boards-list__item">
-
-    </mat-card>
-    <mat-card class="boards-list__item">
-
-    </mat-card>
-    <mat-card class="boards-list__item">
-
-    </mat-card>
-
-  </div>
+  </ul>
 
 </article>

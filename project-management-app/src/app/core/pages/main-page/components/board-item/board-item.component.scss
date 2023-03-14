@@ -1,0 +1,45 @@
+@import "variables";
+
+.board {
+  height: 17rem;
+    border: 1px solid $color-primary;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px 1px $color-primary-light;
+    overflow: hidden;
+    word-break: break-all;
+    background-color:white;
+    transition: all ease .5s;
+    padding: 1.5rem;
+
+    cursor: pointer;
+    &:hover {
+      box-shadow:$shadow-card;
+    }
+    &__title {
+    font-size: 2.5rem;
+    margin: 0;
+    text-align: center;
+  }
+    &__subTitle {
+    font-size: 2rem;
+    margin: 0;
+    color: $color-primary-light;
+  }
+  &__img {
+    display: block;
+    width: 50%;
+    margin-bottom: 1rem;
+  }
+}
+.board-create {
+  display: flex;
+    justify-content: center;
+    align-items:center;
+    gap: 1rem;
+}
+
+.board__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -4,7 +4,9 @@ import {
   MAT_DIALOG_DATA,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { Board } from '@app/shared/models/interfaces/board-interface';
 import { MainPageService } from '@services/main-page/main-page.service';
+import { Observable } from 'rxjs';
 import { CreateBoardComponent } from '../create-board/create-board.component';
 
 @Component({
@@ -13,6 +15,31 @@ import { CreateBoardComponent } from '../create-board/create-board.component';
   styleUrls: ['./boards-list.component.scss'],
 })
 export class BoardsListComponent implements OnInit, OnDestroy {
+  boards$: Observable<Board[]> = this.mainPageService.getAllBoards$();
+
+  // boards = [
+  //   {
+  //     id: "1",
+  //     title: 'First',
+  //     description: 'string',
+  //   },
+  //   {
+  //     id: "2",
+  //     title: 'Two',
+  //     description: 'string string',
+  //   },
+  //   {
+  //     id: "3",
+  //     title: 'Two zfdzfgfgd',
+  //     description: 'string string fzgdzfgdzfgdzfg zdfzdfzdfgzdfg ',
+  //   },
+  //   {
+  //     id: "3",
+  //     title: 'Two zfdzfgfgd',
+  //     description: 'string string fzgdzfgdzfgdzfg zdfzdfzdfgzdfg ',
+  //   },
+  // ];
+
   constructor(
     private mainPageService: MainPageService,
     public dialog: MatDialog
@@ -32,4 +59,5 @@ export class BoardsListComponent implements OnInit, OnDestroy {
     //   this.animal = result;
     // });
   }
+  openBoard(board: Board) {}
 }

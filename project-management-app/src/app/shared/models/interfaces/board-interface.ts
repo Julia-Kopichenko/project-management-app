@@ -1,7 +1,7 @@
-export interface OneBoard {
-  id: string;
+export interface Board {
+  id?: string;
   title: string;
-  description: string;
+  description?: string;
 }
 
-export type AllBoardsResponse = Array<OneBoard>;
+export type AllBoardsResponse = Array<Board>;

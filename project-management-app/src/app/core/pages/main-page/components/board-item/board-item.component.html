@@ -1,1 +1,17 @@
-<p>board-item works!</p>
+
+  <mat-card class="board" *ngIf="board">
+    <div class="board__inner">
+      <mat-card-title class="board__title">{{ board.title }}</mat-card-title>
+      <button
+        mat-icon-button
+        class="board__button"
+        type="button"
+        (click)="onDelete($event)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </div>
+    <img src="../../../../../../assets/png/avatars.png" alt="create" class="board__img">
+    <mat-card-subtitle class="board__subTitle">{{ board.description }}</mat-card-subtitle>
+
+  </mat-card>

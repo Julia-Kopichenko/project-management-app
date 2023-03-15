@@ -9,13 +9,37 @@
   "editProfile": "Edit profile",
 
   "forms": {
+    "enterData": "Enter data",
+    "btnSubmit": "Submit",
+    "btnCancel": "Cancel",
+    "createBoard": {
+      "title": "Title",
+      "description":"Description"
+    },
     "errors": {
       "enterName": "Please enter your name",
       "enterLogin": "Please enter a login",
       "enterPassword": "Please enter a password",
+      "enterTitle": "Please enter a title",
+      "enterDescription": "Please enter a description",
       "lengthName": "Name should be at least 3 characters",
       "lengthLogin": "Login should be at least 5 characters",
-      "lengthPassword": "Password should be at least 8 characters"
+      "lengthPassword": "Password should be at least 8 characters",
+      "lengthTitle": "Title should be at least 3 characters",
+      "lengthDescription": "Description should be at least 3 characters"
+    }
+  },
+  "main": {
+    "title": "All projects",
+    "subtitle": "My boards",
+    "search-bar": {
+      "search": "search board"
+    },
+    "sort-bar": {
+      "sort": "Sort"
+    },
+    "board-list": {
+      "newBoard": "Create new board"
     }
   }
 }

@@ -14,5 +14,4 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [MaterialModule, TranslocoRootModule, ReactiveFormsModule],
 })
-
 export class SharedModule {}

@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/component-selector */
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@app/shared/services/auth/auth.service';
@@ -9,8 +10,11 @@ import { AuthService } from '@app/shared/services/auth/auth.service';
 })
 export class SignUpPageComponent {
   hide = true;
+
   isSuccessful = false;
+
   isSignUpFailed = false;
+
   errorMessage = '';
 
   userRegisterForm: FormGroup = new FormGroup({

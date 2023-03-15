@@ -8,9 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BoardsService {
-
-  constructor(private readonly requestBuilderService: RequestBuilderService) { }
-
+  constructor(private readonly requestBuilderService: RequestBuilderService) {}
 
   // getAllBoards(): Observable<AllBoardsResponse> {
   //   return this.requestBuilderService.get<AllBoardsResponse>("http://localhost:3000/boards");

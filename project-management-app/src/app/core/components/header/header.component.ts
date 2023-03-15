@@ -10,9 +10,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  currentUrl: string = '';
-  siteLanguage: string = 'en';
-  isAuthorized: boolean = false;
+  siteLanguage = 'en';
+
+  isAuthorized = false;
 
   private subs!: Subscription;
 
@@ -43,9 +43,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logOut();
     this.isAuthorized = false;
   }
+
+  /* eslint-disable class-methods-use-this */
+  /* eslint-disable no-console */
   newBoard() {
     console.log('openDialog');
   }
+
+  /* eslint-disable class-methods-use-this */
+  /* eslint-disable no-console */
   editProfile() {
     console.log('editProfile');
   }

@@ -4,7 +4,7 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HTTP_INTERCEPTORS
+  HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from '@services/localStorage/local-storage.service';
@@ -25,9 +25,8 @@ export class AuthInterceptor implements HttpInterceptor {
           headers: request.headers.set('Authorization', `Bearer ${token}`),
         })
       );
-    } else {
-      return next.handle(request);
     }
+    return next.handle(request);
   }
 }
 

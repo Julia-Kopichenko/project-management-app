@@ -1,9 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Board } from '@app/shared/models/interfaces/board-interface';
 import { MainPageService } from '@services/main-page/main-page.service';
 import { Observable } from 'rxjs';
@@ -49,6 +45,8 @@ export class BoardsListComponent implements OnInit, OnDestroy {
     this.mainPageService.getAllBoard();
   }
 
+  /* eslint-disable class-methods-use-this */
+  /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
   ngOnDestroy() {}
 
   addNewBoard(): void {
@@ -59,5 +57,10 @@ export class BoardsListComponent implements OnInit, OnDestroy {
     //   this.animal = result;
     // });
   }
-  openBoard(board: Board) {}
+
+  /* eslint-disable class-methods-use-this */
+  /* eslint-disable no-console */
+  openBoard(board: Board) {
+    console.log(board);
+  }
 }

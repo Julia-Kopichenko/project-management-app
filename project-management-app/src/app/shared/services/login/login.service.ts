@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginData } from '@app/shared/models/interfaces/auth-interface';
+import { Observable, of, Subject } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { LocalStorageService } from '../localStorage/local-storage.service';
-import { Observable, of, Subject } from 'rxjs';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -11,7 +11,6 @@ const USER_KEY = 'auth-user';
 @Injectable({
   providedIn: 'root',
 })
-
 export class LoginService {
   constructor(
     private readonly authService: AuthService,
@@ -27,10 +26,9 @@ export class LoginService {
     if (!tokenFromLocalStorage) {
       this.isLoggedInStatus$.next(false);
       return of(false);
-    } else {
-      this.isLoggedInStatus$.next(true);
-      return of(true);
     }
+    this.isLoggedInStatus$.next(true);
+    return of(true);
   }
 
   logIn(userData: LoginData) {
@@ -44,7 +42,7 @@ export class LoginService {
 
         this.router.navigate(['/main']);
       },
-      error: (err) => {
+      error: () => {
         // this.isLoginFailed = true;
         // this.errorMessage = err.error.message;
         // if (error.error.statusCode === 403) {

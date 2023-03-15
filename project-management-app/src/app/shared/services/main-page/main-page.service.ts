@@ -1,3 +1,6 @@
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable no-console */
+
 import { Injectable } from '@angular/core';
 import { Board } from '@interfaces/board-interface';
 import { BehaviorSubject } from 'rxjs';
@@ -17,7 +20,7 @@ export class MainPageService {
         console.log('AllBoard', boards);
         this.allBoards$.next(boards);
       },
-      error: (error) => {},
+      error: () => {},
     });
   }
 
@@ -25,5 +28,6 @@ export class MainPageService {
     return this.allBoards$.asObservable();
   }
 
+  /* eslint-disable class-methods-use-this */
   createBoard() {}
 }

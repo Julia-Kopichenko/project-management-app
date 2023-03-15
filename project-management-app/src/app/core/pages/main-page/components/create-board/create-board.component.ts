@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,8 +9,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CreateBoardComponent implements OnInit {
   formGroup: FormGroup | null = null;
 
-  constructor(private fb: FormBuilder)
-  {}
+  constructor(private fb: FormBuilder) {}
+
   ngOnInit(): void {
     this.formGroup = this.fb.group({
       title: [
@@ -31,8 +31,10 @@ export class CreateBoardComponent implements OnInit {
       ],
     });
   }
+
+  /* eslint-disable class-methods-use-this */
+  /* eslint-disable no-console */
   onSubmit() {
     console.log('Submit');
-
   }
 }

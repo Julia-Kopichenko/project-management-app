@@ -11,14 +11,15 @@
     display: flex;
     justify-content: center;
   }
-  &__content,&__actions {
+  &__content,
+  &__actions {
     padding: 2rem;
   }
-  &__field{
+  &__field {
     width: 100%;
     padding: 0;
   }
-  &__actions{
+  &__actions {
     justify-content: space-between;
   }
 }

@@ -6,9 +6,7 @@
     "project-management-app": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "scss"
-        }
+
       },
       "root": "",
       "sourceRoot": "src",
@@ -31,7 +29,12 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
             },
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "ngneat-transloc",
+              "ngneat-transloco-locale",
+              "flat"
+            ]
           },
           "configurations": {
             "production": {
@@ -89,6 +92,7 @@
               "src/styles.scss"
             ],
             "scripts": []
+
           }
         }
       }

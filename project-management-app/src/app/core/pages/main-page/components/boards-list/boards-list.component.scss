@@ -31,7 +31,9 @@
     box-shadow: $shadow-card;
   }
 }
-
+.create-board {
+  background-color: $color-accent-light;
+}
 .create-board__img {
   background-image: url("../../../../../../assets/png/TaskManagement-hero.webp");
   background-repeat: no-repeat;

@@ -42,7 +42,7 @@ export class MainPageService {
     };
 
     this.boardsDataService.createBoard(val).subscribe({
-      next: (board) => {
+      next: () => {
         this.boardsDataService.getAllBoards().subscribe({
           next: (item: Board[]) => {
             this.allBoards$.next(item);

@@ -25,3 +25,8 @@
   background-repeat: no-repeat;
   width: 60%;
 }
+.board__button {
+  &:hover {
+    background-color: $color-accent-light;
+  }
+}

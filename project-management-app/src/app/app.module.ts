@@ -10,6 +10,7 @@ import { AuthenticationModule } from '@authentication/authentication.module';
 import { authInterceptorProviders } from '@shared/interceptors/auth.interceptor';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DialogModule } from './dialog/dialog.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
     SharedModule,
     CoreModule,
     AuthenticationModule,
+    DialogModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

@@ -2,9 +2,10 @@
 /* eslint-disable no-console */
 
 import { Injectable } from '@angular/core';
-import { Board } from '@interfaces/board-interface';
+import { AddBoardEvent, Board } from '@interfaces/board-interface';
 import { BehaviorSubject } from 'rxjs';
 import { BoardsService } from '../boards/boards.service';
+import { LocalStorageService } from '../localStorage/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +13,14 @@ import { BoardsService } from '../boards/boards.service';
 export class MainPageService {
   private allBoards$ = new BehaviorSubject<Board[]>([]);
 
-  constructor(private boardsDataService: BoardsService) {}
+  constructor(
+    private readonly boardsDataService: BoardsService,
+    private readonly localStorageService: LocalStorageService
+  ) {}
 
   getAllBoard() {
     this.boardsDataService.getAllBoards().subscribe({
       next: (boards: Board[]) => {
-        console.log('AllBoard', boards);
         this.allBoards$.next(boards);
       },
       error: () => {},
@@ -28,6 +31,26 @@ export class MainPageService {
     return this.allBoards$.asObservable();
   }
 
-  /* eslint-disable class-methods-use-this */
-  createBoard() {}
+  createBoard(event: AddBoardEvent) {
+    const idFromLocalStorage =
+      this.localStorageService.getFromLocalStorage('userId');
+
+    const val = {
+      title: event.value.title,
+      owner: idFromLocalStorage,
+      users: ['string'],
+    };
+
+    this.boardsDataService.createBoard(val).subscribe({
+      next: (board) => {
+        this.boardsDataService.getAllBoards().subscribe({
+          next: (item: Board[]) => {
+            this.allBoards$.next(item);
+          },
+          error: () => {},
+        });
+      },
+      error: () => {},
+    });
+  }
 }

@@ -10,6 +10,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SortBarComponent } from './components/sort-bar/sort-bar.component';
 import { CreateBoardComponent } from './components/create-board/create-board.component';
 import { BoardItemComponent } from './components/board-item/board-item.component';
+import { DialogModule } from '../../../dialog/dialog.module';
 
 const routes: Routes = [{ path: '', component: MainPageComponent }];
 
@@ -27,6 +28,7 @@ const routes: Routes = [{ path: '', component: MainPageComponent }];
     RouterModule.forChild(routes),
     TranslocoModule,
     SharedModule,
+    DialogModule,
   ],
 })
 export class MainPageModule {}

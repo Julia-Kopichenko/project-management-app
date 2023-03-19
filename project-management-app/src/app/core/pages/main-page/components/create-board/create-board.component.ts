@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MainPageService } from '@services/main-page/main-page.service';
 
 @Component({
   selector: 'app-create-board',
@@ -9,7 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CreateBoardComponent implements OnInit {
   formGroup: FormGroup | null = null;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private mainPageService: MainPageService
+  ) {}
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
@@ -32,9 +36,12 @@ export class CreateBoardComponent implements OnInit {
     });
   }
 
-  /* eslint-disable class-methods-use-this */
   /* eslint-disable no-console */
   onSubmit() {
-    console.log('Submit');
+    if (this.formGroup?.valid) {
+      const newFormData = this.formGroup.value;
+
+      this.mainPageService.createBoard(newFormData);
+    }
   }
 }

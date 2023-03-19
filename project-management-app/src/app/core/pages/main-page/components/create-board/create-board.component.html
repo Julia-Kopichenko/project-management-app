@@ -8,7 +8,7 @@
     </mat-card-header>
     <!-- FORM BODY -->
     <mat-dialog-content class="card-form__content">
-      <form [formGroup]="formGroup" (submit)="formGroup.valid && onSubmit()">
+      <form [formGroup]="formGroup">
         <!-- TITLE -->
         <mat-form-field appearance="fill" class="card-form__field">
           <mat-label>{{t('forms.createBoard.title')}}</mat-label>
@@ -41,7 +41,8 @@
     </mat-dialog-content>
     <mat-dialog-actions class="card-form__actions">
       <button mat-raised-button mat-dialog-close>{{ t("forms.btnCancel") }}</button>
-      <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="formGroup.invalid">
+      <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="formGroup.invalid"
+        (click)="onSubmit()">
         {{t('forms.btnSubmit')}}
       </button>
     </mat-dialog-actions>

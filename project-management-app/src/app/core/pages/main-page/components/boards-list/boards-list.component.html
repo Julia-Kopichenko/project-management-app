@@ -1,12 +1,18 @@
 <article class="boards-list" *transloco="let t">
   <ul class="boards-list__container">
     <li>
-      <mat-card class="board board-create" (click)="addNewBoard()">
-        <mat-card-title class="board__title">
-          {{ t('main.board-list.newBoard') }}
-        </mat-card-title>
-        <img src="../../../../../../assets/png/icons8-plus-96.png" alt="create" class="board-create__img">
-      </mat-card>
+      <app-dialog (click)="setOneFiledForm()" (emitText)="addNewBoard($event)" appStopPropagation>
+        <mat-card class="board create-board">
+          <mat-card-header class="board__header">
+            <mat-card-title class="board__title">
+              {{ t('main.board-list.newBoard') }}
+            </mat-card-title>
+            <mat-icon>add</mat-icon>
+          </mat-card-header>
+          <mat-card-content class="board__img create-board__img">
+          </mat-card-content>
+        </mat-card>
+      </app-dialog>
     </li>
 
     <app-board-item *ngFor="let board of (boards$ | async)!" [board]="board" (click)="openBoard(board)">

@@ -41,5 +41,12 @@
     "board-list": {
       "newBoard": "Создать новую доску"
     }
+  },
+  "confirmModal": {
+    "sure": "Вы уверены?",
+    "buttons": {
+      "ok": "да",
+      "cancel": "отмена"
+    }
   }
 }

@@ -1,17 +1,43 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { MainPageService } from '@app/shared/services/main-page/main-page.service';
 import { Board } from '@interfaces/board-interface';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-board-item',
   templateUrl: './board-item.component.html',
   styleUrls: ['./board-item.component.scss'],
 })
-export class BoardItemComponent {
+export class BoardItemComponent implements OnDestroy {
+  private subscriptions: Subscription[] = [];
+
   @Input() board: Board | undefined;
 
-  /* eslint-disable class-methods-use-this */
-  /* eslint-disable no-console */
-  onDelete(e: Event): void {
-    console.log(e);
+  data = 'Delete project?';
+
+  constructor(
+    private readonly mainPageService: MainPageService,
+    private readonly translocoService: TranslocoService
+  ) {
+    this.subscriptions.push(
+      translocoService.langChanges$.subscribe((lang) => {
+        if (lang === 'en') {
+          this.data = 'Delete project?';
+        } else {
+          this.data = 'Удалить проект?';
+        }
+      })
+    );
+  }
+
+  deleteBoard(confirmItem: any, boardId: string) {
+    if (confirmItem.clicked) {
+      this.mainPageService.deleteBoard(boardId);
+    }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

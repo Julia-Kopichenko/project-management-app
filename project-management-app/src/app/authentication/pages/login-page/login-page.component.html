@@ -9,7 +9,7 @@
 
     <!-- FORM BODY -->
     <mat-card-content class="auth-card__content">
-      <form *ngIf="!isLoggedIn" [formGroup]="userLoginForm" (submit)="userLoginForm.valid && onSubmit()">
+      <form [formGroup]="userLoginForm" (submit)="userLoginForm.valid && onSubmit()">
 
         <!-- lOGIN -->
         <mat-form-field class="auth-card__field" appearance="fill">
@@ -50,11 +50,6 @@
           {{ t("logIn") }}
         </button>
       </form>
-      <div class="message message-warning" *ngIf="isLoginFailed">
-        Login failed!
-        <br />
-        {{ errorMessage }}
-      </div>
     </mat-card-content>
   </mat-card>
 </div>

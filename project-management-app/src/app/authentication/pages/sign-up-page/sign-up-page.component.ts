@@ -1,6 +1,7 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@app/shared/services/auth/auth.service';
 import { LocalStorageService } from '@app/shared/services/localStorage/local-storage.service';
 import { Subscription } from 'rxjs';
@@ -11,11 +12,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./sign-up-page.component.scss'],
 })
 export class SignUpPageComponent implements OnDestroy {
-  subscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
   hide = true;
-
-  isSuccessful = false;
 
   isSignUpFailed = false;
 
@@ -40,7 +39,8 @@ export class SignUpPageComponent implements OnDestroy {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly localStorageService: LocalStorageService
+    private readonly localStorageService: LocalStorageService,
+    private router: Router
   ) {}
 
   onSubmit(): void {
@@ -50,22 +50,29 @@ export class SignUpPageComponent implements OnDestroy {
       password: this.userRegisterForm.value.password,
     };
 
-    this.subscription = this.authService.signUp(userData).subscribe({
-      next: (body) => {
-        // eslint-disable-next-line no-underscore-dangle
-        this.localStorageService.saveInLocalStorage('userId', body._id);
+    this.subscriptions.push(
+      this.authService.signUp(userData).subscribe({
+        next: (data) => {
+          console.log('signUp data', data);
 
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-      },
-      error: (err) => {
-        this.isSignUpFailed = true;
-        this.errorMessage = err.error.message;
-      },
-    });
+          // eslint-disable-next-line no-underscore-dangle
+          console.log('signUp id', data._id);
+
+          // // eslint-disable-next-line no-underscore-dangle
+          // this.localStorageService.saveInLocalStorage('userId', body._id);
+
+          this.isSignUpFailed = false;
+          this.router.navigate(['/auth/login']);
+        },
+        error: (err) => {
+          this.isSignUpFailed = true;
+          this.errorMessage = err.error.message;
+        },
+      })
+    );
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

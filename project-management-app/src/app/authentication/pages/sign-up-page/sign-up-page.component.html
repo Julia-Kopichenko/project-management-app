@@ -8,7 +8,7 @@
     </mat-card-header>
     <!-- FORM BODY -->
     <mat-card-content class="auth-card__content">
-      <form *ngIf="!isSuccessful" [formGroup]="userRegisterForm" (submit)="userRegisterForm.valid && onSubmit()">
+      <form [formGroup]="userRegisterForm" (submit)="userRegisterForm.valid && onSubmit()">
         <!-- NAME -->
         <mat-form-field class="auth-card__field" appearance="fill">
           <mat-label>{{ t("name") }}</mat-label>
@@ -60,9 +60,6 @@
         Signup failed!
         <br />
         {{ errorMessage }}
-      </div>
-      <div class="message message-success" *ngIf="isSuccessful">
-        Your registration is successful!
       </div>
     </mat-card-content>
   </mat-card>

@@ -7,6 +7,7 @@ import { WelcomePageComponent } from '@core/pages/welcome-page/welcome-page.comp
 import { NotFoundPageComponent } from '@core/pages/not-found-page/not-found-page.component';
 import { CoreRoutingModule } from '@core/core-routing.module';
 import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile-page.component';
+import { DialogModule } from '../dialog/dialog.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,6 @@ import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile
     NotFoundPageComponent,
     EditProfilePageComponent,
   ],
-  imports: [CommonModule, CoreRoutingModule, SharedModule],
   exports: [
     HeaderComponent,
     FooterComponent,
@@ -24,5 +24,6 @@ import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile
     NotFoundPageComponent,
     EditProfilePageComponent,
   ],
+  imports: [CommonModule, CoreRoutingModule, SharedModule, DialogModule],
 })
 export class CoreModule {}

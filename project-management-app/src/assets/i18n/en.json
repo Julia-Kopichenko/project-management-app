@@ -41,5 +41,12 @@
     "board-list": {
       "newBoard": "Create new board"
     }
+  },
+  "confirmModal": {
+    "sure": "Are you sure?",
+    "buttons": {
+      "ok": "ok",
+      "cancel": "cancel"
+    }
   }
 }

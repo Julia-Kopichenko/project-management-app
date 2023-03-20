@@ -11,6 +11,6 @@ import { AuthenticationRoutingModule } from '@authentication/authentication-rout
 
   imports: [CommonModule, SharedModule, AuthenticationRoutingModule],
 
-  providers: [],
+  exports: [SignUpPageComponent, LoginPageComponent],
 })
 export class AuthenticationModule {}

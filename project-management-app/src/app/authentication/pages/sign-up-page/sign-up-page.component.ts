@@ -3,7 +3,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/shared/services/auth/auth.service';
-import { LocalStorageService } from '@app/shared/services/localStorage/local-storage.service';
+
+import { NotificationService } from '@app/shared/services/notification/notification.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,10 +16,6 @@ export class SignUpPageComponent implements OnDestroy {
   private subscriptions: Subscription[] = [];
 
   hide = true;
-
-  isSignUpFailed = false;
-
-  errorMessage = '';
 
   userRegisterForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -39,7 +36,7 @@ export class SignUpPageComponent implements OnDestroy {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly localStorageService: LocalStorageService,
+    private readonly notificationService: NotificationService,
     private router: Router
   ) {}
 
@@ -52,21 +49,15 @@ export class SignUpPageComponent implements OnDestroy {
 
     this.subscriptions.push(
       this.authService.signUp(userData).subscribe({
-        next: (data) => {
-          console.log('signUp data', data);
-
-          // eslint-disable-next-line no-underscore-dangle
-          console.log('signUp id', data._id);
-
-          // // eslint-disable-next-line no-underscore-dangle
-          // this.localStorageService.saveInLocalStorage('userId', body._id);
-
-          this.isSignUpFailed = false;
+        next: () => {
           this.router.navigate(['/auth/login']);
         },
         error: (err) => {
-          this.isSignUpFailed = true;
-          this.errorMessage = err.error.message;
+          if (err.error.statusCode === 409) {
+            this.notificationService.showError('errorMessage.loginConflict');
+          } else {
+            this.notificationService.showError('errorMessage.somethingWrong');
+          }
         },
       })
     );

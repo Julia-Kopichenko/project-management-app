@@ -8,13 +8,20 @@
   "newBoard": "Create board",
   "editProfile": "Edit profile",
 
+  "errorMessage": {
+    "somethingWrong": "Whoops! Something went wrong",
+    "loginConflict": "Login already exist",
+    "authorizationError": "User was not found. Please, check login and password",
+    "noBords": "No bords"
+  },
+
   "forms": {
     "enterData": "Enter data",
     "btnSubmit": "Submit",
     "btnCancel": "Cancel",
     "createBoard": {
       "title": "Title",
-      "description":"Description"
+      "description": "Description"
     },
     "errors": {
       "enterName": "Please enter your name",

@@ -1,10 +1,10 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginData, Token } from '@app/shared/models/interfaces/auth-interface';
-// import { LoginData, Token } from '@app/shared/models/interfaces/auth-interface';
 import { Observable, of, Subject, Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { LocalStorageService } from '../localStorage/local-storage.service';
+import { NotificationService } from '../notification/notification.service';
 
 const TOKEN_KEY = 'token';
 @Injectable({
@@ -16,6 +16,7 @@ export class LoginService implements OnDestroy {
   constructor(
     private readonly authService: AuthService,
     private readonly localStorageService: LocalStorageService,
+    private readonly notificationService: NotificationService,
     private router: Router
   ) {}
 
@@ -43,12 +44,12 @@ export class LoginService implements OnDestroy {
         this.localStorageService.saveInLocalStorage('userId', userId);
         this.router.navigate(['/main']);
       },
-      error: () => {
-        // this.isLoginFailed = true;
-        // this.errorMessage = err.error.message;
-        // if (error.error.statusCode === 403) {
-        //   this.notificationService.showError('errorHandling.loginError');
-        // }
+      error: (err) => {
+        if (err.error.statusCode === 401) {
+          this.notificationService.showError('errorMessage.authorizationError');
+        } else {
+          this.notificationService.showError('errorMessage.somethingWrong');
+        }
       },
     });
   }

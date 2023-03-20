@@ -3,7 +3,7 @@ import {
   AddBoardEvent,
   Board,
 } from '@app/shared/models/interfaces/board-interface';
-import { ModalService } from '@app/shared/services/modal.service';
+import { ModalService } from '@app/shared/services/modal/modal.service';
 import { MainPageService } from '@services/main-page/main-page.service';
 import { Observable } from 'rxjs';
 

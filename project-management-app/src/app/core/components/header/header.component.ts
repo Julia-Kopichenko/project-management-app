@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddBoardEvent } from '@app/shared/models/interfaces/board-interface';
 import { MainPageService } from '@app/shared/services/main-page/main-page.service';
-import { ModalService } from '@app/shared/services/modal.service';
+import { ModalService } from '@app/shared/services/modal/modal.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { AuthService } from '@services/auth/auth.service';
 import { LoginService } from '@services/login/login.service';

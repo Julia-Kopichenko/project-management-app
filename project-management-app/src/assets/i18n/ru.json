@@ -8,6 +8,13 @@
   "newBoard": "Создать доску",
   "editProfile": "Редактировать профиль",
 
+  "errorMessage": {
+    "somethingWrong": "Упс! Что-то пошло не по плану",
+    "loginConflict": "Логин уже существует",
+    "authorizationError": "Пользователь не найден. Пожалуйста, проверьте логин и пароль",
+    "noBord": "Нет досок"
+  },
+
   "forms": {
     "enterData": "Введите данные",
     "btnSubmit": "Подтвердить",

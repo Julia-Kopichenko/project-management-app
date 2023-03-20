@@ -10,6 +10,7 @@ import {
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { BoardsService } from '../boards/boards.service';
 import { LocalStorageService } from '../localStorage/local-storage.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,8 @@ export class MainPageService implements OnDestroy {
 
   constructor(
     private readonly boardsDataService: BoardsService,
-    private readonly localStorageService: LocalStorageService
+    private readonly localStorageService: LocalStorageService,
+    private readonly notificationService: NotificationService
   ) {}
 
   getAllBoard() {
@@ -30,7 +32,13 @@ export class MainPageService implements OnDestroy {
         next: (boards: Board[]) => {
           this.allBoards$.next(boards);
         },
-        error: () => {},
+        error: (err) => {
+          if (err.statusCode === 404) {
+            this.notificationService.showError('errorMessage.noBoards');
+          } else {
+            this.notificationService.showError('errorMessage.somethingWrong');
+          }
+        },
       })
     );
   }
@@ -56,10 +64,20 @@ export class MainPageService implements OnDestroy {
             next: (item: Board[]) => {
               this.allBoards$.next(item);
             },
-            error: () => {},
+            error: (err) => {
+              if (err.statusCode === 404) {
+                this.notificationService.showError('errorMessage.noBoards');
+              } else {
+                this.notificationService.showError(
+                  'errorMessage.somethingWrong'
+                );
+              }
+            },
           });
         },
-        error: () => {},
+        error: () => {
+          this.notificationService.showError('errorMessage.somethingWrong');
+        },
       })
     );
   }
@@ -72,10 +90,20 @@ export class MainPageService implements OnDestroy {
             next: (item: Board[]) => {
               this.allBoards$.next(item);
             },
-            error: () => {},
+            error: (err) => {
+              if (err.statusCode === 404) {
+                this.notificationService.showError('errorMessage.noBoards');
+              } else {
+                this.notificationService.showError(
+                  'errorMessage.somethingWrong'
+                );
+              }
+            },
           });
         },
-        error: () => {},
+        error: () => {
+          this.notificationService.showError('errorMessage.somethingWrong');
+        },
       })
     );
   }

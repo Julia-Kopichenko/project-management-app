@@ -1,5 +1,8 @@
 @import "variables";
 
+form {
+  margin-bottom: 1.5rem;
+}
 .auth-card__wrapper {
   max-width: 40rem;
   margin: 0 auto;
@@ -32,9 +35,6 @@
   border-radius: 1rem;
   color: white;
 }
-.message-success {
-  background-color: $color-accent;
-}
 .message-warning {
-  background-color: red;
+  background-color: rgb(209, 123, 123);
 }

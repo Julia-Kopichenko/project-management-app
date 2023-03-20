@@ -10,12 +10,6 @@ import { LoginService } from '@app/shared/services/login/login.service';
 export class LoginPageComponent {
   hide = true;
 
-  isLoggedIn = false;
-
-  isLoginFailed = false;
-
-  errorMessage = '';
-
   userLoginForm: FormGroup = new FormGroup({
     login: new FormControl('', [Validators.required, Validators.minLength(1)]),
     password: new FormControl('', [
@@ -34,11 +28,6 @@ export class LoginPageComponent {
   constructor(private readonly loginService: LoginService) {}
 
   onSubmit(): void {
-    const userData = this.userLoginForm.value;
-
-    this.isLoginFailed = false;
-    this.isLoggedIn = true;
-
-    this.loginService.logIn(userData);
+    this.loginService.logIn(this.userLoginForm.value);
   }
 }

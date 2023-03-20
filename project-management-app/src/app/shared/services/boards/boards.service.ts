@@ -28,5 +28,3 @@ export class BoardsService {
     return this.requestBuilderService.delete<unknown>(url);
   }
 }
-
-// "http://localhost:3000/boards"

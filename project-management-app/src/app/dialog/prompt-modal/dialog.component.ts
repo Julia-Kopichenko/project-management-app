@@ -2,11 +2,11 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnDestroy,
+  // OnDestroy,
   Output,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+// import { Subscription } from 'rxjs';
 import { DialogBodyComponent } from './dialog-body/dialog-body.component';
 
 @Component({
@@ -14,10 +14,11 @@ import { DialogBodyComponent } from './dialog-body/dialog-body.component';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.css'],
 })
-export class DialogComponent implements OnDestroy {
+// export class DialogComponent implements OnDestroy {
+export class DialogComponent {
   @Output() emitText: EventEmitter<any> = new EventEmitter();
 
-  subscription: Subscription;
+  // subscription: Subscription;
 
   @Input() oneFieldForm = false;
 
@@ -26,12 +27,15 @@ export class DialogComponent implements OnDestroy {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogBodyComponent);
 
-    this.subscription = dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.emitText.emit(result);
     });
+    // this.subscription = dialogRef.afterClosed().subscribe((result) => {
+    //   this.emitText.emit(result);
+    // });
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 }

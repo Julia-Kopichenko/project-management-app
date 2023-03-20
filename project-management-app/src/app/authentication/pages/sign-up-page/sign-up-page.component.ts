@@ -17,7 +17,7 @@ export class SignUpPageComponent implements OnDestroy {
 
   hide = true;
 
-  userRegisterForm: FormGroup = new FormGroup({
+  form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     login: new FormControl('', [Validators.required, Validators.minLength(1)]),
     password: new FormControl('', [
@@ -42,9 +42,9 @@ export class SignUpPageComponent implements OnDestroy {
 
   onSubmit(): void {
     const userData = {
-      name: this.userRegisterForm.value.name,
-      login: this.userRegisterForm.value.login,
-      password: this.userRegisterForm.value.password,
+      name: this.form.value.name,
+      login: this.form.value.login,
+      password: this.form.value.password,
     };
 
     this.subscriptions.push(

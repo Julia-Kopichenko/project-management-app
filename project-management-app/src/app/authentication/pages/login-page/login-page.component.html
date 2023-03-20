@@ -1,18 +1,18 @@
 <div *transloco="let t">
-  <mat-card class="auth-card__wrapper">
+  <mat-card class="modal__wrapper">
     <!-- TITLE -->
-    <mat-card-header class="auth-card__header">
+    <mat-card-header class="modal__header">
       <mat-card-title class="auth-card__title">
         {{ t("logIn") }}
       </mat-card-title>
     </mat-card-header>
 
     <!-- FORM BODY -->
-    <mat-card-content class="auth-card__content">
+    <mat-card-content class="modal__content">
       <form [formGroup]="userLoginForm" (submit)="userLoginForm.valid && onSubmit()">
 
         <!-- lOGIN -->
-        <mat-form-field class="auth-card__field" appearance="fill">
+        <mat-form-field class="modal__field" appearance="fill">
           <mat-label>{{ t("login") }}</mat-label>
           <input matInput type="login" formControlName="login" maxlength="20" />
           <!-- error message -->
@@ -27,7 +27,7 @@
         </mat-form-field>
 
         <!-- PASSWORD -->
-        <mat-form-field class="auth-card__field" appearance="fill">
+        <mat-form-field class="modal__field" appearance="fill">
           <mat-label>{{ t("password") }}</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" maxlength="20">
           <button mat-icon-button color="accent" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"

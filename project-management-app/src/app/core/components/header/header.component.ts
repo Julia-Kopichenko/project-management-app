@@ -58,10 +58,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.mainPageService.createBoard(userTaskData);
     }
   }
-
-  /* eslint-disable class-methods-use-this */
-  /* eslint-disable no-console */
-  editProfile() {
-    console.log('editProfile');
-  }
 }

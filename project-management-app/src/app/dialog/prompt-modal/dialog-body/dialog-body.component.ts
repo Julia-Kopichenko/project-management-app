@@ -23,8 +23,6 @@ export class DialogBodyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.isOneFieldForm);
-
     if (!this.isOneFieldForm) {
       this.form = this.fb.group({
         title: [

@@ -1,41 +1,41 @@
 <div *transloco="let t">
-  <mat-card class="auth-card__wrapper">
+  <mat-card class="modal__wrapper">
     <!-- TITLE -->
-    <mat-card-header class="auth-card__header">
+    <mat-card-header class="modal__header">
       <mat-card-title>
         {{ t("signUp") }}
       </mat-card-title>
     </mat-card-header>
     <!-- FORM BODY -->
-    <mat-card-content class="auth-card__content">
-      <form [formGroup]="userRegisterForm" (submit)="userRegisterForm.valid && onSubmit()">
+    <mat-card-content class="modal__content">
+      <form [formGroup]="form" (submit)="form.valid && onSubmit()">
         <!-- NAME -->
-        <mat-form-field class="auth-card__field" appearance="fill">
+        <mat-form-field class="modal__field" appearance="fill">
           <mat-label>{{ t("name") }}</mat-label>
           <input matInput type="text" formControlName="name" maxlength="20" />
           <!-- error message -->
-          <mat-error *ngIf="userRegisterForm.get('name')?.invalid">
-            <span *ngIf="userRegisterForm.get('name')?.hasError('required')">
+          <mat-error *ngIf="form.get('name')?.invalid">
+            <span *ngIf="form.get('name')?.hasError('required')">
               {{ t("forms.errors.enterName") }}
             </span>
-            <span *ngIf="userRegisterForm.get('name')?.errors?.['minlength']">{{ t("forms.errors.lengthName") }}</span>
+            <span *ngIf="form.get('name')?.errors?.['minlength']">{{ t("forms.errors.lengthName") }}</span>
           </mat-error>
         </mat-form-field>
         <!-- lOGIN -->
-        <mat-form-field class="auth-card__field" appearance="fill">
+        <mat-form-field class="modal__field" appearance="fill">
           <mat-label>{{ t("login") }}</mat-label>
           <input matInput type="login" formControlName="login" maxlength="20" />
           <!-- error message -->
-          <mat-error *ngIf="userRegisterForm.get('login')?.invalid">
-            <span *ngIf="userRegisterForm.get('login')?.hasError('required')">
+          <mat-error *ngIf="form.get('login')?.invalid">
+            <span *ngIf="form.get('login')?.hasError('required')">
               {{ t("forms.errors.enterLogin") }}
             </span>
-            <span *ngIf="userRegisterForm.get('login')?.errors?.['minlength']">{{ t("forms.errors.lengthLogin")
+            <span *ngIf="form.get('login')?.errors?.['minlength']">{{ t("forms.errors.lengthLogin")
               }}</span>
           </mat-error>
         </mat-form-field>
         <!-- PASSWORD -->
-        <mat-form-field class="auth-card__field" appearance="fill">
+        <mat-form-field class="modal__field" appearance="fill">
           <mat-label>{{ t("password") }}</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" maxlength="20">
           <button mat-icon-button color="accent" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
@@ -43,16 +43,16 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <!-- error message -->
-          <mat-error *ngIf="userRegisterForm.get('password')?.invalid">
-            <span *ngIf="userRegisterForm.get('password')?.hasError('required')">
+          <mat-error *ngIf="form.get('password')?.invalid">
+            <span *ngIf="form.get('password')?.hasError('required')">
               {{ t("forms.errors.enterPassword") }}
             </span>
-            <span *ngIf="userRegisterForm.get('password')?.errors?.['minlength']">{{ t("forms.errors.lengthPassword")
+            <span *ngIf="form.get('password')?.errors?.['minlength']">{{ t("forms.errors.lengthPassword")
               }}</span>
           </mat-error>
         </mat-form-field>
         <!-- BUTTONS -->
-        <button mat-raised-button color="primary" [disabled]="!userRegisterForm.valid" type="submit">
+        <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">
           {{ t("signUp") }}
         </button>
       </form>

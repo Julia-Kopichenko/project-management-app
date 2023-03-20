@@ -6,7 +6,6 @@
   "name": "Name",
   "password": "Password",
   "newBoard": "Create board",
-  "editProfile": "Edit profile",
 
   "errorMessage": {
     "somethingWrong": "Whoops! Something went wrong",
@@ -49,11 +48,17 @@
       "newBoard": "Create new board"
     }
   },
+
   "confirmModal": {
     "sure": "Are you sure?",
     "buttons": {
       "ok": "ok",
       "cancel": "cancel"
     }
+  },
+  "editProfile": {
+    "editProfile": "Edit profile",
+    "save": "Save",
+    "deleteProfile": "Delete profile"
   }
 }

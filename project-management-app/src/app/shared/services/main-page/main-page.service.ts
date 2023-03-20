@@ -8,7 +8,7 @@ import {
   Board,
 } from '@interfaces/board-interface';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { BoardsService } from '../boards/boards.service';
+import { BoardsDataService } from '../boardsData/boardsData.service';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 import { NotificationService } from '../notification/notification.service';
 
@@ -21,7 +21,7 @@ export class MainPageService implements OnDestroy {
   private allBoards$ = new BehaviorSubject<Board[]>([]);
 
   constructor(
-    private readonly boardsDataService: BoardsService,
+    private readonly boardsDataService: BoardsDataService,
     private readonly localStorageService: LocalStorageService,
     private readonly notificationService: NotificationService
   ) {}
@@ -48,12 +48,12 @@ export class MainPageService implements OnDestroy {
   }
 
   createBoard(event: AddBoardEvent) {
-    const idFromLocalStorage =
+    const currentUserId =
       this.localStorageService.getFromLocalStorage('userId');
 
     const newBoardBody: BoardBodyForRequest = {
       title: event.value.title,
-      owner: idFromLocalStorage,
+      owner: currentUserId,
       users: ['string'],
     };
 

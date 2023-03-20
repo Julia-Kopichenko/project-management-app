@@ -52,8 +52,8 @@
   "confirmModal": {
     "sure": "Вы уверены?",
     "buttons": {
-      "ok": "да",
-      "cancel": "отмена"
+      "ok": "Да",
+      "cancel": "Oтмена"
     }
   }
 }

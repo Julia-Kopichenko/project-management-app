@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class RequestBuilderService {
   constructor(private readonly http: HttpClient) {}
 
-  post<T>(url: string, body: unknown): Observable<T> {
-    return this.http.post<T>(url, body);
+  post<T>(url: string, data: unknown): Observable<T> {
+    return this.http.post<T>(url, data);
   }
 
   get<T>(url: string): Observable<T> {

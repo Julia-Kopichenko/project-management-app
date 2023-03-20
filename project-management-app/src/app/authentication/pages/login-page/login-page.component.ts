@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '@app/shared/services/login/login.service';
 
@@ -7,11 +7,13 @@ import { LoginService } from '@app/shared/services/login/login.service';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-
-export class LoginPageComponent  {
+export class LoginPageComponent {
   hide = true;
+
   isLoggedIn = false;
+
   isLoginFailed = false;
+
   errorMessage = '';
 
   userLoginForm: FormGroup = new FormGroup({
@@ -29,9 +31,7 @@ export class LoginPageComponent  {
   //   ]),
   // });
 
-  constructor(
-    private readonly loginService: LoginService
-  ) {}
+  constructor(private readonly loginService: LoginService) {}
 
   onSubmit(): void {
     const userData = this.userLoginForm.value;

@@ -1,45 +1,32 @@
 @import "variables";
-
 .board {
-  height: 17rem;
-    border: 1px solid $color-primary;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px 1px $color-primary-light;
-    overflow: hidden;
-    word-break: break-all;
-    background-color:white;
-    transition: all ease .5s;
-    padding: 1.5rem;
-
-    cursor: pointer;
-    &:hover {
-      box-shadow:$shadow-card;
-    }
-    &__title {
-    font-size: 2.5rem;
-    margin: 0;
-    text-align: center;
-  }
-    &__subTitle {
-    font-size: 2rem;
-    margin: 0;
-    color: $color-primary-light;
-  }
-  &__img {
-    display: block;
-    width: 50%;
+  max-width: 40rem;
+  min-width: 30rem;
+  height: 15rem;
+  border: 1px solid $color-primary;
+  box-shadow: 0px 2px 5px 1px $color-primary-light;
+  transition: all ease 0.5s;
+  cursor: pointer;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1rem;
   }
+  &__title {
+    font-size: 2.5rem;
+  }
+  &:hover {
+    box-shadow: $shadow-card;
+  }
 }
-.board-create {
-  display: flex;
-    justify-content: center;
-    align-items:center;
-    gap: 1rem;
+.board__img {
+  background-image: url("../../../../../../assets/png/avatars.png");
+  background-repeat: no-repeat;
+  width: 60%;
 }
-
-.board__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.board__button {
+  &:hover {
+    background-color: $color-accent-light;
+  }
 }

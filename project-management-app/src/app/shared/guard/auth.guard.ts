@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import { Observable, map } from 'rxjs';
 import { LoginService } from '@services/login/login.service';
-import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +15,10 @@ import { map } from 'rxjs';
 export class AuthGuard implements CanActivate {
   constructor(
     private readonly loginService: LoginService,
-    private router: Router,
-    // private store: Store
+    private router: Router // private store: Store
   ) {}
+
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -21,7 +27,8 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-
-    return this.loginService.isLoggedIn().pipe(map((isLoggedIn) => isLoggedIn || this.router.createUrlTree([''])));
+    return this.loginService
+      .isLoggedIn()
+      .pipe(map((isLoggedIn) => isLoggedIn || this.router.createUrlTree([''])));
   }
 }

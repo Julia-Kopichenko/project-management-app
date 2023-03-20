@@ -9,7 +9,9 @@ import { Board } from '@interfaces/board-interface';
 export class BoardItemComponent {
   @Input() board: Board | undefined;
 
-  @Input() backgroundImgUrl: string | undefined;
-
-  onDelete(e: Event): void { }
+  /* eslint-disable class-methods-use-this */
+  /* eslint-disable no-console */
+  onDelete(e: Event): void {
+    console.log(e);
+  }
 }

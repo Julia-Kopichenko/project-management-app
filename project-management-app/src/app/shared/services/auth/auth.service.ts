@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   logOut(): void {
-    this.localStorageService.clearLocalStorage()
+    this.localStorageService.clearLocalStorage();
     this.router.navigate(['/']);
   }
 }

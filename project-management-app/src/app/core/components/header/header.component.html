@@ -3,22 +3,20 @@
     <div class="header__wrapper">
       <div class="header__nav-left">
         <!-- Logo -->
-        <a routerLink="" class="link logo">PMApp</a>
+        <a routerLink="" class="logo">PMApp</a>
         <!-- Language -->
         <div class="header__language">
-          <mat-button-toggle-group class="button-toggle-group" (change)="onSiteLanguageChange($event.value)" aria-label="Favorite Language">
+          <mat-button-toggle-group class="button-toggle-group" (change)="onSiteLanguageChange($event.value)"
+            aria-label="Favorite Language">
             <mat-button-toggle class="button-toggle" value="en" checked>EN</mat-button-toggle>
             <mat-button-toggle class="button-toggle" value="ru">RU</mat-button-toggle>
           </mat-button-toggle-group>
         </div>
       </div>
-      <div
-        class="header__nav-right"
-        *ngIf="!isAuthorized; else authorized">
+      <div class="header__nav-right" *ngIf="!isAuthorized; else authorized">
         <!-- Log In -->
         <div class="header__register">
-          <button mat-raised-button color="primary" routerLink="/auth/signUp"
-          >{{t('signUp')}}</button>
+          <button mat-raised-button color="primary" routerLink="/auth/signUp">{{t('signUp')}}</button>
           <button mat-raised-button color="primary" routerLink="/auth/login">{{t('logIn')}}</button>
         </div>
       </div>
@@ -26,27 +24,18 @@
   </div>
 </header>
 
-<ng-template #authorized >
+<ng-template #authorized>
   <div class="header__nav-right" *transloco="let t">
     <!-- New Board -->
-    <a mat-raised-button
-      color="primary"
-      routerLink="/main"
-      (click)="newBoard()">
+    <a mat-raised-button color="primary" routerLink="/main" (click)="newBoard()">
       {{ t("newBoard") }}
     </a>
     <!-- Edit profile -->
-    <a mat-raised-button
-      color="primary"
-      routerLink="/editProfile"
-      (click)="editProfile()">
+    <a mat-raised-button color="primary" routerLink="/editProfile" (click)="editProfile()">
       {{t('editProfile')}}
     </a>
     <!-- Log Out -->
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="logOut()">
+    <button mat-raised-button color="primary" (click)="logOut()">
       {{t('logOut')}}
     </button>
   </div>

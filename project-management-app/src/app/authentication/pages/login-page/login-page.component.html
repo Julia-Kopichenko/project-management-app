@@ -9,19 +9,12 @@
 
     <!-- FORM BODY -->
     <mat-card-content class="auth-card__content">
-      <form
-        *ngIf="!isLoggedIn"
-        [formGroup]="userLoginForm"
-        (submit)="userLoginForm.valid && onSubmit()">
+      <form *ngIf="!isLoggedIn" [formGroup]="userLoginForm" (submit)="userLoginForm.valid && onSubmit()">
 
         <!-- lOGIN -->
         <mat-form-field class="auth-card__field" appearance="fill">
           <mat-label>{{ t("login") }}</mat-label>
-          <input
-            matInput
-            type="login"
-            formControlName="login"
-            maxlength="20"/>
+          <input matInput type="login" formControlName="login" maxlength="20" />
           <!-- error message -->
           <mat-error *ngIf="userLoginForm.get('login')?.invalid">
             <span *ngIf="userLoginForm.get('login')?.hasError('required')">
@@ -36,17 +29,8 @@
         <!-- PASSWORD -->
         <mat-form-field class="auth-card__field" appearance="fill">
           <mat-label>{{ t("password") }}</mat-label>
-          <input
-            matInput
-            [type]="hide ? 'password' : 'text'"
-            formControlName="password"
-            maxlength="20" >
-          <button
-            mat-icon-button
-            color="accent"
-            matSuffix
-            (click)="hide = !hide"
-            [attr.aria-label]="'Hide password'"
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" maxlength="20">
+          <button mat-icon-button color="accent" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
@@ -62,11 +46,7 @@
         </mat-form-field>
 
         <!-- BUTTONS -->
-        <button
-          mat-raised-button
-          color="primary"
-          [disabled]="!userLoginForm.valid"
-          type="submit">
+        <button mat-raised-button color="primary" [disabled]="!userLoginForm.valid" type="submit">
           {{ t("logIn") }}
         </button>
       </form>

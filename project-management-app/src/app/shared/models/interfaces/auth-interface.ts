@@ -11,7 +11,10 @@ export interface LoginResponse {
   token: string;
 }
 export interface UserData {
-  id: string;
   name: string;
   login: string;
+  _id: string;
+}
+export interface Token {
+  token: string;
 }

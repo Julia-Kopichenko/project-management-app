@@ -1,7 +1,9 @@
 export interface Board {
-  id?: string;
   title: string;
-  description?: string;
+  owner: string | null;
+  users: string[];
 }
-
-export type AllBoardsResponse = Array<Board>;
+export interface AddBoardEvent {
+  clicked: string;
+  value: Board;
+}

@@ -10,8 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-
-
 const materialModules = [
   MatButtonModule,
   MatButtonToggleModule,

@@ -22,20 +22,20 @@
 .auth-card__field {
   width: 100%;
   &:last-of-type {
-   margin-bottom: 2rem;
+    margin-bottom: 2rem;
   }
 }
 
 .message {
- font-size: large;
- text-align: center;
- padding: 1rem;
- border-radius: 1rem;
- color: white;
+  font-size: large;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: white;
 }
 .message-success {
- background-color: $color-accent;
+  background-color: $color-accent;
 }
 .message-warning {
- background-color: red;
+  background-color: red;
 }

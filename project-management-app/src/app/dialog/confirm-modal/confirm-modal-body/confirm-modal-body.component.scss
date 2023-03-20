@@ -1,21 +1,17 @@
 @import "variables";
 
-.card-form {
+.dialog {
   &__header {
     width: 100%;
     padding: 1.5rem;
-    background-color: $color-primary;
-    color: white;
     display: flex;
     justify-content: center;
+    background-color: $color-primary;
+    color: white;
   }
   &__content,
   &__actions {
     padding: 2rem;
-  }
-  &__field {
-    width: 100%;
-    padding: 0;
   }
   &__actions {
     justify-content: space-between;

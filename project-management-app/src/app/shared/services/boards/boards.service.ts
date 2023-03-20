@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RequestBuilderService } from '@services/requestBuilder/request-builder.service';
 import { UrlsEnum } from '@enams/urls-enams';
-import { Board } from '@interfaces/board-interface';
+import { Board, BoardBodyForRequest } from '@interfaces/board-interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,11 +16,16 @@ export class BoardsService {
     );
   }
 
-  createBoard(data: Board): Observable<Board> {
+  createBoard(data: BoardBodyForRequest): Observable<Board> {
     return this.requestBuilderService.post<Board>(
       `${UrlsEnum.baseURL}/${UrlsEnum.boards}`,
       data
     );
+  }
+
+  deleteBoard(boardId: string): Observable<unknown> {
+    const url = `${UrlsEnum.baseURL}/${UrlsEnum.boards}/${boardId}`;
+    return this.requestBuilderService.delete<unknown>(url);
   }
 }
 

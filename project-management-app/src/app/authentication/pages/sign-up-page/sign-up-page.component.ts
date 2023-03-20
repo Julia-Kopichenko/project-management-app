@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./sign-up-page.component.scss'],
 })
 export class SignUpPageComponent implements OnDestroy {
-  subscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
   hide = true;
 
@@ -50,22 +50,24 @@ export class SignUpPageComponent implements OnDestroy {
       password: this.userRegisterForm.value.password,
     };
 
-    this.subscription = this.authService.signUp(userData).subscribe({
-      next: (body) => {
-        // eslint-disable-next-line no-underscore-dangle
-        this.localStorageService.saveInLocalStorage('userId', body._id);
+    this.subscriptions.push(
+      this.authService.signUp(userData).subscribe({
+        next: (body) => {
+          // eslint-disable-next-line no-underscore-dangle
+          this.localStorageService.saveInLocalStorage('userId', body._id);
 
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-      },
-      error: (err) => {
-        this.isSignUpFailed = true;
-        this.errorMessage = err.error.message;
-      },
-    });
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        error: (err) => {
+          this.isSignUpFailed = true;
+          this.errorMessage = err.error.message;
+        },
+      })
+    );
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

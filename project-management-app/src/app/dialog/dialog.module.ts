@@ -5,9 +5,22 @@ import { SharedModule } from '@app/shared/shared.module';
 import { DialogBodyComponent } from './prompt-modal/dialog-body/dialog-body.component';
 import { DialogComponent } from './prompt-modal/dialog.component';
 
+import { ConfirmModalBodyComponent } from './confirm-modal/confirm-modal-body/confirm-modal-body.component';
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
+
 @NgModule({
-  declarations: [DialogBodyComponent, DialogComponent],
+  declarations: [
+    DialogBodyComponent,
+    DialogComponent,
+    ConfirmModalComponent,
+    ConfirmModalBodyComponent,
+  ],
   imports: [CommonModule, ReactiveFormsModule, SharedModule],
-  exports: [DialogBodyComponent, DialogComponent],
+  exports: [
+    DialogBodyComponent,
+    DialogComponent,
+    ConfirmModalComponent,
+    ConfirmModalBodyComponent,
+  ],
 })
 export class DialogModule {}

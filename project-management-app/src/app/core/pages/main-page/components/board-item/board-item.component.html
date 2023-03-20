@@ -1,9 +1,11 @@
 <mat-card class="board" *ngIf="board">
   <mat-card-header class="board__header">
     <mat-card-title class="board__title">{{ board.title }}</mat-card-title>
-    <button mat-icon-button class="board__button" type="button" (click)="onDelete($event)">
-      <mat-icon>delete</mat-icon>
-    </button>
+    <app-confirm-modal (emitConfirm)="deleteBoard($event, board._id)" [data]="data" appStopPropagation>
+      <button mat-icon-button class="board__button" type="button">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </app-confirm-modal>
   </mat-card-header>
   <mat-card-content class="board__img ">
   </mat-card-content>

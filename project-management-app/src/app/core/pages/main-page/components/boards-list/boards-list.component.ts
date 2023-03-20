@@ -34,8 +34,8 @@ export class BoardsListComponent implements OnInit, OnDestroy {
     }
   }
 
-  setOneFiledForm() {
-    this.modalService.setOneFiledForm();
+  setIsOneFiledForm() {
+    this.modalService.setIsOneFiledForm(true);
   }
 
   /* eslint-disable class-methods-use-this */

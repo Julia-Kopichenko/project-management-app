@@ -1,7 +1,7 @@
 <article class="boards-list" *transloco="let t">
   <ul class="boards-list__container">
     <li>
-      <app-dialog (click)="setOneFiledForm()" (emitText)="addNewBoard($event)" appStopPropagation>
+      <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewBoard($event)" appStopPropagation>
         <mat-card class="board create-board">
           <mat-card-header class="board__header">
             <mat-card-title class="board__title">

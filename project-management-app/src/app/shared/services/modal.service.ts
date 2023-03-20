@@ -9,12 +9,8 @@ export class ModalService {
   private oneFiledForm$ = new BehaviorSubject<boolean>(true);
   // private oneFiledForm$ = new BehaviorSubject<boolean>(false);
 
-  setOneFiledForm() {
-    this.oneFiledForm$.next(true);
-  }
-
-  setTwoFiledForm() {
-    this.oneFiledForm$.next(false);
+  setIsOneFiledForm(val: boolean) {
+    this.oneFiledForm$.next(val);
   }
 
   isOneFiledForm(): boolean {

@@ -39,23 +39,25 @@ export class MainPageService implements OnDestroy {
     const idFromLocalStorage =
       this.localStorageService.getFromLocalStorage('userId');
 
-    const val = {
+    const newBoardBody: Board = {
       title: event.value.title,
       owner: idFromLocalStorage,
       users: ['string'],
     };
 
-    this.subscription2$ = this.boardsDataService.createBoard(val).subscribe({
-      next: () => {
-        this.boardsDataService.getAllBoards().subscribe({
-          next: (item: Board[]) => {
-            this.allBoards$.next(item);
-          },
-          error: () => {},
-        });
-      },
-      error: () => {},
-    });
+    this.subscription2$ = this.boardsDataService
+      .createBoard(newBoardBody)
+      .subscribe({
+        next: () => {
+          this.boardsDataService.getAllBoards().subscribe({
+            next: (item: Board[]) => {
+              this.allBoards$.next(item);
+            },
+            error: () => {},
+          });
+        },
+        error: () => {},
+      });
   }
 
   ngOnDestroy() {
@@ -63,3 +65,4 @@ export class MainPageService implements OnDestroy {
     this.subscription2$.unsubscribe();
   }
 }
+// you should avoid subscriptions within other subscriptions. Better to use pipe

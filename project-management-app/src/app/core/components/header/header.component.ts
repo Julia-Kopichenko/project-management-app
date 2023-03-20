@@ -1,4 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AddBoardEvent } from '@app/shared/models/interfaces/board-interface';
+import { MainPageService } from '@app/shared/services/main-page/main-page.service';
+import { ModalService } from '@app/shared/services/modal.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { AuthService } from '@services/auth/auth.service';
 import { LoginService } from '@services/login/login.service';
@@ -19,7 +22,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private readonly translate: TranslocoService,
     private readonly authService: AuthService,
-    private readonly loginService: LoginService
+    private readonly loginService: LoginService,
+    private readonly modalService: ModalService,
+    private readonly mainPageService: MainPageService
   ) {}
 
   ngOnInit(): void {
@@ -44,10 +49,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isAuthorized = false;
   }
 
-  /* eslint-disable class-methods-use-this */
-  /* eslint-disable no-console */
-  newBoard() {
-    console.log('openDialog');
+  setIsOneFiledForm() {
+    this.modalService.setIsOneFiledForm(true);
+  }
+
+  addNewBoard(userTaskData: AddBoardEvent) {
+    if (userTaskData) {
+      this.mainPageService.createBoard(userTaskData);
+    }
   }
 
   /* eslint-disable class-methods-use-this */

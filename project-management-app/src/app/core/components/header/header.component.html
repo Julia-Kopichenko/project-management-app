@@ -27,9 +27,11 @@
 <ng-template #authorized>
   <div class="header__nav-right" *transloco="let t">
     <!-- New Board -->
-    <a mat-raised-button color="primary" routerLink="/main" (click)="newBoard()">
-      {{ t("newBoard") }}
-    </a>
+    <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewBoard($event)" appStopPropagation>
+      <a mat-raised-button color="primary" routerLink="/main">
+        {{ t("newBoard") }}
+      </a>
+    </app-dialog>
     <!-- Edit profile -->
     <a mat-raised-button color="primary" routerLink="/editProfile" (click)="editProfile()">
       {{t('editProfile')}}

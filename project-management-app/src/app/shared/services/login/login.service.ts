@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginData, Token } from '@app/shared/models/interfaces/auth-interface';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject, Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 
@@ -11,7 +11,9 @@ const TOKEN_KEY = 'token';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class LoginService implements OnDestroy {
+  subscription: Subscription;
+
   constructor(
     private readonly authService: AuthService,
     private readonly localStorageService: LocalStorageService,
@@ -34,7 +36,7 @@ export class LoginService {
   }
 
   logIn(userData: LoginData) {
-    this.authService.logIn(userData).subscribe({
+    this.subscription = this.authService.logIn(userData).subscribe({
       next: (data: Token) => {
         this.localStorageService.saveInLocalStorage(TOKEN_KEY, data.token);
         this.router.navigate(['/main']);
@@ -47,5 +49,9 @@ export class LoginService {
         // }
       },
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

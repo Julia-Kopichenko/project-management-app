@@ -1,15 +1,18 @@
 /* eslint-disable @angular-eslint/component-selector */
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@app/shared/services/auth/auth.service';
 import { LocalStorageService } from '@app/shared/services/localStorage/local-storage.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'sign-up-page',
   templateUrl: './sign-up-page.component.html',
   styleUrls: ['./sign-up-page.component.scss'],
 })
-export class SignUpPageComponent {
+export class SignUpPageComponent implements OnDestroy {
+  subscription: Subscription;
+
   hide = true;
 
   isSuccessful = false;
@@ -47,7 +50,7 @@ export class SignUpPageComponent {
       password: this.userRegisterForm.value.password,
     };
 
-    this.authService.signUp(userData).subscribe({
+    this.subscription = this.authService.signUp(userData).subscribe({
       next: (body) => {
         // eslint-disable-next-line no-underscore-dangle
         this.localStorageService.saveInLocalStorage('userId', body._id);
@@ -60,5 +63,9 @@ export class SignUpPageComponent {
         this.errorMessage = err.error.message;
       },
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

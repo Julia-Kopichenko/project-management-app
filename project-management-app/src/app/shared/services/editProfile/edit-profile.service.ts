@@ -32,7 +32,6 @@ export class EditProfileService {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   updateUser(user: SingUpData): void {
     this.setCurrentUserId();
 

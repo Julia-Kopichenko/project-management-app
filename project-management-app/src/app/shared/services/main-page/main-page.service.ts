@@ -21,13 +21,15 @@ export class MainPageService implements OnDestroy {
 
   private allBoards$ = new BehaviorSubject<Board[]>([]);
 
+  searchWord = new BehaviorSubject<string>('');
+
   constructor(
     private readonly boardsDataService: BoardsDataService,
     private readonly localStorageService: LocalStorageService,
     private readonly notificationService: NotificationService
   ) {}
 
-  getAllBoard() {
+  getAllBoard(): void {
     this.subscriptions.push(
       this.boardsDataService.getAllBoards().subscribe({
         next: (boards: Board[]) => {

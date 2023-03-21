@@ -5,7 +5,7 @@ import {
 } from '@app/shared/models/interfaces/board-interface';
 import { ModalService } from '@app/shared/services/modal/modal.service';
 import { MainPageService } from '@services/main-page/main-page.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-boards-list',
@@ -13,7 +13,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./boards-list.component.scss'],
 })
 export class BoardsListComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription[] = [];
+
   boards$: Observable<Board[]> = this.mainPageService.getAllBoards$();
+
+  searchText: string;
 
   constructor(
     private readonly mainPageService: MainPageService,
@@ -22,11 +26,14 @@ export class BoardsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.mainPageService.getAllBoard();
-  }
 
-  /* eslint-disable class-methods-use-this */
-  /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-  ngOnDestroy() {}
+    this.subscriptions.push(
+      this.mainPageService.searchWord.subscribe(
+        // eslint-disable-next-line no-return-assign
+        (data) => (this.searchText = data)
+      )
+    );
+  }
 
   addNewBoard(userTaskData: AddBoardEvent) {
     if (userTaskData) {
@@ -42,5 +49,9 @@ export class BoardsListComponent implements OnInit, OnDestroy {
   /* eslint-disable no-console */
   openBoard(board: Board) {
     console.log(board);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

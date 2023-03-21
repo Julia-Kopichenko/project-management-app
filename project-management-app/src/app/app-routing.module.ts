@@ -7,6 +7,8 @@ import { AuthGuard } from './shared/guard/auth.guard';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomePageComponent },
+  // { path: '', redirectTo: 'main', pathMatch: 'full' },
+  // { path: 'welcome', component: WelcomePageComponent },
   {
     path: 'auth',
     loadChildren: () =>

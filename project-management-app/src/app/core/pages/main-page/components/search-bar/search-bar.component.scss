@@ -1,0 +1,26 @@
+@import "variables";
+
+.search-bar {
+  &__wrapper {
+    border: 2px solid $color-primary-light;
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    border-color: transparent;
+    background-color: transparent;
+    font-size: large;
+  }
+}
+.mat-icon {
+  font-size: 3rem;
+  height: 3rem;
+  width: 3rem;
+  color: $color-accent-dark;
+  padding: 0;
+}

@@ -36,6 +36,16 @@ export class NotificationService implements OnDestroy {
     );
   }
 
+  showSuccess(key: string): void {
+    this.subscriptions.push(
+      this.translocoService
+        .selectTranslate(key)
+        .subscribe((message: string) => {
+          this.snackBar.open(message, 'Ok');
+        })
+    );
+  }
+
   ngOnDestroy() {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }

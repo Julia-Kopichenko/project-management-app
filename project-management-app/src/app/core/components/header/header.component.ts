@@ -3,7 +3,6 @@ import { AddBoardEvent } from '@app/shared/models/interfaces/board-interface';
 import { MainPageService } from '@app/shared/services/main-page/main-page.service';
 import { ModalService } from '@app/shared/services/modal/modal.service';
 import { TranslocoService } from '@ngneat/transloco';
-import { AuthService } from '@services/auth/auth.service';
 import { LoginService } from '@services/login/login.service';
 import { Subscription } from 'rxjs';
 
@@ -21,7 +20,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly translate: TranslocoService,
-    private readonly authService: AuthService,
     private readonly loginService: LoginService,
     private readonly modalService: ModalService,
     private readonly mainPageService: MainPageService
@@ -44,8 +42,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.siteLanguage = language;
   }
 
-  logOut() {
-    this.authService.logOut();
+  logOut(): void {
+    this.loginService.logOut();
     this.isAuthorized = false;
   }
 
@@ -53,7 +51,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.modalService.setIsOneFiledForm(true);
   }
 
-  addNewBoard(userTaskData: AddBoardEvent) {
+  addNewBoard(userTaskData: AddBoardEvent): void {
     if (userTaskData) {
       this.mainPageService.createBoard(userTaskData);
     }

@@ -70,6 +70,11 @@ export class LoginService implements OnDestroy {
     return JSON.parse(jsonPayload).id;
   }
 
+  logOut(): void {
+    this.localStorageService.clearLocalStorage();
+    this.router.navigate(['/']);
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

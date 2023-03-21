@@ -8,7 +8,7 @@
     </mat-card-header>
     <!-- FORM BODY -->
     <mat-card-content class="modal__content">
-      <form [formGroup]="form">
+      <form [formGroup]="form" (submit)="form.valid && onSubmit()">
         <!-- NAME -->
         <mat-form-field class="modal__field" appearance="fill">
           <mat-label>{{ t("name") }}</mat-label>

@@ -32,9 +32,4 @@ export class AuthService {
       body
     );
   }
-
-  logOut(): void {
-    this.localStorageService.clearLocalStorage();
-    this.router.navigate(['/']);
-  }
 }

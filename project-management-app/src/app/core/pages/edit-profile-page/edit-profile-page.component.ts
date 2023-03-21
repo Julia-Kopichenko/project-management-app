@@ -1,6 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SingUpData } from '@app/shared/models/interfaces/auth-interface';
 import { EditProfileService } from '@app/shared/services/editProfile/edit-profile.service';
+import { UserDataService } from '@app/shared/services/userData/user-data.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
 
@@ -24,6 +26,7 @@ export class EditProfilePageComponent implements OnDestroy {
 
   constructor(
     private readonly editProfileService: EditProfileService,
+    private readonly userDataService: UserDataService,
     private readonly translocoService: TranslocoService
   ) {
     this.subscriptions.push(
@@ -46,7 +49,17 @@ export class EditProfilePageComponent implements OnDestroy {
     ]),
   });
 
-  deleteUser(event: any) {
+  onSubmit(): void {
+    const userData: SingUpData = {
+      name: this.form.value.name || '',
+      login: this.form.value.login || '',
+      password: this.form.value.password || '',
+    };
+
+    this.editProfileService.updateUser(userData);
+  }
+
+  deleteUser(event: any): void {
     if (event.clicked) {
       this.editProfileService.deleteUser();
     }

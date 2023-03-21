@@ -13,6 +13,9 @@
     "authorizationError": "User was not found. Please, check login and password",
     "noBords": "No bords"
   },
+  "successMessage": {
+    "editProfile": "Successes! Profile was changed"
+  },
 
   "forms": {
     "enterData": "Enter data",

@@ -11,7 +11,11 @@ import { NotificationService } from '../notification/notification.service';
   providedIn: 'root',
 })
 export class LoginService implements OnDestroy {
-  subscription: Subscription;
+  private subscription: Subscription;
+
+  isLoggedInStatus$ = new Subject<boolean>();
+
+  userLogin$ = new Subject<string>();
 
   constructor(
     private readonly authService: AuthService,
@@ -19,8 +23,6 @@ export class LoginService implements OnDestroy {
     private readonly notificationService: NotificationService,
     private router: Router
   ) {}
-
-  isLoggedInStatus$ = new Subject<boolean>();
 
   isLoggedIn(): boolean {
     const tokenFromLocalStorage = this.localStorageService.getFromLocalStorage(
@@ -38,7 +40,9 @@ export class LoginService implements OnDestroy {
   logIn(userData: LoginData): void {
     this.subscription = this.authService.logIn(userData).subscribe({
       next: (data: Token) => {
-        const userId = this.getUserIdFromToken(data.token);
+        const { id: userId, login } = this.getUserDataFromToken(data.token);
+
+        this.userLogin$.next(login);
 
         this.localStorageService.saveInLocalStorage(
           LocalStorageKeys.token,
@@ -61,7 +65,7 @@ export class LoginService implements OnDestroy {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  getUserIdFromToken(token: string): string {
+  getUserDataFromToken(token: string) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(
@@ -73,10 +77,11 @@ export class LoginService implements OnDestroy {
         .join('')
     );
 
-    return JSON.parse(jsonPayload).id;
+    return JSON.parse(jsonPayload);
   }
 
   logOut(): void {
+    this.userLogin$.next('');
     this.localStorageService.clearLocalStorage();
     this.router.navigate(['/']);
   }

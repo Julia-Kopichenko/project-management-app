@@ -36,7 +36,8 @@ export class EditProfileService {
     this.setCurrentUserId();
 
     this.userDataService.updateUser(this.currentUserId, user).subscribe({
-      next: () => {
+      next: (data) => {
+        this.loginService.userLogin$.next(data.login);
         this.notificationService.showSuccess('successMessage.editProfile');
         this.router.navigate(['/main']);
       },

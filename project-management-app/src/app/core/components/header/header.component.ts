@@ -16,7 +16,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   isAuthorized = false;
 
-  private subs!: Subscription;
+  userLogin = '';
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private readonly translate: TranslocoService,
@@ -26,15 +28,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subs = this.loginService.isLoggedInStatus$.subscribe((isLoggedIn) => {
-      // if (isLoggedIn) {
-      this.isAuthorized = isLoggedIn;
-      // }
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    this.subscriptions.push(
+      this.loginService.isLoggedInStatus$.subscribe((isLoggedIn) => {
+        this.isAuthorized = isLoggedIn;
+      })
+    );
+    this.subscriptions.push(
+      this.loginService.userLogin$.subscribe((userLogin) => {
+        this.userLogin = userLogin;
+      })
+    );
   }
 
   onSiteLanguageChange(language: string): void {
@@ -55,5 +58,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (userTaskData) {
       this.mainPageService.createBoard(userTaskData);
     }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

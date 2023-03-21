@@ -3,7 +3,7 @@
     <div class="header__wrapper">
       <div class="header__nav-left">
         <!-- Logo -->
-        <a routerLink="" class="logo">PMApp</a>
+        <a routerLink="" class="logo">PMA</a>
         <!-- Language -->
         <div class="header__language">
           <mat-button-toggle-group class="button-toggle-group" (change)="onSiteLanguageChange($event.value)"
@@ -13,6 +13,8 @@
           </mat-button-toggle-group>
         </div>
       </div>
+      <!-- UserLogin -->
+      <p class="header__userLogin">{{userLogin}}</p>
       <div class="header__nav-right" *ngIf="!isAuthorized; else authorized">
         <!-- Log In -->
         <div class="header__register">

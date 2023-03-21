@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isAuthorized = false;
   }
 
-  setIsOneFiledForm() {
+  setIsOneFiledForm(): void {
     this.modalService.setIsOneFiledForm(true);
   }
 

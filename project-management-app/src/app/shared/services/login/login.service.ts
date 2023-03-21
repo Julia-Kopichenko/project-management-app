@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
 import { LoginData, Token } from '@app/shared/models/interfaces/auth-interface';
-import { Observable, of, Subject, Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 import { NotificationService } from '../notification/notification.service';
@@ -22,18 +22,16 @@ export class LoginService implements OnDestroy {
 
   isLoggedInStatus$ = new Subject<boolean>();
 
-  isLoggedIn(): Observable<boolean> {
+  isLoggedIn(): boolean {
     const tokenFromLocalStorage = this.localStorageService.getFromLocalStorage(
       LocalStorageKeys.token
     );
     if (!tokenFromLocalStorage) {
       this.isLoggedInStatus$.next(false);
-
-      return of(false);
+      return false;
     }
-
     this.isLoggedInStatus$.next(true);
-    return of(true);
+    return true;
   }
 
   logIn(userData: LoginData): void {

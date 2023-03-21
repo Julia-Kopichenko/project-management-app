@@ -4,11 +4,10 @@ import { NotFoundPageComponent } from '@core/pages/not-found-page/not-found-page
 import { WelcomePageComponent } from '@core/pages/welcome-page/welcome-page.component';
 import { EditProfilePageComponent } from '@core/pages/edit-profile-page/edit-profile-page.component';
 import { AuthGuard } from './shared/guard/auth.guard';
+import { GuestGuard } from './shared/guard/guest.guard';
 
 const appRoutes: Routes = [
-  { path: '', component: WelcomePageComponent },
-  // { path: '', redirectTo: 'main', pathMatch: 'full' },
-  // { path: 'welcome', component: WelcomePageComponent },
+  { path: '', component: WelcomePageComponent, canActivate: [GuestGuard] },
   {
     path: 'auth',
     loadChildren: () =>

@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from '@services/localStorage/local-storage.service';
+import { LocalStorageKeys } from '../models/enams/localStorage-keys';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -17,7 +18,9 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const token = this.localStorageService.getFromLocalStorage('token');
+    const token = this.localStorageService.getFromLocalStorage(
+      LocalStorageKeys.token
+    );
 
     if (token !== null) {
       return next.handle(

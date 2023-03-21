@@ -1,12 +1,12 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
 import { LoginData, Token } from '@app/shared/models/interfaces/auth-interface';
 import { Observable, of, Subject, Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 import { NotificationService } from '../notification/notification.service';
 
-const TOKEN_KEY = 'token';
 @Injectable({
   providedIn: 'root',
 })
@@ -23,8 +23,9 @@ export class LoginService implements OnDestroy {
   isLoggedInStatus$ = new Subject<boolean>();
 
   isLoggedIn(): Observable<boolean> {
-    const tokenFromLocalStorage =
-      this.localStorageService.getFromLocalStorage(TOKEN_KEY);
+    const tokenFromLocalStorage = this.localStorageService.getFromLocalStorage(
+      LocalStorageKeys.token
+    );
     if (!tokenFromLocalStorage) {
       this.isLoggedInStatus$.next(false);
 
@@ -35,13 +36,19 @@ export class LoginService implements OnDestroy {
     return of(true);
   }
 
-  logIn(userData: LoginData) {
+  logIn(userData: LoginData): void {
     this.subscription = this.authService.logIn(userData).subscribe({
       next: (data: Token) => {
         const userId = this.getUserIdFromToken(data.token);
 
-        this.localStorageService.saveInLocalStorage(TOKEN_KEY, data.token);
-        this.localStorageService.saveInLocalStorage('userId', userId);
+        this.localStorageService.saveInLocalStorage(
+          LocalStorageKeys.token,
+          data.token
+        );
+        this.localStorageService.saveInLocalStorage(
+          LocalStorageKeys.userId,
+          userId
+        );
         this.router.navigate(['/main']);
       },
       error: (err) => {

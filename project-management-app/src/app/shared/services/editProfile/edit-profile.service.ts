@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
 import { SingUpData } from '@app/shared/models/interfaces/auth-interface';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 import { LoginService } from '../login/login.service';
@@ -22,7 +23,9 @@ export class EditProfileService {
   ) {}
 
   setCurrentUserId(): void {
-    const userId = this.localStorageService.getFromLocalStorage('userId');
+    const userId = this.localStorageService.getFromLocalStorage(
+      LocalStorageKeys.userId
+    );
 
     if (userId) {
       this.currentUserId = userId;
@@ -31,10 +34,9 @@ export class EditProfileService {
 
   // eslint-disable-next-line class-methods-use-this
   updateUser(user: SingUpData): void {
-    const newUser: SingUpData = user;
     this.setCurrentUserId();
 
-    this.userDataService.updateUser(this.currentUserId, newUser).subscribe({
+    this.userDataService.updateUser(this.currentUserId, user).subscribe({
       next: () => {
         this.notificationService.showSuccess('successMessage.editProfile');
         this.router.navigate(['/main']);

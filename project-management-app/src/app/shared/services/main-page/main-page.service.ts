@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 
 import { Injectable, OnDestroy } from '@angular/core';
+import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
 import {
   AddBoardEvent,
   BoardBodyForRequest,
@@ -48,8 +49,9 @@ export class MainPageService implements OnDestroy {
   }
 
   createBoard(event: AddBoardEvent) {
-    const currentUserId =
-      this.localStorageService.getFromLocalStorage('userId');
+    const currentUserId = this.localStorageService.getFromLocalStorage(
+      LocalStorageKeys.userId
+    );
 
     const newBoardBody: BoardBodyForRequest = {
       title: event.value.title,

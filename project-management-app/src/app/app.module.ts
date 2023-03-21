@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-//FIXME -
-// import { JwtModule } from '@auth0/angular-jwt';
 
 // Own Modules
 import { CoreModule } from '@core/core.module';
@@ -31,14 +29,6 @@ export function tokenGetter() {
     AuthenticationModule,
     DialogModule,
     FormsModule,
-    //FIXME -
-    // JwtModule.forRoot({
-    //   config: {
-    //     tokenGetter: tokenGetter,
-    //     allowedDomains: ['example.com'],
-    //     disallowedRoutes: ['http://example.com/examplebadroute/'],
-    //   },
-    // }),
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

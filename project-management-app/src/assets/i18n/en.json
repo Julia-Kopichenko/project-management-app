@@ -40,7 +40,7 @@
     }
   },
   "main": {
-    "title": "All available boards",
+    "title": "My boards",
     "subtitle": "My boards",
     "search-bar": {
       "search": "search board"

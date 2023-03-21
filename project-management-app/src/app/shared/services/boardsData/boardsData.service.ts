@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
 export class BoardsDataService {
   constructor(private readonly requestBuilderService: RequestBuilderService) {}
 
-  getAllBoards(): Observable<Board[]> {
+  getAllBoards(userId: string): Observable<Board[]> {
     return this.requestBuilderService.get<Board[]>(
-      `${UrlsEnum.baseURL}/${UrlsEnum.boards}`
+      `${UrlsEnum.baseURL}/${UrlsEnum.boardsSet}/${userId}`
     );
   }
 

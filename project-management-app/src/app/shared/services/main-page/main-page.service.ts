@@ -30,9 +30,15 @@ export class MainPageService implements OnDestroy {
   ) {}
 
   getAllBoard(): void {
+    const currentUserId = this.localStorageService.getFromLocalStorage(
+      LocalStorageKeys.userId
+    ) as string;
+
     this.subscriptions.push(
-      this.boardsDataService.getAllBoards().subscribe({
+      this.boardsDataService.getAllBoards(currentUserId).subscribe({
         next: (boards: Board[]) => {
+          console.log(boards);
+
           this.allBoards$.next(boards);
         },
         error: (err) => {
@@ -53,7 +59,7 @@ export class MainPageService implements OnDestroy {
   createBoard(event: AddBoardEvent) {
     const currentUserId = this.localStorageService.getFromLocalStorage(
       LocalStorageKeys.userId
-    );
+    ) as string;
 
     const newBoardBody: BoardBodyForRequest = {
       title: event.value.title,
@@ -64,7 +70,7 @@ export class MainPageService implements OnDestroy {
     this.subscriptions.push(
       this.boardsDataService.createBoard(newBoardBody).subscribe({
         next: () => {
-          this.boardsDataService.getAllBoards().subscribe({
+          this.boardsDataService.getAllBoards(currentUserId).subscribe({
             next: (item: Board[]) => {
               this.allBoards$.next(item);
             },
@@ -87,10 +93,14 @@ export class MainPageService implements OnDestroy {
   }
 
   deleteBoard(boardId: string) {
+    const currentUserId = this.localStorageService.getFromLocalStorage(
+      LocalStorageKeys.userId
+    ) as string;
+
     this.subscriptions.push(
       this.boardsDataService.deleteBoard(boardId).subscribe({
         next: () => {
-          this.boardsDataService.getAllBoards().subscribe({
+          this.boardsDataService.getAllBoards(currentUserId).subscribe({
             next: (item: Board[]) => {
               this.allBoards$.next(item);
             },

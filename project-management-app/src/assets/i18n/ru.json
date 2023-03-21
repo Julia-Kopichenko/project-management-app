@@ -7,6 +7,7 @@
   "password": "Пароль",
   "newBoard": "Создать доску",
   "editProfile": "Редактировать профиль",
+  "back": "Назад",
 
   "errorMessage": {
     "somethingWrong": "Упс! Что-то пошло не по плану",
@@ -40,7 +41,7 @@
     }
   },
   "main": {
-    "title": "Все проекты",
+    "title": "Все доступные доски",
     "subtitle": "Мои доски",
     "search-bar": {
       "search": "поиск доски"

@@ -52,12 +52,16 @@
           </mat-error>
         </mat-form-field>
         <!-- BUTTONS -->
-        <button mat-raised-button color="accent" [disabled]="!form.valid" type="submit">
-          {{ t("editProfile.save") }}
-        </button>
+        <div class="modal__btns-wrapper">
+          <a class="btn" mat-raised-button color="primary" routerLink="/main" routerLinkActive="active">{{ t("back")
+            }}</a>
+          <button class="btn" mat-raised-button color="accent" [disabled]="!form.valid" type="submit">
+            {{ t("editProfile.save") }}
+          </button>
+        </div>
       </form>
       <app-confirm-modal (emitConfirm)="deleteUser($event)" [data]="data">
-        <button mat-raised-button color="warn">
+        <button class="btn btn-delete" mat-raised-button color="warn">
           {{ t("editProfile.deleteProfile") }}
         </button>
       </app-confirm-modal>

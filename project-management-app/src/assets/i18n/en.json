@@ -6,6 +6,7 @@
   "name": "Name",
   "password": "Password",
   "newBoard": "Create board",
+  "back": "Back",
 
   "errorMessage": {
     "somethingWrong": "Whoops! Something went wrong",
@@ -39,7 +40,7 @@
     }
   },
   "main": {
-    "title": "All projects",
+    "title": "All available boards",
     "subtitle": "My boards",
     "search-bar": {
       "search": "search board"

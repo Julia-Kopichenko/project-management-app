@@ -2,9 +2,6 @@
 
 form {
   margin-bottom: 1.5rem;
-  button {
-    width: 100%;
-  }
 }
 .modal__wrapper {
   max-width: 40rem;
@@ -29,4 +26,15 @@ form {
   &:last-of-type {
     margin-bottom: 2rem;
   }
+}
+.modal__btns-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.btn {
+  width: 17rem;
+}
+.btn-delete {
+  width: 100%;
 }

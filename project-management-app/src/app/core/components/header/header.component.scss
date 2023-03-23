@@ -20,7 +20,7 @@
 }
 .header__register {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 .logo {
   font-size: 5rem;
@@ -40,8 +40,10 @@
   background: $color-primary;
   color: white !important;
 }
-.header__userLogin {
-  font-size: large;
-  font-weight: 500;
-  margin: 0;
+.mat-raised-button {
+  width: 17rem;
+}
+.mat-icon {
+  transform: scale(2);
+  padding-right: 1.5rem;
 }

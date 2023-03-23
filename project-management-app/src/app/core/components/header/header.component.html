@@ -18,8 +18,11 @@
       <div class="header__nav-right" *ngIf="!isAuthorized; else authorized">
         <!-- Log In -->
         <div class="header__register">
-          <button mat-raised-button color="primary" routerLink="/auth/signUp">{{t('signUp')}}</button>
-          <button mat-raised-button color="primary" routerLink="/auth/login">{{t('logIn')}}</button>
+          <button class="mat-raised-button" mat-raised-button color="primary" routerLink="/auth/signUp"><mat-icon
+              class="mat-icon">person_add</mat-icon>{{t('signUp')}}</button>
+          <button class="mat-raised-button" mat-raised-button color="primary" routerLink="/auth/login"><mat-icon
+              class="mat-icon">input</mat-icon>
+            {{t('logIn')}}</button>
         </div>
       </div>
     </div>

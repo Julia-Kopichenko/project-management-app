@@ -64,5 +64,12 @@
     "editProfile": "Edit profile",
     "save": "Save",
     "deleteProfile": "Delete profile"
+  },
+  "welcomePage": {
+    "h1": "Stay organized with",
+    "h1Continue": "Project Management Application",
+    "project":{
+      "tabTitle": "About the project"
+    }
   }
 }

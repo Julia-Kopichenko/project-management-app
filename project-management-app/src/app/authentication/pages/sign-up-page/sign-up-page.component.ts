@@ -19,20 +19,12 @@ export class SignUpPageComponent implements OnDestroy {
 
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    login: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    login: new FormControl('', [Validators.required, Validators.minLength(5)]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(1),
+      Validators.minLength(8),
     ]),
   });
-  // userRegisterForm: FormGroup = new FormGroup({
-  //   name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-  //   login: new FormControl('', [Validators.required, Validators.minLength(5)]),
-  //   password: new FormControl('', [
-  //     Validators.required,
-  //     Validators.minLength(8),
-  //   ]),
-  // });
 
   constructor(
     private readonly authService: AuthService,

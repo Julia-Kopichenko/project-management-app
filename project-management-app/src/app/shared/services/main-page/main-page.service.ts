@@ -37,8 +37,6 @@ export class MainPageService implements OnDestroy {
     this.subscriptions.push(
       this.boardsDataService.getAllBoards(currentUserId).subscribe({
         next: (boards: Board[]) => {
-          console.log(boards);
-
           this.allBoards$.next(boards);
         },
         error: (err) => {

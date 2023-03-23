@@ -64,5 +64,9 @@
     "editProfile": "Изменить профиль",
     "save": "Сохранить",
     "deleteProfile": "Удалить профиль"
+  },
+  "welcomePage": {
+    "h1": "Будьте организованы с",
+    "h1Continue": "Project Management Application"
   }
 }

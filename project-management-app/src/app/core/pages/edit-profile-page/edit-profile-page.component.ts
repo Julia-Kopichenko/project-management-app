@@ -5,6 +5,7 @@ import { EditProfileService } from '@app/shared/services/editProfile/edit-profil
 import { UserDataService } from '@app/shared/services/userData/user-data.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -26,6 +27,7 @@ export class EditProfilePageComponent implements OnDestroy {
 
   constructor(
     private readonly editProfileService: EditProfileService,
+    private location: Location,
     private readonly userDataService: UserDataService,
     private readonly translocoService: TranslocoService
   ) {
@@ -42,10 +44,10 @@ export class EditProfilePageComponent implements OnDestroy {
 
   form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    login: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    login: new FormControl('', [Validators.required, Validators.minLength(5)]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(1),
+      Validators.minLength(8),
     ]),
   });
 
@@ -63,6 +65,10 @@ export class EditProfilePageComponent implements OnDestroy {
     if (event.clicked) {
       this.editProfileService.deleteUser();
     }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   ngOnDestroy() {

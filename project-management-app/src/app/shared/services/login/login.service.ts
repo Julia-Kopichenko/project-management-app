@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
+import { RoutesPath } from '@app/shared/models/enams/routes-path';
 import { LoginData, Token } from '@app/shared/models/interfaces/auth-interface';
 import { Subject, Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -52,7 +53,7 @@ export class LoginService implements OnDestroy {
           LocalStorageKeys.userId,
           userId
         );
-        this.router.navigate(['/main']);
+        this.router.navigate([RoutesPath.mainPage]);
       },
       error: (err) => {
         if (err.error.statusCode === 401) {
@@ -83,7 +84,7 @@ export class LoginService implements OnDestroy {
   logOut(): void {
     this.userLogin$.next('');
     this.localStorageService.clearLocalStorage();
-    this.router.navigate(['/']);
+    this.router.navigate([RoutesPath.welcomePage]);
   }
 
   ngOnDestroy() {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { LoginService } from '@services/login/login.service';
+import { RoutesPath } from '../models/enams/routes-path';
 
 @Injectable({
   providedIn: 'root',
@@ -15,20 +16,7 @@ export class AuthGuard implements CanActivate {
     if (this.loginService.isLoggedIn()) {
       return true;
     }
-    this.router.navigate(['/']);
+    this.router.navigate([RoutesPath.welcomePage]);
     return false;
   }
-
-  // canActivate(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot
-  // ):
-  //   | Observable<boolean | UrlTree>
-  //   | Promise<boolean | UrlTree>
-  //   | boolean
-  //   | UrlTree {
-  //   return this.loginService
-  //     .isLoggedIn()
-  //     .pipe(map((isLoggedIn) => isLoggedIn || this.router.createUrlTree([''])));
-  // }
 }

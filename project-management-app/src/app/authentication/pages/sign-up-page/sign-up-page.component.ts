@@ -2,6 +2,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RoutesPath } from '@app/shared/models/enams/routes-path';
 import { AuthService } from '@app/shared/services/auth/auth.service';
 
 import { NotificationService } from '@app/shared/services/notification/notification.service';
@@ -42,7 +43,7 @@ export class SignUpPageComponent implements OnDestroy {
     this.subscriptions.push(
       this.authService.signUp(userData).subscribe({
         next: () => {
-          this.router.navigate(['/auth/login']);
+          this.router.navigate([RoutesPath.logInPage]);
         },
         error: (err) => {
           if (err.error.statusCode === 409) {

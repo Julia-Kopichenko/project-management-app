@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
+import { RoutesPath } from '@app/shared/models/enams/routes-path';
 import { SingUpData } from '@app/shared/models/interfaces/auth-interface';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 import { LoginService } from '../login/login.service';
@@ -39,7 +40,7 @@ export class EditProfileService {
       next: (data) => {
         this.loginService.userLogin$.next(data.login);
         this.notificationService.showSuccess('successMessage.editProfile');
-        this.router.navigate(['/main']);
+        this.router.navigate([RoutesPath.mainPage]);
       },
       error: () =>
         this.notificationService.showError('errorMessage.somethingWrong'),

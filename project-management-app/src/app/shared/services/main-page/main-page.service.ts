@@ -2,7 +2,9 @@
 /* eslint-disable no-console */
 
 import { Injectable, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
+import { RoutesPath } from '@app/shared/models/enams/routes-path';
 import {
   AddBoardEvent,
   BoardBodyForRequest,
@@ -26,7 +28,8 @@ export class MainPageService implements OnDestroy {
   constructor(
     private readonly boardsDataService: BoardsDataService,
     private readonly localStorageService: LocalStorageService,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private router: Router
   ) {}
 
   getAllBoard(): void {
@@ -118,6 +121,14 @@ export class MainPageService implements OnDestroy {
         },
       })
     );
+  }
+
+  openBoard(boardId: string) {
+    this.localStorageService.saveInLocalStorage(
+      LocalStorageKeys.boardId,
+      boardId
+    );
+    this.router.navigate([RoutesPath.boardPage, boardId]);
   }
 
   ngOnDestroy() {

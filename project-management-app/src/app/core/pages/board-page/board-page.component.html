@@ -1,0 +1,14 @@
+<section class="board-page" *transloco="let t">
+
+  <div class="board-page__outer">
+
+    <a class="btn-go-back" mat-button color="primary" href="javascript:void(0)" (click)="goBack()">
+      <mat-icon class="mat-icon"> arrow_back </mat-icon>{{ t("main.title") }}
+    </a>
+    <h2 class="board-page__title">Board Title</h2>
+    <!-- <app-search-bar class="mainPage__search"></app-search-bar> -->
+  </div>
+  <div class="board-page__container">
+    <app-board-container></app-board-container>
+  </div>
+</section>

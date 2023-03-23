@@ -1,6 +1,6 @@
 @import "variables";
 
-.main {
+.main-page {
   &__outer {
     position: relative;
     margin-bottom: 2rem;
@@ -21,8 +21,8 @@
     width: 95%;
   }
   &__title {
-    font-size: xx-large;
-    font-weight: 900;
+    font-size: 4rem;
+    font-weight: 00;
   }
   &__subtitle {
     font-size: x-large;

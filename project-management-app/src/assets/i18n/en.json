@@ -52,7 +52,6 @@
       "newBoard": "Create new board"
     }
   },
-
   "confirmModal": {
     "sure": "Are you sure?",
     "buttons": {
@@ -68,7 +67,7 @@
   "welcomePage": {
     "h1": "Stay organized with",
     "h1Continue": "Project Management Application",
-    "project":{
+    "project": {
       "tabTitle": "About the project"
     }
   }

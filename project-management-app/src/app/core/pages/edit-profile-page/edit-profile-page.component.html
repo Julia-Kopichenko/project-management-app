@@ -53,7 +53,8 @@
         </mat-form-field>
         <!-- BUTTONS -->
         <div class="modal__btns-wrapper">
-          <a class="btn" mat-raised-button color="primary" routerLink="/main" routerLinkActive="active">{{ t("back")
+          <a class="btn" mat-raised-button color="primary" (click)="goBack()"><mat-icon
+              class="mat-icon"> arrow_back </mat-icon>{{ t("back")
             }}</a>
           <button class="btn" mat-raised-button color="accent" [disabled]="!form.valid" type="submit">
             {{ t("editProfile.save") }}

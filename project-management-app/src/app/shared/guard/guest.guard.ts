@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { RoutesPath } from '../models/enams/routes-path';
 import { LoginService } from '../services/login/login.service';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class GuestGuard implements CanActivate {
     if (!this.loginService.isLoggedIn()) {
       return true;
     }
-    this.router.navigate(['/main']);
+    this.router.navigate([RoutesPath.mainPage]);
     return false;
   }
 }

@@ -14,7 +14,8 @@
         </div>
       </div>
       <!-- UserLogin -->
-      <p class="header__userLogin">{{userLogin}}</p>
+      <p class="header__userLogin" *ngIf="isAuthorized;"><mat-icon class="mat-icon"> perm_identity
+        </mat-icon>{{userLogin}}</p>
       <div class="header__nav-right" *ngIf="!isAuthorized; else authorized">
         <!-- Log In -->
         <div class="header__register">
@@ -32,17 +33,19 @@
 <ng-template #authorized>
   <div class="header__nav-right" *transloco="let t">
     <!-- New Board -->
-    <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewBoard($event)" appStopPropagation>
-      <a mat-raised-button color="primary" routerLink="/main">
+    <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewBoard($event)" appClickStopPropagation>
+      <a class="mat-raised-button" mat-raised-button color="primary" routerLink="/main">
         {{ t("newBoard") }}
       </a>
     </app-dialog>
     <!-- Edit profile -->
-    <a mat-raised-button color="primary" routerLink="/editProfile">
+    <a class="mat-raised-button" mat-raised-button color="primary" routerLink="/editProfile"><mat-icon class="mat-icon">
+        settings </mat-icon>
       {{t('editProfile.editProfile')}}
     </a>
     <!-- Log Out -->
-    <button mat-raised-button color="primary" (click)="logOut()">
+    <button class="mat-raised-button" mat-raised-button color="primary" (click)="logOut()"><mat-icon class="mat-icon">
+        exit_to_app </mat-icon>
       {{t('logOut')}}
     </button>
   </div>

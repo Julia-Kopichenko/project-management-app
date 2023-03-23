@@ -48,7 +48,7 @@ export class BoardsListComponent implements OnInit, OnDestroy {
   /* eslint-disable class-methods-use-this */
   /* eslint-disable no-console */
   openBoard(board: Board) {
-    console.log(board);
+    console.log('openBoard', board);
   }
 
   ngOnDestroy() {

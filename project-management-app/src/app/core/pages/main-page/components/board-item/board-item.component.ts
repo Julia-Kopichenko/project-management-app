@@ -37,6 +37,10 @@ export class BoardItemComponent implements OnDestroy {
     }
   }
 
+  openBoard(boardId: string) {
+    this.mainPageService.openBoard(boardId);
+  }
+
   ngOnDestroy() {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }

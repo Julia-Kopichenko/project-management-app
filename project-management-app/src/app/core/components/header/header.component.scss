@@ -20,11 +20,19 @@
 }
 .header__register {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 .logo {
   font-size: 5rem;
   font-family: Pacifico, cursive;
+}
+.header__userLogin {
+  display: flex;
+  align-items: end;
+  font-size: x-large;
+  margin: 0;
+  .mat-icon {
+  }
 }
 .button-toggle-group {
   height: 3.6rem;
@@ -41,7 +49,7 @@
   color: white !important;
 }
 .mat-raised-button {
-  width: 17rem;
+  min-width: 17rem;
 }
 .mat-icon {
   transform: scale(2);

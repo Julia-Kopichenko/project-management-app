@@ -3,15 +3,14 @@
 
   <mat-tab-group class="custom-tab-group">
     <!-- ABOUT PROJECT -->
-    <mat-tab label="About the project">
+    <mat-tab [label]="'welcomePage.project.tabTitle' | transloco">
       <div class="welcome-container">
         <div class="text-container">
           <h2 class="title">PMA</h2>
-          <h3 class="text-info">An application that will help teams solve work tasks efficiently. It will
-            help organize the work so that everyone knows what to do. Track the progress of tasks, be aware of what is
-            happening. Correctly plan the timing and scope of work.</h3>
-          <p class="app-info">Achieve your goals!</p>
-          <button mat-raised-button color="accent">Let start</button>
+          <h3 class="text-info">{{t('welcomePage.project.textContent1')}}</h3>
+          <p class="text-info">{{t('welcomePage.project.textContent2')}}</p>
+          <button mat-raised-button color="accent"
+            routerLink="/auth/signUp">{{t('welcomePage.project.letStart')}}</button>
         </div>
         <div class="img-container">
           <img src="../../../../assets/png/TaskManagement-hero.webp" alt="welcome">
@@ -19,57 +18,47 @@
       </div>
     </mat-tab>
     <!-- About the developer -->
-    <mat-tab label="About the developer">
+    <mat-tab [label]="'welcomePage.developer.tabTitle' | transloco">
       <div class="welcome-container ">
         <div class="circle-image">
           <img src="../../../../assets/png/my_photo.jpg" alt="avatar">
         </div>
         <div class="text-container">
-          <h2 class="title">Julia Kopichenko</h2>
+          <h2 class="title">{{t('welcomePage.developer.textContent1')}}</h2>
           <h3 class="subTitle">Junior Front-End Developer</h3>
           <div class="text-info">
-            <p>🌱 I've been interested in Frontend development for over a year.</p>
+            <p>🌱 {{t('welcomePage.developer.textContent2')}}</p>
             <p>
-              ✍ I am currently enrolled in a course Javascript/Front-end Mentoring Program (in English).
+              ✍ {{t('welcomePage.developer.textContent3')}}
             </p>
             <p>
-              🔥 My goals are to deepen my knowledge of JavaScript, TypeScript, study Angular and successfully find a
-              job
-              in Europe.
+              🔥 {{t('welcomePage.developer.textContent4')}}
             </p>
             <p>
-              💖 I’m sociable person and a good team player. I have good organizational skills, able to deal with
-              conflicts and compromise.
+              💖 {{t('welcomePage.developer.textContent5')}}
             </p>
           </div>
         </div>
       </div>
     </mat-tab>
     <!-- About the course -->
-    <mat-tab label="About the course">
+    <mat-tab [label]="'welcomePage.course.tabTitle' | transloco">
       <div class="welcome-container ">
-
         <div class="text-container">
           <h2 class="title">Javascript/Front-end Mentoring Program</h2>
-          <h3 class="subTitle">Training Program</h3>
+          <h3 class="subTitle">{{t('welcomePage.course.textContent1')}}</h3>
           <div class="text-info">
-            <p>This tutorial project was developed as part of the free online course "Javascript/Front-end Mentoring
-              Program (in English)" from The
-              Rolling Scopes
-              community.
+            <p>
+              {{t('welcomePage.course.textContent2')}}
             </p>
-            <p> The training consists of 3 stages. There are strict requirements for the transition to each higher
-              stage. This particular course of study takes place in the form of self-study. This means that students
-              have access to pre-assessment of webinars and two-week live Q&A sessions with course trainers. Organizers
-              provide students with a list of topics that must be covered for each stage with
-              recommended deadlines.
+            <p>
+              {{t('welcomePage.course.textContent3')}}
             </p>
-            <p>After accomplishing all three stages of education, students will receive an electronic certificate of
-              completion.</p>
+            <p>{{t('welcomePage.course.textContent4')}}</p>
           </div>
         </div>
         <div class="img-container course-img">
-          <img src="../../../../assets/svg/im-fine.svg" alt="avatar">
+          <img src="../../../../assets/svg/im-fine.svg" alt="RSSchool mem">
         </div>
       </div>
     </mat-tab>

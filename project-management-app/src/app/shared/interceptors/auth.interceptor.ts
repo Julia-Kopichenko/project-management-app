@@ -12,7 +12,7 @@ import { LocalStorageKeys } from '../models/enams/localStorage-keys';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(private readonly localStorageService: LocalStorageService) {}
 
   intercept(
     request: HttpRequest<unknown>,

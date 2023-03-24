@@ -91,8 +91,9 @@
     }
   },
   "boardPage":{
-    "btn":{
-      "addColumn":"Add column"
-    }
+    "btn": {
+      "addColumn": "Add column"
+    },
+    "message-column-title": "Name must be from 3 to 20 characters"
   }
 }

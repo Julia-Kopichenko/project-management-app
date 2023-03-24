@@ -7,7 +7,6 @@ import { BehaviorSubject } from 'rxjs';
 export class ModalService {
   //! fix
   private oneFiledForm$ = new BehaviorSubject<boolean>(true);
-  // private oneFiledForm$ = new BehaviorSubject<boolean>(false);
 
   setIsOneFiledForm(val: boolean) {
     this.oneFiledForm$.next(val);

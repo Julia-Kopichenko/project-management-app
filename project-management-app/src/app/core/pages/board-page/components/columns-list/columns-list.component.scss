@@ -31,9 +31,70 @@
     border-radius: 1rem 1rem 0 0;
   }
   &__title {
-    font-size: 2.5rem;
-    margin: 0;
+    width: 90%;
     width: 100%;
-    text-align: center;
+    cursor: pointer;
+    h3 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin: 0;
+    }
   }
+}
+
+// update title
+
+.edit-container {
+  display: none;
+  gap: 1rem;
+  width: 90%;
+  padding: 1rem;
+}
+
+.button-edit-input {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-primary;
+  cursor: pointer;
+}
+.title-input {
+  width: 15rem;
+  // border: none;
+  border-color: $color-primary;
+  font-size: large;
+  font-weight: 500;
+  padding: 0 1rem;
+  color: rgb(223, 102, 102);
+  background-color: transparent;
+}
+
+.close-edit {
+  // background-color: $btn-delete-color;
+  // color: $light-fon-color;
+
+  &:hover {
+    // background-color: $btn-add-hover-color;
+  }
+}
+
+.save-edit {
+  background-color: #a7d8f5;
+
+  &:hover {
+    // background-color: $btn-add-hover-color;
+  }
+}
+
+.hide {
+  display: none;
+}
+.visible {
+  display: flex;
 }

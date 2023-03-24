@@ -115,6 +115,39 @@ export class BordPageService implements OnDestroy {
     );
   }
 
+  // for update title
+
+  // eslint-disable-next-line class-methods-use-this
+  changeColumnTitle(columnTitle: string, columnIndex: number): void {
+    document.getElementsByClassName('column-title')[columnIndex].innerHTML =
+      columnTitle;
+  }
+
+  updateTitleColumn(
+    columnId: string,
+    bodyRequest: ColumnBodyForRequest,
+    columnIndex: number
+  ): void {
+    const currentBoardId = this.getCurrentBoardId();
+
+    this.subscriptions.push(
+      this.columnDataService
+        .updateColumn(currentBoardId, columnId, bodyRequest)
+        .subscribe({
+          next: (data) => {
+            this.changeColumnTitle(data.title, columnIndex);
+          },
+          error: (err) => {
+            if (err.statusCode === 404) {
+              this.notificationService.showError('errorMessage.noBoards');
+            } else {
+              this.notificationService.showError('errorMessage.somethingWrong');
+            }
+          },
+        })
+    );
+  }
+
   ngOnDestroy() {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }

@@ -2,13 +2,17 @@
 
   <div class="board-page__outer">
 
-    <a class="btn-go-back" mat-button color="primary" href="javascript:void(0)" (click)="goBack()">
+    <a class="board-page__btn-go-back" mat-button color="primary" href="javascript:void(0)" (click)="goBack()">
       <mat-icon class="mat-icon"> arrow_back </mat-icon>{{ t("main.title") }}
     </a>
-    <h2 class="board-page__title">Board Title</h2>
+    <h2 class="board-page__title">{{boardTitle}}</h2>
+    <app-dialog (emitText)="onAddColumn($event)" *transloco="let t">
+      <button mat-button color="primary" class="board-page__btn_add-column" (click)="setIsOneFiledForm()"
+        type="button"><mat-icon class="mat-icon"> add </mat-icon>{{t('boardPage.btn.addColumn')}}</button>
+    </app-dialog>
     <!-- <app-search-bar class="mainPage__search"></app-search-bar> -->
   </div>
   <div class="board-page__container">
-    <app-board-container></app-board-container>
+    <app-columns-list></app-columns-list>
   </div>
 </section>

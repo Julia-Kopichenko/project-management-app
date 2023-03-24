@@ -123,10 +123,14 @@ export class MainPageService implements OnDestroy {
     );
   }
 
-  openBoard(boardId: string) {
+  openBoard(boardId: string, boardTitle: string) {
     this.localStorageService.saveInLocalStorage(
       LocalStorageKeys.boardId,
       boardId
+    );
+    this.localStorageService.saveInLocalStorage(
+      LocalStorageKeys.boardTitle,
+      boardTitle
     );
     this.router.navigate([RoutesPath.boardPage, boardId]);
   }

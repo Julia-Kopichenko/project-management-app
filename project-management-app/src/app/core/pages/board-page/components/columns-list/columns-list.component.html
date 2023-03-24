@@ -1,0 +1,6 @@
+<p>board-container works!</p>
+<ul *ngIf="(columns$ | async) as columns" class="columns-list__container">
+  <li class="column" *ngFor="let column of columns; let i = index">
+    <h3 class="title">{{column.title}}</h3>
+  </li>
+</ul>

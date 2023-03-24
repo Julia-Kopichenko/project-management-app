@@ -2,14 +2,20 @@
 
 .board-page {
   &__outer {
-    margin-bottom: 2rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid $color-accent;
+    margin-bottom: 2rem;
   }
-  &__search {
-    position: absolute;
-    left: 45%;
+  &__btn_add-column,
+  &__btn-go-back {
+    font-size: large;
+    .mat-icon {
+      transform: scale(2);
+    }
   }
 
   // &__inner {
@@ -23,27 +29,10 @@
     font-size: 4rem;
     font-weight: 700;
     margin: 0;
-    position: relative;
-    left: 35%;
-  }
-  // &__subtitle {
-  //   font-size: x-large;
-  // }
-
-  &__list {
-    // width: 100%;
-    // max-width: 1600px;
-    // margin: 0 auto;
   }
 
   &__container {
     width: 95%;
     overflow-x: auto;
-  }
-}
-.btn-go-back {
-  font-size: large;
-  .mat-icon {
-    transform: scale(2);
   }
 }

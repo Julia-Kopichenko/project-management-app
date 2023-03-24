@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { UrlsEnum } from '@app/shared/models/enams/urls-enams';
-import { Column } from '@app/shared/models/interfaces/column-interface';
+import {
+  Column,
+  ColumnBodyForRequest,
+} from '@app/shared/models/interfaces/column-interface';
 import { Observable } from 'rxjs';
 import { RequestBuilderService } from '../requestBuilder/request-builder.service';
 
@@ -13,6 +16,16 @@ export class ColumnDataService {
   getAllColumns(boardId: string): Observable<Column[]> {
     return this.requestBuilderService.get<Column[]>(
       `${UrlsEnum.baseURL}/${UrlsEnum.boards}/${boardId}/${UrlsEnum.columns}`
+    );
+  }
+
+  createColumn(
+    boardId: string,
+    data: ColumnBodyForRequest
+  ): Observable<Column> {
+    return this.requestBuilderService.post<Column>(
+      `${UrlsEnum.baseURL}/${UrlsEnum.boards}/${boardId}/${UrlsEnum.columns}`,
+      data
     );
   }
 }

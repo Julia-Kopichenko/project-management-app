@@ -2,35 +2,24 @@
 
 .main-page {
   &__outer {
-    position: relative;
-    margin-bottom: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  &__search {
-    position: absolute;
-    left: 45%;
-  }
-
-  &__inner {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-    width: 95%;
+    gap: 1rem;
+    flex-wrap: wrap;
   }
   &__title {
     font-size: 4rem;
-    font-weight: 00;
+    font-weight: 500;
+    margin: 0;
   }
-  &__subtitle {
-    font-size: x-large;
-  }
+}
 
-  &__list {
-    // width: 100%;
-    // max-width: 1600px;
-    // margin: 0 auto;
+@media (max-width: 550px) {
+  .main-page {
+    &__outer {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   }
 }

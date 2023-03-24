@@ -19,8 +19,24 @@
   }
   &__actions {
     justify-content: space-between;
+    gap: 2rem;
+    // flex-wrap: wrap;
   }
 }
 .mdc-button {
   width: 17rem;
+}
+.mat-mdc-dialog-actions .mat-mdc-button-base + .mat-mdc-button-base {
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .card-form {
+    &__actions {
+      flex-wrap: wrap;
+    }
+  }
+  .mdc-button {
+    width: 100%;
+  }
 }

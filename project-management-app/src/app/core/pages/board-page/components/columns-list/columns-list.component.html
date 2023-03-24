@@ -1,6 +1,15 @@
-<p>board-container works!</p>
-<ul *ngIf="(columns$ | async) as columns" class="columns-list__container">
-  <li class="column" *ngFor="let column of columns; let i = index">
-    <h3 class="title">{{column.title}}</h3>
-  </li>
-</ul>
+<div class="columns-list" *ngIf="(columns$ | async) as columns">
+
+  <ul class="columns-list__container" *transloco="let t">
+    <li class="column" *ngFor="let column of columns; let i = index">
+      <div class="column__header">
+        <h3 class="column__title">{{column.title}}</h3>
+        <app-confirm-modal appClickStopPropagation (emitConfirm)="deleteBoard($event, column._id)" [data]="data">
+          <button mat-icon-button type="button">
+            <mat-icon class="mat-icon">delete_forever</mat-icon>
+          </button>
+        </app-confirm-modal>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -28,4 +28,10 @@ export class ColumnDataService {
       data
     );
   }
+
+  deleteColumn(boardId: string, columnId: string): Observable<unknown> {
+    const url = `${UrlsEnum.baseURL}/${UrlsEnum.boards}/${boardId}/${UrlsEnum.columns}/${columnId}`;
+
+    return this.requestBuilderService.delete<unknown>(url);
+  }
 }

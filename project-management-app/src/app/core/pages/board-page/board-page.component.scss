@@ -6,9 +6,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 3px solid $color-accent;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
   &__btn_add-column,
   &__btn-go-back {
@@ -17,22 +15,14 @@
       transform: scale(2);
     }
   }
-
-  // &__inner {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   margin: 0 auto;
-  //   margin-bottom: 2rem;
-  //   width: 95%;
-  // }
   &__title {
     font-size: 4rem;
     font-weight: 700;
     margin: 0;
   }
-
   &__container {
     width: 95%;
     overflow-x: auto;
+    margin: 0 auto;
   }
 }

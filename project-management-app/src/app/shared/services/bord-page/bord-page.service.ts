@@ -30,7 +30,6 @@ export class BordPageService implements OnDestroy {
     return board;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getAllColumns(): void {
     const currentBoardId = this.getCurrentBoardId();
     this.subscriptions.push(
@@ -53,7 +52,6 @@ export class BordPageService implements OnDestroy {
     return this.allColumns$.asObservable();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   createColumn(newColumnTitle: { title: string }) {
     const currentBoardId = this.getCurrentBoardId();
 
@@ -61,15 +59,12 @@ export class BordPageService implements OnDestroy {
       title: newColumnTitle.title,
       order: 0,
     };
-    console.log('currentBoardId', currentBoardId);
-    console.log('newColumnBody', newColumnBody);
 
     this.subscriptions.push(
       this.columnDataService
         .createColumn(currentBoardId, newColumnBody)
         .subscribe({
-          next: (data) => {
-            console.log(data);
+          next: () => {
             this.columnDataService.getAllColumns(currentBoardId).subscribe({
               next: (columns: Column[]) => {
                 this.allColumns$.next(columns);
@@ -89,6 +84,34 @@ export class BordPageService implements OnDestroy {
             this.notificationService.showError('errorMessage.somethingWrong');
           },
         })
+    );
+  }
+
+  deleteColumn(columnId: string) {
+    const currentBoardId = this.getCurrentBoardId();
+
+    this.subscriptions.push(
+      this.columnDataService.deleteColumn(currentBoardId, columnId).subscribe({
+        next: () => {
+          this.columnDataService.getAllColumns(currentBoardId).subscribe({
+            next: (columns: Column[]) => {
+              this.allColumns$.next(columns);
+            },
+            error: (err) => {
+              if (err.statusCode === 404) {
+                this.notificationService.showError('errorMessage.noBoards');
+              } else {
+                this.notificationService.showError(
+                  'errorMessage.somethingWrong'
+                );
+              }
+            },
+          });
+        },
+        error: () => {
+          this.notificationService.showError('errorMessage.somethingWrong');
+        },
+      })
     );
   }
 

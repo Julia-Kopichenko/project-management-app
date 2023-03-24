@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Column } from '@app/shared/models/interfaces/column-interface';
 import { BordPageService } from '@app/shared/services/bord-page/bord-page.service';
+import { TranslocoService } from '@ngneat/transloco';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -13,35 +14,31 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
 
   columns$: Observable<Column[]> = this.bordPageService.getAllColumns$();
 
-  columns: [
-    {
-      _id: 'Column id';
-      title: 'title 1';
-      order: 1;
-      boardId: 'Id of boards';
-    },
-    {
-      _id: 'Column id';
-      title: 'title 1';
-      order: 1;
-      boardId: 'Id of boards';
-    },
-    {
-      _id: 'Column id';
-      title: 'title 1';
-      order: 1;
-      boardId: 'Id of boards';
-    }
-  ];
+  data = 'Delete column?';
 
   constructor(
-    // private readonly localStorageService: LocalStorageService,
-    private readonly bordPageService: BordPageService // private readonly modalService: ModalService
-  ) {}
+    private readonly translocoService: TranslocoService,
+    private readonly bordPageService: BordPageService
+  ) {
+    this.subscriptions.push(
+      translocoService.langChanges$.subscribe((lang) => {
+        if (lang === 'en') {
+          this.data = 'Delete column?';
+        } else {
+          this.data = 'Удалить колонку?';
+        }
+      })
+    );
+  }
 
   ngOnInit() {
     this.bordPageService.getAllColumns();
-    console.log('ngOnInit, columns', this.columns$);
+  }
+
+  deleteBoard(confirmItem: any, columnId: string) {
+    if (confirmItem.clicked) {
+      this.bordPageService.deleteColumn(columnId);
+    }
   }
 
   ngOnDestroy() {

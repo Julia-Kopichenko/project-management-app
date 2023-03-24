@@ -2,8 +2,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RoutesPath } from '@app/shared/models/enams/routes-path';
 import { AuthService } from '@app/shared/services/auth/auth.service';
-import { LocalStorageService } from '@app/shared/services/localStorage/local-storage.service';
+
+import { NotificationService } from '@app/shared/services/notification/notification.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -16,57 +18,39 @@ export class SignUpPageComponent implements OnDestroy {
 
   hide = true;
 
-  isSignUpFailed = false;
-
-  errorMessage = '';
-
-  userRegisterForm: FormGroup = new FormGroup({
+  form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    login: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    login: new FormControl('', [Validators.required, Validators.minLength(5)]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(1),
+      Validators.minLength(8),
     ]),
   });
-  // userRegisterForm: FormGroup = new FormGroup({
-  //   name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-  //   login: new FormControl('', [Validators.required, Validators.minLength(5)]),
-  //   password: new FormControl('', [
-  //     Validators.required,
-  //     Validators.minLength(8),
-  //   ]),
-  // });
 
   constructor(
     private readonly authService: AuthService,
-    private readonly localStorageService: LocalStorageService,
+    private readonly notificationService: NotificationService,
     private router: Router
   ) {}
 
   onSubmit(): void {
     const userData = {
-      name: this.userRegisterForm.value.name,
-      login: this.userRegisterForm.value.login,
-      password: this.userRegisterForm.value.password,
+      name: this.form.value.name,
+      login: this.form.value.login,
+      password: this.form.value.password,
     };
 
     this.subscriptions.push(
       this.authService.signUp(userData).subscribe({
-        next: (data) => {
-          console.log('signUp data', data);
-
-          // eslint-disable-next-line no-underscore-dangle
-          console.log('signUp id', data._id);
-
-          // // eslint-disable-next-line no-underscore-dangle
-          // this.localStorageService.saveInLocalStorage('userId', body._id);
-
-          this.isSignUpFailed = false;
-          this.router.navigate(['/auth/login']);
+        next: () => {
+          this.router.navigate([RoutesPath.logInPage]);
         },
         error: (err) => {
-          this.isSignUpFailed = true;
-          this.errorMessage = err.error.message;
+          if (err.error.statusCode === 409) {
+            this.notificationService.showError('errorMessage.loginConflict');
+          } else {
+            this.notificationService.showError('errorMessage.somethingWrong');
+          }
         },
       })
     );

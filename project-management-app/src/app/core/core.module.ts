@@ -17,6 +17,7 @@ import { DialogModule } from '../dialog/dialog.module';
     NotFoundPageComponent,
     EditProfilePageComponent,
   ],
+  imports: [CommonModule, CoreRoutingModule, SharedModule, DialogModule],
   exports: [
     HeaderComponent,
     FooterComponent,
@@ -24,6 +25,5 @@ import { DialogModule } from '../dialog/dialog.module';
     NotFoundPageComponent,
     EditProfilePageComponent,
   ],
-  imports: [CommonModule, CoreRoutingModule, SharedModule, DialogModule],
 })
 export class CoreModule {}

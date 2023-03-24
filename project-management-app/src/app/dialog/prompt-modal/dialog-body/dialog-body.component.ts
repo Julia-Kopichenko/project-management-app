@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ModalService } from '@app/shared/services/modal.service';
+import { ModalService } from '@app/shared/services/modal/modal.service';
 
 @Component({
   selector: 'app-dialog-body',
@@ -23,8 +23,6 @@ export class DialogBodyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.isOneFieldForm);
-
     if (!this.isOneFieldForm) {
       this.form = this.fb.group({
         title: [

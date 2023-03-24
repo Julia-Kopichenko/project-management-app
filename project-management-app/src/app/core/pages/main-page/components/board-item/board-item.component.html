@@ -1,9 +1,9 @@
-<mat-card class="board" *ngIf="board">
+<mat-card class="board" *ngIf="board" (click)="openBoard(board._id)">
   <mat-card-header class="board__header">
     <mat-card-title class="board__title">{{ board.title }}</mat-card-title>
-    <app-confirm-modal (emitConfirm)="deleteBoard($event, board._id)" [data]="data" appStopPropagation>
+    <app-confirm-modal appClickStopPropagation (emitConfirm)="deleteBoard($event, board._id)" [data]="data">
       <button mat-icon-button class="board__button" type="button">
-        <mat-icon>delete</mat-icon>
+        <mat-icon class="mat-icon">delete_forever</mat-icon>
       </button>
     </app-confirm-modal>
   </mat-card-header>

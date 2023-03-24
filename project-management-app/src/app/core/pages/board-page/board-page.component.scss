@@ -1,0 +1,49 @@
+@import "variables";
+
+.board-page {
+  &__outer {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  &__search {
+    position: absolute;
+    left: 45%;
+  }
+
+  // &__inner {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   margin: 0 auto;
+  //   margin-bottom: 2rem;
+  //   width: 95%;
+  // }
+  &__title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
+    position: relative;
+    left: 35%;
+  }
+  // &__subtitle {
+  //   font-size: x-large;
+  // }
+
+  &__list {
+    // width: 100%;
+    // max-width: 1600px;
+    // margin: 0 auto;
+  }
+
+  &__container {
+    width: 95%;
+    overflow-x: auto;
+  }
+}
+.btn-go-back {
+  font-size: large;
+  .mat-icon {
+    transform: scale(2);
+  }
+}

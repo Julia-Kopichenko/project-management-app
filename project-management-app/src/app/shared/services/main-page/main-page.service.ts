@@ -2,14 +2,18 @@
 /* eslint-disable no-console */
 
 import { Injectable, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
+import { RoutesPath } from '@app/shared/models/enams/routes-path';
 import {
   AddBoardEvent,
   BoardBodyForRequest,
   Board,
 } from '@interfaces/board-interface';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { BoardsService } from '../boards/boards.service';
+import { BoardsDataService } from '../boardsData/boardsData.service';
 import { LocalStorageService } from '../localStorage/local-storage.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,18 +23,32 @@ export class MainPageService implements OnDestroy {
 
   private allBoards$ = new BehaviorSubject<Board[]>([]);
 
+  searchWord = new BehaviorSubject<string>('');
+
   constructor(
-    private readonly boardsDataService: BoardsService,
-    private readonly localStorageService: LocalStorageService
+    private readonly boardsDataService: BoardsDataService,
+    private readonly localStorageService: LocalStorageService,
+    private readonly notificationService: NotificationService,
+    private router: Router
   ) {}
 
-  getAllBoard() {
+  getAllBoard(): void {
+    const currentUserId = this.localStorageService.getFromLocalStorage(
+      LocalStorageKeys.userId
+    ) as string;
+
     this.subscriptions.push(
-      this.boardsDataService.getAllBoards().subscribe({
+      this.boardsDataService.getAllBoards(currentUserId).subscribe({
         next: (boards: Board[]) => {
           this.allBoards$.next(boards);
         },
-        error: () => {},
+        error: (err) => {
+          if (err.statusCode === 404) {
+            this.notificationService.showError('errorMessage.noBoards');
+          } else {
+            this.notificationService.showError('errorMessage.somethingWrong');
+          }
+        },
       })
     );
   }
@@ -40,44 +58,77 @@ export class MainPageService implements OnDestroy {
   }
 
   createBoard(event: AddBoardEvent) {
-    const idFromLocalStorage =
-      this.localStorageService.getFromLocalStorage('userId');
+    const currentUserId = this.localStorageService.getFromLocalStorage(
+      LocalStorageKeys.userId
+    ) as string;
 
     const newBoardBody: BoardBodyForRequest = {
       title: event.value.title,
-      owner: idFromLocalStorage,
+      owner: currentUserId,
       users: ['string'],
     };
 
     this.subscriptions.push(
       this.boardsDataService.createBoard(newBoardBody).subscribe({
         next: () => {
-          this.boardsDataService.getAllBoards().subscribe({
+          this.boardsDataService.getAllBoards(currentUserId).subscribe({
             next: (item: Board[]) => {
               this.allBoards$.next(item);
             },
-            error: () => {},
+            error: (err) => {
+              if (err.statusCode === 404) {
+                this.notificationService.showError('errorMessage.noBoards');
+              } else {
+                this.notificationService.showError(
+                  'errorMessage.somethingWrong'
+                );
+              }
+            },
           });
         },
-        error: () => {},
+        error: () => {
+          this.notificationService.showError('errorMessage.somethingWrong');
+        },
       })
     );
   }
 
   deleteBoard(boardId: string) {
+    const currentUserId = this.localStorageService.getFromLocalStorage(
+      LocalStorageKeys.userId
+    ) as string;
+
     this.subscriptions.push(
       this.boardsDataService.deleteBoard(boardId).subscribe({
         next: () => {
-          this.boardsDataService.getAllBoards().subscribe({
+          this.boardsDataService.getAllBoards(currentUserId).subscribe({
             next: (item: Board[]) => {
               this.allBoards$.next(item);
             },
-            error: () => {},
+            error: (err) => {
+              if (err.statusCode === 404) {
+                this.notificationService.showError('errorMessage.noBoards');
+              } else {
+                this.notificationService.showError(
+                  'errorMessage.somethingWrong'
+                );
+              }
+            },
           });
         },
-        error: () => {},
+        error: () => {
+          this.notificationService.showError('errorMessage.somethingWrong');
+        },
       })
     );
+  }
+
+  openBoard(boardId: string) {
+    this.localStorageService.saveInLocalStorage(
+      LocalStorageKeys.boardId,
+      boardId
+    );
+    this.router.navigate([RoutesPath.boardPage, boardId]);
   }
 
   ngOnDestroy() {

@@ -10,6 +10,11 @@
 *::after {
   box-sizing: inherit;
 }
+h1,
+h2,
+h3 {
+  margin: 0;
+}
 li {
   list-style: none;
 }
@@ -27,87 +32,32 @@ html,
 body {
   height: 100%;
   font-size: 10px;
-}
-body {
-  background: linear-gradient(0deg, #fff, $color-primary-x-light 100%);
+  background: $color-primary-xx-light;
+  // background: linear-gradient(0deg, #fff, $color-primary-xx-light 100%);
   color: $color-primary;
   margin: 0;
 }
 
 /* press the footer to the bottom of the page */
 .wrapper {
+  overflow: hidden;
   min-height: 100%;
   display: flex;
   flex-direction: column;
 }
 main {
   flex: 1 1 auto;
-  padding: 3rem 0;
+  padding: 2rem 0;
 }
 .container {
   max-width: 140rem;
   margin: 0 auto;
   padding: 0 2rem;
 }
-// board card
-// .board {
-//   height: 15rem;
-//   border: 1px solid $color-primary;
-//   border-radius: 5px;
-//   box-shadow: 0px 2px 5px 1px $color-primary-light;
-//   overflow: hidden;
-//   word-break: break-all;
-//   background-color: white;
-//   transition: all ease 0.5s;
-//   padding: 1.5rem;
 
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-
-//   cursor: pointer;
-//   &:hover {
-//     box-shadow: $shadow-card;
-//   }
-//   &__title {
-//     font-size: 2.5rem;
-//     text-align: center;
-//   }
-//   &__img {
-//     display: block;
-//     width: 50%;
-//   }
-//   &__inner {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//   }
-// }
-
-.board {
-  max-width: 40rem;
-  min-width: 30rem;
-  height: 15rem;
-  border: 1px solid $color-primary;
-  box-shadow: 0px 2px 5px 1px $color-primary-light;
-  transition: all ease 0.5s;
-  cursor: pointer;
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  &__title {
-    font-size: 2.5rem;
-  }
-  &__img {
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: contain;
-    height: 100%;
-  }
-  &:hover {
-    box-shadow: $shadow-card;
+@media (max-width: 768px) {
+  html,
+  body {
+    font-size: 9px;
   }
 }

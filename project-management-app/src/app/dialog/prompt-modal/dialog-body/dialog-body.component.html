@@ -39,8 +39,8 @@
     </form>
   </mat-dialog-content>
   <mat-dialog-actions class="card-form__actions">
-    <button mat-raised-button (click)="onNoClick()">{{ t("forms.btnCancel") }}</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="form.invalid"
+    <button class="btn" mat-raised-button (click)="onNoClick()">{{ t("forms.btnCancel") }}</button>
+    <button class="btn" mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="form.invalid"
       (click)="form.valid && submit(form.value)">
       {{t('forms.btnSubmit')}}
     </button>

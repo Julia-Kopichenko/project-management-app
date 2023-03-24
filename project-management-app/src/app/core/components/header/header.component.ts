@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddBoardEvent } from '@app/shared/models/interfaces/board-interface';
 import { MainPageService } from '@app/shared/services/main-page/main-page.service';
-import { ModalService } from '@app/shared/services/modal.service';
+import { ModalService } from '@app/shared/services/modal/modal.service';
 import { TranslocoService } from '@ngneat/transloco';
-import { AuthService } from '@services/auth/auth.service';
 import { LoginService } from '@services/login/login.service';
 import { Subscription } from 'rxjs';
 
@@ -17,26 +16,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   isAuthorized = false;
 
-  private subs!: Subscription;
+  userLogin = '';
+
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private readonly translate: TranslocoService,
-    private readonly authService: AuthService,
     private readonly loginService: LoginService,
     private readonly modalService: ModalService,
     private readonly mainPageService: MainPageService
   ) {}
 
   ngOnInit(): void {
-    this.subs = this.loginService.isLoggedInStatus$.subscribe((isLoggedIn) => {
-      if (isLoggedIn) {
-        this.isAuthorized = true;
-      }
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    this.subscriptions.push(
+      this.loginService.isLoggedInStatus$.subscribe((isLoggedIn) => {
+        this.isAuthorized = isLoggedIn;
+      })
+    );
+    this.subscriptions.push(
+      this.loginService.userLogin$.subscribe((userLogin) => {
+        this.userLogin = userLogin;
+      })
+    );
   }
 
   onSiteLanguageChange(language: string): void {
@@ -44,24 +45,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.siteLanguage = language;
   }
 
-  logOut() {
-    this.authService.logOut();
+  logOut(): void {
+    this.loginService.logOut();
     this.isAuthorized = false;
   }
 
-  setIsOneFiledForm() {
+  setIsOneFiledForm(): void {
     this.modalService.setIsOneFiledForm(true);
   }
 
-  addNewBoard(userTaskData: AddBoardEvent) {
+  addNewBoard(userTaskData: AddBoardEvent): void {
     if (userTaskData) {
       this.mainPageService.createBoard(userTaskData);
     }
   }
 
-  /* eslint-disable class-methods-use-this */
-  /* eslint-disable no-console */
-  editProfile() {
-    console.log('editProfile');
+  ngOnDestroy() {
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

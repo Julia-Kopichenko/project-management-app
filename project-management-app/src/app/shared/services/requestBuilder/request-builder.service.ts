@@ -19,4 +19,8 @@ export class RequestBuilderService {
   delete<T>(url: string): Observable<T> {
     return this.http.delete<T>(url);
   }
+
+  put<T>(url: string, data: unknown): Observable<T> {
+    return this.http.put<T>(url, data);
+  }
 }

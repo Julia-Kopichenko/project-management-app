@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 import { RequestBuilderService } from '@services/requestBuilder/request-builder.service';
 import { UrlsEnum } from '@enams/urls-enams';
 import {
@@ -9,6 +8,7 @@ import {
   LoginResponse,
   UserData,
 } from '@interfaces/auth-interface';
+import { Router } from '@angular/router';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 
 @Injectable({ providedIn: 'root' })
@@ -31,10 +31,5 @@ export class AuthService {
       `${UrlsEnum.baseURL}/${UrlsEnum.signUp}`,
       body
     );
-  }
-
-  logOut(): void {
-    this.localStorageService.clearLocalStorage();
-    this.router.navigate(['/']);
   }
 }

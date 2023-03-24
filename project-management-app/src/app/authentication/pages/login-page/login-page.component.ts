@@ -11,19 +11,12 @@ export class LoginPageComponent {
   hide = true;
 
   userLoginForm: FormGroup = new FormGroup({
-    login: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    login: new FormControl('', [Validators.required, Validators.minLength(5)]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(1),
+      Validators.minLength(8),
     ]),
   });
-  // userLoginForm: FormGroup = new FormGroup({
-  //   login: new FormControl('', [Validators.required, Validators.minLength(5)]),
-  //   password: new FormControl('', [
-  //     Validators.required,
-  //     Validators.minLength(8),
-  //   ]),
-  // });
 
   constructor(private readonly loginService: LoginService) {}
 

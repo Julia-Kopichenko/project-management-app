@@ -7,7 +7,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { DialogModule } from '@app/dialog/dialog.module';
 import { BoardPageComponent } from './board-page.component';
 import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
-import { ColumnsListComponent } from './components/columns-list/columns-list.component';
+import { ColumnItemComponent } from './components/column-item/column-item.component';
 
 const routes: Routes = [
   { path: ':id', component: BoardPageComponent },
@@ -15,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [BoardPageComponent, ColumnsListComponent],
+  declarations: [BoardPageComponent, ColumnItemComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

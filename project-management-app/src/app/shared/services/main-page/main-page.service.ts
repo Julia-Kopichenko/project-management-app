@@ -139,4 +139,3 @@ export class MainPageService implements OnDestroy {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }
-// you should avoid subscriptions within other subscriptions. Better to use pipe

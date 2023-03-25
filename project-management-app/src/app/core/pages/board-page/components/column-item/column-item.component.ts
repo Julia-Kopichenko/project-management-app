@@ -1,21 +1,21 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  Column,
-  ColumnBodyForRequest,
-} from '@app/shared/models/interfaces/column-interface';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { Column } from '@app/shared/models/interfaces/column-interface';
 import { BordPageService } from '@app/shared/services/bord-page/bord-page.service';
+import { ColumnStoreService } from '@app/shared/services/columnStore/column-store.service';
 import { TranslocoService } from '@ngneat/transloco';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-columns-list',
-  templateUrl: './columns-list.component.html',
-  styleUrls: ['./columns-list.component.scss'],
+  selector: 'app-column-item',
+  templateUrl: './column-item.component.html',
+  styleUrls: ['./column-item.component.scss'],
 })
-export class ColumnsListComponent implements OnInit, OnDestroy {
+export class ColumnItemComponent implements OnDestroy {
   private subscriptions: Subscription[] = [];
 
-  columns$: Observable<Column[]> = this.bordPageService.getAllColumns$();
+  @Input() column: Column | undefined;
+
+  @Input() index: number;
 
   data = 'Delete column?';
 
@@ -25,7 +25,8 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly translocoService: TranslocoService,
-    private readonly bordPageService: BordPageService
+    private readonly bordPageService: BordPageService,
+    private readonly columnStoreService: ColumnStoreService
   ) {
     this.subscriptions.push(
       translocoService.langChanges$.subscribe((lang) => {
@@ -38,11 +39,7 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnInit() {
-    this.bordPageService.getAllColumns();
-  }
-
-  deleteBoard(confirmItem: any, columnId: string): void {
+  deleteColumn(confirmItem: any, columnId: string): void {
     if (confirmItem.clicked) {
       this.isOpenEditColumn = false;
 
@@ -81,20 +78,15 @@ export class ColumnsListComponent implements OnInit, OnDestroy {
   }
 
   updateTitleColumn(columnId: string, columnIndex: number): void {
-    const newTitleColumn = this.titleColumn.trim();
+    const newTitle = this.titleColumn.trim();
 
-    if (newTitleColumn.length < 3 || newTitleColumn.length > 20) {
+    if (newTitle.length < 3 || newTitle.length > 20) {
       return;
     }
 
     this.showTitleColumn(columnIndex);
 
-    const bodyRequest: ColumnBodyForRequest = {
-      title: newTitleColumn,
-      order: 0,
-    };
-
-    this.bordPageService.updateTitleColumn(columnId, bodyRequest, columnIndex);
+    this.bordPageService.updateTitleColumn(columnId, newTitle);
   }
 
   ngOnDestroy() {

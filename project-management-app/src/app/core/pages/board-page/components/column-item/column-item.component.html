@@ -1,0 +1,28 @@
+<li *ngIf="column" class="column">
+  <div class="column__header">
+    <div class="column__title" (click)="hideTitleColumn(index)">
+      <h3 class="column-title">{{column.title}}</h3>
+    </div>
+    <!-- update title -->
+    <div class="edit-container" *transloco="let t">
+      <button class="button-edit-input close-edit" (click)="showTitleColumn(index)"><mat-icon color="warn"> clear
+        </mat-icon></button>
+
+      <button class="button-edit-input close-edit" (click)="updateTitleColumn(column._id, index)"><mat-icon
+          color="accent">
+          check
+        </mat-icon></button>
+
+      <input class="title-input" [(ngModel)]="titleColumn" matTooltip="{{t('boardPage.message-column-title')}}"
+        maxlength="20" minlength="3">
+    </div>
+
+
+    <!-- btn delete column -->
+    <app-confirm-modal appClickStopPropagation (emitConfirm)="deleteColumn($event, column._id)" [data]="data">
+      <button mat-icon-button type="button">
+        <mat-icon class="mat-icon" color="warn">delete_forever</mat-icon>
+      </button>
+    </app-confirm-modal>
+  </div>
+</li>

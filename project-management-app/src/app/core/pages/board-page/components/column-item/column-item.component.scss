@@ -1,18 +1,5 @@
 @import "variables";
 
-.columns-list {
-  &__container {
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    max-height: 70vh;
-    gap: 3rem;
-    overflow-x: auto;
-  }
-  .column {
-    margin-bottom: 2rem;
-  }
-}
 .column {
   display: flex;
   flex-direction: column;
@@ -20,14 +7,14 @@
   align-items: center;
   background: transparent;
   overflow-y: auto;
-
+  margin-bottom: 2rem;
   &__header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $color-primary-x-light;
-    background-color: $color-accent;
+    background-color: $color-primary-light;
+    color: white;
     border-radius: 1rem 1rem 0 0;
   }
   &__title {
@@ -61,35 +48,16 @@
   border-radius: 50%;
   font-size: 1rem;
   font-weight: 700;
-  color: $color-primary;
   cursor: pointer;
 }
 .title-input {
-  width: 15rem;
-  // border: none;
-  border-color: $color-primary;
+  width: 13rem;
+  border-color: white;
+  border-radius: 0.5rem;
   font-size: large;
   font-weight: 500;
   padding: 0 1rem;
-  color: rgb(223, 102, 102);
-  background-color: transparent;
-}
-
-.close-edit {
-  // background-color: $btn-delete-color;
-  // color: $light-fon-color;
-
-  &:hover {
-    // background-color: $btn-add-hover-color;
-  }
-}
-
-.save-edit {
-  background-color: #a7d8f5;
-
-  &:hover {
-    // background-color: $btn-add-hover-color;
-  }
+  color: $color-primary;
 }
 
 .hide {

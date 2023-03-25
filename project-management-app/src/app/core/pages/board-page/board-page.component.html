@@ -12,7 +12,8 @@
     </app-dialog>
     <!-- <app-search-bar class="mainPage__search"></app-search-bar> -->
   </div>
-  <div class="board-page__container">
-    <app-columns-list></app-columns-list>
-  </div>
+  <ul class="board-page__container">
+    <app-column-item *ngFor="let column of (columns$ | async); let index = index" [column]="column"
+      [index]="index"></app-column-item>
+  </ul>
 </section>

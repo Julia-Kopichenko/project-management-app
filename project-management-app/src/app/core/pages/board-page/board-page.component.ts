@@ -4,6 +4,9 @@ import { LocalStorageService } from '@app/shared/services/localStorage/local-sto
 import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
 import { ModalService } from '@app/shared/services/modal/modal.service';
 import { BordPageService } from '@app/shared/services/bord-page/bord-page.service';
+import { Observable } from 'rxjs';
+import { Column } from '@app/shared/models/interfaces/column-interface';
+import { ColumnStoreService } from '@app/shared/services/columnStore/column-store.service';
 
 export interface AddColumn {
   clicked: string;
@@ -17,6 +20,8 @@ export interface AddColumn {
   styleUrls: ['./board-page.component.scss'],
 })
 export class BoardPageComponent implements OnInit {
+  columns$: Observable<Column[]> = this.columnStoreService.getAllColumns$();
+
   boardId = '';
 
   boardTitle = '';
@@ -25,10 +30,13 @@ export class BoardPageComponent implements OnInit {
     private location: Location,
     private readonly localStorageService: LocalStorageService,
     private readonly bordPageService: BordPageService,
-    private readonly modalService: ModalService
+    private readonly modalService: ModalService,
+    private readonly columnStoreService: ColumnStoreService
   ) {}
 
   ngOnInit(): void {
+    this.bordPageService.getAllColumns();
+
     this.boardId = this.localStorageService.getFromLocalStorage(
       LocalStorageKeys.boardId
     ) as string;

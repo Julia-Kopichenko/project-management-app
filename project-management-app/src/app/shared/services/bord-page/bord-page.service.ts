@@ -4,8 +4,9 @@ import {
   Column,
   ColumnBodyForRequest,
 } from '@app/shared/models/interfaces/column-interface';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ColumnDataService } from '../columnData/column-data.service';
+import { ColumnStoreService } from '../columnStore/column-store.service';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 import { NotificationService } from '../notification/notification.service';
 
@@ -15,12 +16,11 @@ import { NotificationService } from '../notification/notification.service';
 export class BordPageService implements OnDestroy {
   private subscriptions: Subscription[] = [];
 
-  private allColumns$ = new BehaviorSubject<Column[]>([]);
-
   constructor(
     private readonly localStorageService: LocalStorageService,
     private readonly columnDataService: ColumnDataService,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private readonly columnStoreService: ColumnStoreService
   ) {}
 
   getCurrentBoardId() {
@@ -35,7 +35,7 @@ export class BordPageService implements OnDestroy {
     this.subscriptions.push(
       this.columnDataService.getAllColumns(currentBoardId).subscribe({
         next: (columns: Column[]) => {
-          this.allColumns$.next(columns);
+          this.columnStoreService.emitNewColumns(columns);
         },
         error: (err) => {
           if (err.statusCode === 404) {
@@ -46,10 +46,6 @@ export class BordPageService implements OnDestroy {
         },
       })
     );
-  }
-
-  getAllColumns$() {
-    return this.allColumns$.asObservable();
   }
 
   createColumn(newColumnTitle: { title: string }) {
@@ -67,7 +63,7 @@ export class BordPageService implements OnDestroy {
           next: () => {
             this.columnDataService.getAllColumns(currentBoardId).subscribe({
               next: (columns: Column[]) => {
-                this.allColumns$.next(columns);
+                this.columnStoreService.emitNewColumns(columns);
               },
               error: (err) => {
                 if (err.statusCode === 404) {
@@ -95,7 +91,7 @@ export class BordPageService implements OnDestroy {
         next: () => {
           this.columnDataService.getAllColumns(currentBoardId).subscribe({
             next: (columns: Column[]) => {
-              this.allColumns$.next(columns);
+              this.columnStoreService.emitNewColumns(columns);
             },
             error: (err) => {
               if (err.statusCode === 404) {
@@ -115,27 +111,20 @@ export class BordPageService implements OnDestroy {
     );
   }
 
-  // for update title
-
-  // eslint-disable-next-line class-methods-use-this
-  changeColumnTitle(columnTitle: string, columnIndex: number): void {
-    document.getElementsByClassName('column-title')[columnIndex].innerHTML =
-      columnTitle;
-  }
-
-  updateTitleColumn(
-    columnId: string,
-    bodyRequest: ColumnBodyForRequest,
-    columnIndex: number
-  ): void {
+  updateTitleColumn(columnId: string, newTitle: string): void {
     const currentBoardId = this.getCurrentBoardId();
+
+    const bodyRequest: ColumnBodyForRequest = {
+      title: newTitle,
+      order: 0,
+    };
 
     this.subscriptions.push(
       this.columnDataService
         .updateColumn(currentBoardId, columnId, bodyRequest)
         .subscribe({
           next: (data) => {
-            this.changeColumnTitle(data.title, columnIndex);
+            this.columnStoreService.changeColumnTitle(columnId, data.title);
           },
           error: (err) => {
             if (err.statusCode === 404) {
@@ -148,7 +137,7 @@ export class BordPageService implements OnDestroy {
     );
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

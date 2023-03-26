@@ -53,6 +53,7 @@ export class LoginService implements OnDestroy {
           LocalStorageKeys.userId,
           userId
         );
+
         this.router.navigate([RoutesPath.mainPage]);
       },
       error: (err) => {

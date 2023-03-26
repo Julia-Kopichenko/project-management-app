@@ -24,8 +24,6 @@
 .columns__container {
   display: flex;
   flex-wrap: nowrap;
-  height: calc(100vh - 120px);
-  // max-height: 70vh;
   gap: 3rem;
   width: 95%;
   overflow-x: auto;

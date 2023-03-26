@@ -59,8 +59,27 @@ export class TaskService implements OnDestroy {
       this.taskDataService
         .createTask(currentBoardId, columnId, newTaskBody)
         .subscribe({
-          next: (task: Task) => {
-            this.taskStoreService.addNewTask(task);
+          next: () => {
+            this.subscriptions.push(
+              this.taskDataService
+                .getAllTasks(currentBoardId, columnId)
+                .subscribe({
+                  next: (tasks: Task[]) => {
+                    this.taskStoreService.emitNewTasks(tasks);
+                  },
+                  error: (err) => {
+                    if (err.statusCode === 404) {
+                      this.notificationService.showError(
+                        'errorMessage.noTasks'
+                      );
+                    } else {
+                      this.notificationService.showError(
+                        'errorMessage.somethingWrong'
+                      );
+                    }
+                  },
+                })
+            );
           },
           error: (err) => {
             if (err.statusCode === 404) {

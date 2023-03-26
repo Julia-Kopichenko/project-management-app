@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task } from '@app/shared/models/interfaces/task-interface';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,17 +16,17 @@ export class TaskStoreService {
     this.allTasks$.next(tasks);
   }
 
-  addNewTask(task: Task): void {
-    let arr: Task[] = [];
+  // addNewTask(task: Task): void {
+  //   let arr: Task[] = [];
 
-    const subscription: Subscription = this.allTasks$.subscribe((data) => {
-      arr = [...data];
-    });
+  //   const subscription: Subscription = this.allTasks$.subscribe((data) => {
+  //     arr = [...data];
+  //   });
 
-    arr.push(task);
+  //   arr.push(task);
 
-    subscription.unsubscribe();
+  //   subscription.unsubscribe();
 
-    this.emitNewTasks(arr);
-  }
+  //   this.emitNewTasks(arr);
+  // }
 }

@@ -7,11 +7,12 @@
   box-shadow: 0px 2px 5px 1px $color-primary-light;
   transition: all ease 0.5s;
   padding: 1rem;
+  overflow: hidden;
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     padding: 0;
   }
   &__title {

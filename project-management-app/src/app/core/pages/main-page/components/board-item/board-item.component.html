@@ -1,4 +1,4 @@
-<mat-card class="board" *ngIf="board" (click)="openBoard(board._id)">
+<mat-card class="board" *ngIf="board" (click)="openBoard(board._id, board.title)">
   <mat-card-header class="board__header">
     <mat-card-title class="board__title">{{ board.title }}</mat-card-title>
     <app-confirm-modal appClickStopPropagation (emitConfirm)="deleteBoard($event, board._id)" [data]="data">

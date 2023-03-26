@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddBoardEvent } from '@app/shared/models/interfaces/board-interface';
+import { LocalStorageService } from '@app/shared/services/localStorage/local-storage.service';
 import { MainPageService } from '@app/shared/services/main-page/main-page.service';
 import { ModalService } from '@app/shared/services/modal/modal.service';
 import { TranslocoService } from '@ngneat/transloco';
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private readonly translate: TranslocoService,
     private readonly loginService: LoginService,
     private readonly modalService: ModalService,
+    private readonly localStorageService: LocalStorageService,
     private readonly mainPageService: MainPageService
   ) {}
 
@@ -54,13 +56,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.modalService.setIsOneFiledForm(true);
   }
 
-  addNewBoard(userTaskData: AddBoardEvent): void {
-    if (userTaskData) {
-      this.mainPageService.createBoard(userTaskData);
+  addNewBoard(event: AddBoardEvent): void {
+    if (event) {
+      this.mainPageService.createBoard(event.value);
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

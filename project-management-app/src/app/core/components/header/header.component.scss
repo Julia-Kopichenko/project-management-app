@@ -1,7 +1,6 @@
 @import "variables";
 
 .header {
-  // height: 9rem;
   &__wrapper,
   &__nav-left,
   &__nav-right {
@@ -74,11 +73,11 @@
 }
 @media (max-width: 550px) {
   .header {
+    &__wrapper {
+      padding: 1rem 0;
+    }
     &__nav-right {
       flex-wrap: wrap;
     }
-  }
-  .mat-raised-button {
-    // width: 100%;
   }
 }

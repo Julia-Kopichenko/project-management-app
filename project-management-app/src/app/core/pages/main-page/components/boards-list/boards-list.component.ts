@@ -3,7 +3,7 @@ import {
   AddBoardEvent,
   Board,
 } from '@app/shared/models/interfaces/board-interface';
-import { ModalService } from '@app/shared/services/modal/modal.service';
+import { ModalService } from '@services/modal/modal.service';
 import { MainPageService } from '@services/main-page/main-page.service';
 import { Observable, Subscription } from 'rxjs';
 
@@ -35,20 +35,14 @@ export class BoardsListComponent implements OnInit, OnDestroy {
     );
   }
 
-  addNewBoard(userTaskData: AddBoardEvent) {
-    if (userTaskData) {
-      this.mainPageService.createBoard(userTaskData);
+  addNewBoard(event: AddBoardEvent) {
+    if (event) {
+      this.mainPageService.createBoard(event.value);
     }
   }
 
   setIsOneFiledForm() {
     this.modalService.setIsOneFiledForm(true);
-  }
-
-  /* eslint-disable class-methods-use-this */
-  /* eslint-disable no-console */
-  openBoard(board: Board) {
-    console.log('openBoard', board);
   }
 
   ngOnDestroy() {

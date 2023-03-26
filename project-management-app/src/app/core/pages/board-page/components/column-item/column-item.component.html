@@ -1,0 +1,41 @@
+<li *ngIf="column" class="column">
+  <div class="column__wrapper" *transloco="let t">
+    <div class="column__header">
+      <div class="column__title" (click)="hideTitleColumn(index)">
+        <h3 class="column-title">{{column.title}}</h3>
+      </div>
+      <!-- update title -->
+      <div class="edit-container">
+        <button class="button-edit-input" (click)="showTitleColumn(index)"><mat-icon color="warn"> clear
+          </mat-icon></button>
+
+        <button class="button-edit-input" (click)="updateTitleColumn(column._id, index)"><mat-icon color="accent">
+            check
+          </mat-icon></button>
+
+        <input class="title-input" [(ngModel)]="titleColumn" matTooltip="{{t('boardPage.message-column-title')}}"
+          maxlength="20" minlength="3">
+      </div>
+
+
+      <!-- btn delete column -->
+      <app-confirm-modal appClickStopPropagation (emitConfirm)="deleteColumn($event, column._id)" [data]="data">
+        <button mat-icon-button type="button" class="button-delete">
+          <mat-icon color="warn">delete_forever</mat-icon>
+        </button>
+      </app-confirm-modal>
+    </div>
+    <!-- TASKS -->
+    <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewTask($event, column._id)"
+      appClickStopPropagation><button mat-raised-button class="button-add-task" color="accent">
+        <mat-icon>add</mat-icon>
+        <span>{{ t("boardPage.btn.newTask") }}</span>
+      </button>
+    </app-dialog>
+    <ul class="tasks__container">
+      <app-task-item *ngFor="let task of (tasks)" [task]="task"></app-task-item>
+    </ul>
+
+  </div>
+
+</li>

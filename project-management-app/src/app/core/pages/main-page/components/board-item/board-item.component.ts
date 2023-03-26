@@ -37,8 +37,8 @@ export class BoardItemComponent implements OnDestroy {
     }
   }
 
-  openBoard(boardId: string) {
-    this.mainPageService.openBoard(boardId);
+  openBoard(boardId: string, boardTitle: string) {
+    this.mainPageService.openBoard(boardId, boardTitle);
   }
 
   ngOnDestroy() {

@@ -15,16 +15,8 @@
       </app-dialog>
     </li>
 
-    <app-board-item *ngFor="let board of (boards$ | async)! | search: searchText" [board]="board"
-      (click)="openBoard(board)">
+    <app-board-item *ngFor="let board of (boards$ | async)! | search: searchText" [board]="board">
     </app-board-item>
-
-    <!-- ! как заменить на список? -->
-    <!-- <li *ngFor="let board of boards"; index as i;
-      (click)="openBoard(board)">
-      <app-board-item [board]="board" ></app-board-item>
-    </li> -->
-
   </ul>
 
 </article>

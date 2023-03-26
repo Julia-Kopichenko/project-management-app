@@ -11,7 +11,7 @@
       <!-- TITLE -->
       <mat-form-field appearance="fill" class="card-form__field">
         <mat-label>{{t('forms.createBoard.title')}}</mat-label>
-        <input matInput formControlName="title" />
+        <input matInput formControlName="title" maxlength="20" />
 
         <!-- error message -->
         <mat-error *ngIf="form.get('title')?.invalid">

@@ -13,7 +13,9 @@
     "token": "The token has expired, please login again",
     "loginConflict": "Login already exist",
     "authorizationError": "User was not found. Please, check login and password",
-    "noBords": "No bords"
+    "noBords": "No bords",
+    "noColumns": "No columns",
+    "noTasks": "No tasks"
   },
   "successMessage": {
     "editProfile": "Successes! Profile was changed"
@@ -89,5 +91,12 @@
       "textContent3": "The training consists of 3 stages. There are strict requirements for the transition to each higher stage. This particular course of study takes place in the form of self-study. This means that students have access to pre-assessment of webinars and two-week live Q&A sessions with course trainers. Organizers provide students with a list of topics that must be covered for each stage with recommended deadlines.",
       "textContent4": "After accomplishing all three stages of education, students will receive an electronic certificate of completion."
     }
+  },
+  "boardPage": {
+    "btn": {
+      "addColumn": "Add column",
+      "newTask": "Add task"
+    },
+    "message-column-title": "Name must be from 3 to 20 characters"
   }
 }

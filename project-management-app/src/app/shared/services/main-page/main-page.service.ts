@@ -5,11 +5,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
 import { RoutesPath } from '@app/shared/models/enams/routes-path';
-import {
-  AddBoardEvent,
-  BoardBodyForRequest,
-  Board,
-} from '@interfaces/board-interface';
+import { BoardBodyForRequest, Board } from '@interfaces/board-interface';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { BoardsDataService } from '../boardsData/boardsData.service';
 import { LocalStorageService } from '../localStorage/local-storage.service';
@@ -57,13 +53,13 @@ export class MainPageService implements OnDestroy {
     return this.allBoards$.asObservable();
   }
 
-  createBoard(event: AddBoardEvent) {
+  createBoard(value: Board) {
     const currentUserId = this.localStorageService.getFromLocalStorage(
       LocalStorageKeys.userId
     ) as string;
 
     const newBoardBody: BoardBodyForRequest = {
-      title: event.value.title,
+      title: value.title,
       owner: currentUserId,
       users: ['string'],
     };
@@ -123,10 +119,14 @@ export class MainPageService implements OnDestroy {
     );
   }
 
-  openBoard(boardId: string) {
+  openBoard(boardId: string, boardTitle: string) {
     this.localStorageService.saveInLocalStorage(
       LocalStorageKeys.boardId,
       boardId
+    );
+    this.localStorageService.saveInLocalStorage(
+      LocalStorageKeys.boardTitle,
+      boardTitle
     );
     this.router.navigate([RoutesPath.boardPage, boardId]);
   }
@@ -135,4 +135,3 @@ export class MainPageService implements OnDestroy {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }
-// you should avoid subscriptions within other subscriptions. Better to use pipe

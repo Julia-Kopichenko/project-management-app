@@ -15,6 +15,7 @@ export class UserDataService {
 
   updateUser(UserId: string, data: SingUpData): Observable<UserData> {
     const url = `${UrlsEnum.baseURL}/${UrlsEnum.users}/${UserId}`;
+
     return this.requestBuilderService.put<UserData>(url, data);
   }
 

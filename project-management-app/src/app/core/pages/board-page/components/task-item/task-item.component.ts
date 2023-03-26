@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Task } from '@app/shared/models/interfaces/task-interface';
+import { TaskService } from '@app/shared/services/task/task.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
 
@@ -15,7 +16,10 @@ export class TaskItemComponent implements OnDestroy {
 
   data = 'Delete task?';
 
-  constructor(private readonly translocoService: TranslocoService) {
+  constructor(
+    private readonly translocoService: TranslocoService,
+    private readonly taskService: TaskService
+  ) {
     this.subscriptions.push(
       translocoService.langChanges$.subscribe((lang) => {
         if (lang === 'en') {
@@ -28,9 +32,10 @@ export class TaskItemComponent implements OnDestroy {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  deleteTask(confirmItem: any, taskId: string) {
-    console.log(confirmItem);
-    console.log(taskId);
+  deleteTask(confirmItem: any, columnId: string, taskId: string) {
+    if (confirmItem.clicked) {
+      this.taskService.deleteTask(columnId, taskId);
+    }
   }
 
   ngOnDestroy(): void {

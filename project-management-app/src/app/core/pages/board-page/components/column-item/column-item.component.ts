@@ -32,8 +32,6 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
 
   titleColumn = '';
 
-  private isOpenEditColumn = false;
-
   constructor(
     private readonly translocoService: TranslocoService,
     private readonly columnService: ColumnService,
@@ -57,44 +55,35 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(
       this.taskStoreService.allTasks$.subscribe((data) => {
-        data.forEach((item: Task) => {
-          if (item.columnId === this.columnId) {
-            this.tasks = data;
-          }
-        });
+        if (data.columnId === this.columnId) {
+          this.tasks = data.tasks;
+        }
       })
     );
   }
 
   deleteColumn(confirmItem: any, columnId: string): void {
     if (confirmItem.clicked) {
-      this.isOpenEditColumn = false;
-
       this.columnService.deleteColumn(columnId);
     }
   }
 
   hideTitleColumn(index: number): void {
-    if (!this.isOpenEditColumn) {
-      this.isOpenEditColumn = true;
+    document
+      .getElementsByClassName('column__title')
+      [index].classList.add('hide');
+    document
+      .getElementsByClassName('edit-container')
+      [index].classList.add('visible');
 
-      document
-        .getElementsByClassName('column__title')
-        [index].classList.add('hide');
-      document
-        .getElementsByClassName('edit-container')
-        [index].classList.add('visible');
+    const currentColumnTitle =
+      document.getElementsByClassName('column-title')[index].innerHTML;
 
-      const currentColumnTitle =
-        document.getElementsByClassName('column-title')[index].innerHTML;
-
-      this.titleColumn = currentColumnTitle;
-    }
+    this.titleColumn = currentColumnTitle;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   showTitleColumn(index: number): void {
-    this.isOpenEditColumn = false;
-
     document
       .getElementsByClassName('column__title')
       [index].classList.remove('hide');

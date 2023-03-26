@@ -28,7 +28,10 @@ export class TaskService implements OnDestroy {
     this.subscriptions.push(
       this.taskDataService.getAllTasks(currentBoardId, columnId).subscribe({
         next: (tasks: Task[]) => {
-          this.taskStoreService.emitNewTasks(tasks);
+          this.taskStoreService.emitNewTasks({
+            columnId,
+            tasks,
+          });
         },
         error: (err) => {
           if (err.statusCode === 404) {
@@ -65,7 +68,53 @@ export class TaskService implements OnDestroy {
                 .getAllTasks(currentBoardId, columnId)
                 .subscribe({
                   next: (tasks: Task[]) => {
-                    this.taskStoreService.emitNewTasks(tasks);
+                    this.taskStoreService.emitNewTasks({
+                      columnId,
+                      tasks,
+                    });
+                  },
+                  error: (err) => {
+                    if (err.statusCode === 404) {
+                      this.notificationService.showError(
+                        'errorMessage.noTasks'
+                      );
+                    } else {
+                      this.notificationService.showError(
+                        'errorMessage.somethingWrong'
+                      );
+                    }
+                  },
+                })
+            );
+          },
+          error: (err) => {
+            if (err.statusCode === 404) {
+              this.notificationService.showError('errorMessage.noTasks');
+            } else {
+              this.notificationService.showError('errorMessage.somethingWrong');
+            }
+          },
+        })
+    );
+  }
+
+  deleteTask(columnId: string, taskId: string) {
+    const currentBoardId: string = this.bordPageService.getCurrentBoardId();
+
+    this.subscriptions.push(
+      this.taskDataService
+        .deleteTask(currentBoardId, columnId, taskId)
+        .subscribe({
+          next: () => {
+            this.subscriptions.push(
+              this.taskDataService
+                .getAllTasks(currentBoardId, columnId)
+                .subscribe({
+                  next: (tasks: Task[]) => {
+                    this.taskStoreService.emitNewTasks({
+                      columnId,
+                      tasks,
+                    });
                   },
                   error: (err) => {
                     if (err.statusCode === 404) {

@@ -1,7 +1,7 @@
 <mat-card class="task" *ngIf="task">
   <mat-card-header class="task__header">
     <mat-card-title class="task__title">{{ task.title }}</mat-card-title>
-    <app-confirm-modal appClickStopPropagation (emitConfirm)="deleteTask($event, task._id)" [data]="data">
+    <app-confirm-modal appClickStopPropagation (emitConfirm)="deleteTask($event, task.columnId,task._id)" [data]="data">
       <button mat-icon-button class="button-delete" type="button">
         <mat-icon color="warn">delete_forever</mat-icon>
       </button>

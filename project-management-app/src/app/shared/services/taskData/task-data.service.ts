@@ -28,4 +28,14 @@ export class TaskDataService {
 
     return this.requestBuilderService.post<Task>(url, body);
   }
+
+  deleteTask(
+    boardId: string,
+    columnId: string,
+    taskId: string
+  ): Observable<Task> {
+    const url = `${UrlsEnum.baseURL}/${UrlsEnum.boards}/${boardId}/${UrlsEnum.columns}/${columnId}/${UrlsEnum.tasks}/${taskId}`;
+
+    return this.requestBuilderService.delete<Task>(url);
+  }
 }

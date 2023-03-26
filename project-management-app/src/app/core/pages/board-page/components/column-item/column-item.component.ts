@@ -4,6 +4,7 @@ import { AddTaskEvent } from '@app/shared/models/interfaces/task-interface';
 import { BordPageService } from '@app/shared/services/bord-page/bord-page.service';
 import { ColumnStoreService } from '@app/shared/services/columnStore/column-store.service';
 import { ModalService } from '@app/shared/services/modal/modal.service';
+import { TaskService } from '@app/shared/services/task/task.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
 
@@ -29,6 +30,7 @@ export class ColumnItemComponent implements OnDestroy {
     private readonly translocoService: TranslocoService,
     private readonly bordPageService: BordPageService,
     private readonly columnStoreService: ColumnStoreService,
+    private readonly taskService: TaskService,
     private readonly modalService: ModalService
   ) {
     this.subscriptions.push(
@@ -92,20 +94,17 @@ export class ColumnItemComponent implements OnDestroy {
     this.bordPageService.updateTitleColumn(columnId, newTitle);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  addNewTask(event: AddTaskEvent) {
+  addNewTask(event: AddTaskEvent, columnId: string): void {
     if (event) {
-      console.log(event.value);
-
-      // this.mainPageService.createBoard(userTaskData);
+      this.taskService.createTask(event.value, columnId);
     }
   }
 
-  setIsOneFiledForm() {
+  setIsOneFiledForm(): void {
     this.modalService.setIsOneFiledForm(false);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

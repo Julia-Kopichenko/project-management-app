@@ -21,11 +21,11 @@ export class ColumnDataService {
 
   createColumn(
     boardId: string,
-    data: ColumnBodyForRequest
+    body: ColumnBodyForRequest
   ): Observable<Column> {
     const url = `${UrlsEnum.baseURL}/${UrlsEnum.boards}/${boardId}/${UrlsEnum.columns}`;
 
-    return this.requestBuilderService.post<Column>(url, data);
+    return this.requestBuilderService.post<Column>(url, body);
   }
 
   deleteColumn(boardId: string, columnId: string): Observable<unknown> {
@@ -37,10 +37,10 @@ export class ColumnDataService {
   updateColumn(
     boardId: string,
     columnId: string,
-    data: ColumnBodyForRequest
+    body: ColumnBodyForRequest
   ): Observable<Column> {
     const url = `${UrlsEnum.baseURL}/${UrlsEnum.boards}/${boardId}/${UrlsEnum.columns}/${columnId}`;
 
-    return this.requestBuilderService.put<Column>(url, data);
+    return this.requestBuilderService.put<Column>(url, body);
   }
 }

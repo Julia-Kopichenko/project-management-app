@@ -30,7 +30,7 @@
     <ul class="tasks__container">
       <app-task-item></app-task-item>
     </ul>
-    <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewTask($event)" appClickStopPropagation>
+    <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewTask($event, column._id)" appClickStopPropagation>
 
       <button mat-raised-button class="mat-raised-button" color="accent">
         <mat-icon class="mat-icon">add</mat-icon>

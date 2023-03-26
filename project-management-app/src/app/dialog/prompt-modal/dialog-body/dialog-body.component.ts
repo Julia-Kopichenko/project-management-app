@@ -1,16 +1,18 @@
 /* eslint-disable no-return-assign */
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModalService } from '@app/shared/services/modal/modal.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dialog-body',
   templateUrl: './dialog-body.component.html',
   styleUrls: ['./dialog-body.component.scss'],
 })
-export class DialogBodyComponent implements OnInit {
+export class DialogBodyComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+
   form!: FormGroup;
 
   isOneFieldForm: boolean;
@@ -25,11 +27,10 @@ export class DialogBodyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isOneFieldForm$.subscribe((value) => {
-      console.log(value);
-      this.isOneFieldForm = value;
+    this.subscription = this.isOneFieldForm$.subscribe((isOneField) => {
+      this.isOneFieldForm = isOneField;
 
-      if (value) {
+      if (!isOneField) {
         this.form = this.fb.group({
           title: [
             '',
@@ -72,5 +73,9 @@ export class DialogBodyComponent implements OnInit {
       clicked: 'submit',
       value: form,
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

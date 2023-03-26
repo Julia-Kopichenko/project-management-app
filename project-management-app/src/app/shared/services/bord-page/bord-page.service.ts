@@ -39,7 +39,7 @@ export class BordPageService implements OnDestroy {
         },
         error: (err) => {
           if (err.statusCode === 404) {
-            this.notificationService.showError('errorMessage.noBoards');
+            this.notificationService.showError('errorMessage.noColumns');
           } else {
             this.notificationService.showError('errorMessage.somethingWrong');
           }
@@ -67,7 +67,7 @@ export class BordPageService implements OnDestroy {
               },
               error: (err) => {
                 if (err.statusCode === 404) {
-                  this.notificationService.showError('errorMessage.noBoards');
+                  this.notificationService.showError('errorMessage.noColumns');
                 } else {
                   this.notificationService.showError(
                     'errorMessage.somethingWrong'
@@ -95,7 +95,7 @@ export class BordPageService implements OnDestroy {
             },
             error: (err) => {
               if (err.statusCode === 404) {
-                this.notificationService.showError('errorMessage.noBoards');
+                this.notificationService.showError('errorMessage.noColumns');
               } else {
                 this.notificationService.showError(
                   'errorMessage.somethingWrong'

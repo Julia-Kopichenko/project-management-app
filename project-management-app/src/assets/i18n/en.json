@@ -13,7 +13,9 @@
     "token": "The token has expired, please login again",
     "loginConflict": "Login already exist",
     "authorizationError": "User was not found. Please, check login and password",
-    "noBords": "No bords"
+    "noBords": "No bords",
+    "noColumns": "No columns",
+    "noTasks": "No tasks"
   },
   "successMessage": {
     "editProfile": "Successes! Profile was changed"

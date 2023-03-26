@@ -10,5 +10,12 @@ export interface Task {
 }
 export interface AddTaskEvent {
   clicked: string;
-  value: Task;
+  value: { title: string; description: string };
+}
+export interface TaskBodyForRequest {
+  title: string;
+  order: number;
+  description: string;
+  userId: number;
+  users: string[];
 }

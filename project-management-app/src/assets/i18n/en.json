@@ -90,9 +90,10 @@
       "textContent4": "After accomplishing all three stages of education, students will receive an electronic certificate of completion."
     }
   },
-  "boardPage":{
+  "boardPage": {
     "btn": {
-      "addColumn": "Add column"
+      "addColumn": "Add column",
+      "newTask": "Add task"
     },
     "message-column-title": "Name must be from 3 to 20 characters"
   }

@@ -1,0 +1,14 @@
+export interface Task {
+  _id: string;
+  title: string;
+  order: number;
+  boardId: string;
+  columnId: string;
+  description: string;
+  userId: number;
+  users: string[];
+}
+export interface AddTaskEvent {
+  clicked: string;
+  value: Task;
+}

@@ -54,13 +54,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.modalService.setIsOneFiledForm(true);
   }
 
-  addNewBoard(userTaskData: AddBoardEvent): void {
-    if (userTaskData) {
-      this.mainPageService.createBoard(userTaskData);
+  addNewBoard(event: AddBoardEvent): void {
+    if (event) {
+      this.mainPageService.createBoard(event.value);
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

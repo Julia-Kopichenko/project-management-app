@@ -5,15 +5,12 @@ import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
 import { ModalService } from '@app/shared/services/modal/modal.service';
 import { BordPageService } from '@app/shared/services/bord-page/bord-page.service';
 import { Observable } from 'rxjs';
-import { Column } from '@app/shared/models/interfaces/column-interface';
+import {
+  AddColumnEvent,
+  Column,
+} from '@app/shared/models/interfaces/column-interface';
 import { ColumnStoreService } from '@app/shared/services/columnStore/column-store.service';
 
-export interface AddColumn {
-  clicked: string;
-  value: {
-    title: string;
-  };
-}
 @Component({
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',
@@ -45,13 +42,13 @@ export class BoardPageComponent implements OnInit {
     ) as string;
   }
 
-  onAddColumn(newTitle: AddColumn) {
-    if (newTitle.clicked === 'submit') {
-      this.bordPageService.createColumn(newTitle.value);
+  onAddColumn(event: AddColumnEvent): void {
+    if (event) {
+      this.bordPageService.createColumn(event.value);
     }
   }
 
-  setIsOneFiledForm() {
+  setIsOneFiledForm(): void {
     this.modalService.setIsOneFiledForm(true);
   }
 

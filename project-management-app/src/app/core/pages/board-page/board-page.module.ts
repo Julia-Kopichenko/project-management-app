@@ -8,6 +8,7 @@ import { DialogModule } from '@app/dialog/dialog.module';
 import { BoardPageComponent } from './board-page.component';
 import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
 import { ColumnItemComponent } from './components/column-item/column-item.component';
+import { TaskItemComponent } from './components/task-item/task-item.component';
 
 const routes: Routes = [
   { path: ':id', component: BoardPageComponent },
@@ -15,7 +16,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [BoardPageComponent, ColumnItemComponent],
+  declarations: [BoardPageComponent, ColumnItemComponent, TaskItemComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

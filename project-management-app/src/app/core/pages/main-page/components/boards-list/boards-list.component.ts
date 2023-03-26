@@ -35,9 +35,9 @@ export class BoardsListComponent implements OnInit, OnDestroy {
     );
   }
 
-  addNewBoard(userTaskData: AddBoardEvent) {
-    if (userTaskData) {
-      this.mainPageService.createBoard(userTaskData);
+  addNewBoard(event: AddBoardEvent) {
+    if (event) {
+      this.mainPageService.createBoard(event.value);
     }
   }
 

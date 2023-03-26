@@ -1,7 +1,9 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Column } from '@app/shared/models/interfaces/column-interface';
+import { AddTaskEvent } from '@app/shared/models/interfaces/task-interface';
 import { BordPageService } from '@app/shared/services/bord-page/bord-page.service';
 import { ColumnStoreService } from '@app/shared/services/columnStore/column-store.service';
+import { ModalService } from '@app/shared/services/modal/modal.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
 
@@ -26,7 +28,8 @@ export class ColumnItemComponent implements OnDestroy {
   constructor(
     private readonly translocoService: TranslocoService,
     private readonly bordPageService: BordPageService,
-    private readonly columnStoreService: ColumnStoreService
+    private readonly columnStoreService: ColumnStoreService,
+    private readonly modalService: ModalService
   ) {
     this.subscriptions.push(
       translocoService.langChanges$.subscribe((lang) => {
@@ -87,6 +90,19 @@ export class ColumnItemComponent implements OnDestroy {
     this.showTitleColumn(columnIndex);
 
     this.bordPageService.updateTitleColumn(columnId, newTitle);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  addNewTask(event: AddTaskEvent) {
+    if (event) {
+      console.log(event.value);
+
+      // this.mainPageService.createBoard(userTaskData);
+    }
+  }
+
+  setIsOneFiledForm() {
+    this.modalService.setIsOneFiledForm(false);
   }
 
   ngOnDestroy() {

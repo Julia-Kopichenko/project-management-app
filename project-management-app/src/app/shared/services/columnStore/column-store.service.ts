@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { Injectable } from '@angular/core';
 import { Column } from '@app/shared/models/interfaces/column-interface';
-import { Task } from '@app/shared/models/interfaces/task-interface';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Injectable({
@@ -37,10 +36,5 @@ export class ColumnStoreService {
     subscription.unsubscribe();
 
     this.emitNewColumns(arr);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  addTaskToColumn(task: Task) {
-    console.log(task);
   }
 }

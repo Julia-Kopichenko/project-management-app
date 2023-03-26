@@ -3,13 +3,13 @@ import { Location } from '@angular/common';
 import { LocalStorageService } from '@app/shared/services/localStorage/local-storage.service';
 import { LocalStorageKeys } from '@app/shared/models/enams/localStorage-keys';
 import { ModalService } from '@app/shared/services/modal/modal.service';
-import { BordPageService } from '@app/shared/services/bord-page/bord-page.service';
 import { Observable } from 'rxjs';
 import {
   AddColumnEvent,
   Column,
 } from '@app/shared/models/interfaces/column-interface';
 import { ColumnStoreService } from '@app/shared/services/columnStore/column-store.service';
+import { ColumnService } from '@app/shared/services/column/column.service';
 
 @Component({
   selector: 'app-board-page',
@@ -26,13 +26,13 @@ export class BoardPageComponent implements OnInit {
   constructor(
     private location: Location,
     private readonly localStorageService: LocalStorageService,
-    private readonly bordPageService: BordPageService,
     private readonly modalService: ModalService,
-    private readonly columnStoreService: ColumnStoreService
+    private readonly columnStoreService: ColumnStoreService,
+    private readonly columnService: ColumnService
   ) {}
 
   ngOnInit(): void {
-    this.bordPageService.getAllColumns();
+    this.columnService.getAllColumns();
 
     this.boardId = this.localStorageService.getFromLocalStorage(
       LocalStorageKeys.boardId
@@ -44,7 +44,7 @@ export class BoardPageComponent implements OnInit {
 
   onAddColumn(event: AddColumnEvent): void {
     if (event) {
-      this.bordPageService.createColumn(event.value);
+      this.columnService.createColumn(event.value);
     }
   }
 

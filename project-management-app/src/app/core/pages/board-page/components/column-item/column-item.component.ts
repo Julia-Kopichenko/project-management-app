@@ -1,10 +1,14 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+/* eslint-disable no-underscore-dangle */
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Column } from '@app/shared/models/interfaces/column-interface';
-import { AddTaskEvent } from '@app/shared/models/interfaces/task-interface';
-import { BordPageService } from '@app/shared/services/bord-page/bord-page.service';
-import { ColumnStoreService } from '@app/shared/services/columnStore/column-store.service';
+import {
+  AddTaskEvent,
+  Task,
+} from '@app/shared/models/interfaces/task-interface';
+import { ColumnService } from '@app/shared/services/column/column.service';
 import { ModalService } from '@app/shared/services/modal/modal.service';
 import { TaskService } from '@app/shared/services/task/task.service';
+import { TaskStoreService } from '@app/shared/services/taskStore/task-store.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
 
@@ -13,12 +17,16 @@ import { Subscription } from 'rxjs';
   templateUrl: './column-item.component.html',
   styleUrls: ['./column-item.component.scss'],
 })
-export class ColumnItemComponent implements OnDestroy {
+export class ColumnItemComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
+
+  tasks: Task[] = [];
 
   @Input() column: Column | undefined;
 
   @Input() index: number;
+
+  @Input() columnId: string;
 
   data = 'Delete column?';
 
@@ -28,9 +36,9 @@ export class ColumnItemComponent implements OnDestroy {
 
   constructor(
     private readonly translocoService: TranslocoService,
-    private readonly bordPageService: BordPageService,
-    private readonly columnStoreService: ColumnStoreService,
+    private readonly columnService: ColumnService,
     private readonly taskService: TaskService,
+    private readonly taskStoreService: TaskStoreService,
     private readonly modalService: ModalService
   ) {
     this.subscriptions.push(
@@ -44,11 +52,25 @@ export class ColumnItemComponent implements OnDestroy {
     );
   }
 
+  ngOnInit(): void {
+    this.taskService.getAllTasks(this.columnId);
+
+    this.subscriptions.push(
+      this.taskStoreService.allTasks$.subscribe((data) => {
+        data.forEach((item: Task) => {
+          if (item.columnId === this.columnId) {
+            this.tasks = data;
+          }
+        });
+      })
+    );
+  }
+
   deleteColumn(confirmItem: any, columnId: string): void {
     if (confirmItem.clicked) {
       this.isOpenEditColumn = false;
 
-      this.bordPageService.deleteColumn(columnId);
+      this.columnService.deleteColumn(columnId);
     }
   }
 
@@ -91,7 +113,7 @@ export class ColumnItemComponent implements OnDestroy {
 
     this.showTitleColumn(columnIndex);
 
-    this.bordPageService.updateTitleColumn(columnId, newTitle);
+    this.columnService.updateTitleColumn(columnId, newTitle);
   }
 
   addNewTask(event: AddTaskEvent, columnId: string): void {

@@ -6,11 +6,10 @@
       </div>
       <!-- update title -->
       <div class="edit-container">
-        <button class="button-edit-input close-edit" (click)="showTitleColumn(index)"><mat-icon color="warn"> clear
+        <button class="button-edit-input" (click)="showTitleColumn(index)"><mat-icon color="warn"> clear
           </mat-icon></button>
 
-        <button class="button-edit-input close-edit" (click)="updateTitleColumn(column._id, index)"><mat-icon
-            color="accent">
+        <button class="button-edit-input" (click)="updateTitleColumn(column._id, index)"><mat-icon color="accent">
             check
           </mat-icon></button>
 
@@ -21,22 +20,22 @@
 
       <!-- btn delete column -->
       <app-confirm-modal appClickStopPropagation (emitConfirm)="deleteColumn($event, column._id)" [data]="data">
-        <button mat-icon-button type="button">
-          <mat-icon class="mat-icon" color="warn">delete_forever</mat-icon>
+        <button mat-icon-button type="button" class="button-delete">
+          <mat-icon color="warn">delete_forever</mat-icon>
         </button>
       </app-confirm-modal>
     </div>
     <!-- TASKS -->
-    <ul class="tasks__container">
-      <app-task-item></app-task-item>
-    </ul>
-    <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewTask($event, column._id)" appClickStopPropagation>
-
-      <button mat-raised-button class="mat-raised-button" color="accent">
-        <mat-icon class="mat-icon">add</mat-icon>
+    <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewTask($event, column._id)"
+      appClickStopPropagation><button mat-raised-button class="button-add-task" color="accent">
+        <mat-icon>add</mat-icon>
         <span>{{ t("boardPage.btn.newTask") }}</span>
       </button>
     </app-dialog>
+    <ul class="tasks__container">
+      <app-task-item *ngFor="let task of (tasks)" [task]="task"></app-task-item>
+    </ul>
+
   </div>
 
 </li>

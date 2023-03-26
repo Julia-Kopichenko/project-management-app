@@ -1,1 +1,13 @@
-<p>task-item works!</p>
+<mat-card class="task" *ngIf="task">
+  <mat-card-header class="task__header">
+    <mat-card-title class="task__title">{{ task.title }}</mat-card-title>
+    <app-confirm-modal appClickStopPropagation (emitConfirm)="deleteTask($event, task._id)" [data]="data">
+      <button mat-icon-button class="button-delete" type="button">
+        <mat-icon color="warn">delete_forever</mat-icon>
+      </button>
+    </app-confirm-modal>
+  </mat-card-header>
+  <mat-card-content class="task__content">
+    <p>{{ task.description }}</p>
+  </mat-card-content>
+</mat-card>

@@ -13,6 +13,12 @@ import { RequestBuilderService } from '../requestBuilder/request-builder.service
 export class TaskDataService {
   constructor(private readonly requestBuilderService: RequestBuilderService) {}
 
+  getAllTasks(boardId: string, columnId: string): Observable<Task[]> {
+    const url = `${UrlsEnum.baseURL}/${UrlsEnum.boards}/${boardId}/${UrlsEnum.columns}/${columnId}/${UrlsEnum.tasks}`;
+
+    return this.requestBuilderService.get<Task[]>(url);
+  }
+
   createTask(
     boardId: string,
     columnId: string,

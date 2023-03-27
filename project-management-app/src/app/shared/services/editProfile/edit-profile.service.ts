@@ -42,7 +42,10 @@ export class EditProfileService implements OnDestroy {
     this.subscriptions.push(
       this.userDataService.updateUser(this.currentUserId, user).subscribe({
         next: (data) => {
-          this.loginService.userLogin$.next(data.login);
+          this.localStorageService.saveInLocalStorage(
+            LocalStorageKeys.userLogin,
+            data.login
+          );
           this.notificationService.showSuccess('successMessage.editProfile');
           this.router.navigate([RoutesPath.mainPage]);
         },

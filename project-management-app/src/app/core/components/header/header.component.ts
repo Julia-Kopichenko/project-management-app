@@ -17,13 +17,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   isAuthorized = false;
 
-  userLogin = '';
-
   private subscriptions: Subscription[] = [];
 
   constructor(
     private readonly translate: TranslocoService,
-    private readonly loginService: LoginService,
+    public loginService: LoginService,
     private readonly modalService: ModalService,
     private readonly localStorageService: LocalStorageService,
     private readonly mainPageService: MainPageService
@@ -33,11 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.loginService.isLoggedInStatus$.subscribe((isLoggedIn) => {
         this.isAuthorized = isLoggedIn;
-      })
-    );
-    this.subscriptions.push(
-      this.loginService.userLogin$.subscribe((userLogin) => {
-        this.userLogin = userLogin;
       })
     );
   }

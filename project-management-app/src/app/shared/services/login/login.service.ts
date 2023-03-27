@@ -16,8 +16,6 @@ export class LoginService implements OnDestroy {
 
   isLoggedInStatus$ = new Subject<boolean>();
 
-  userLogin$ = new Subject<string>();
-
   constructor(
     private readonly authService: AuthService,
     private readonly localStorageService: LocalStorageService,
@@ -29,10 +27,12 @@ export class LoginService implements OnDestroy {
     const tokenFromLocalStorage = this.localStorageService.getFromLocalStorage(
       LocalStorageKeys.token
     );
+
     if (!tokenFromLocalStorage) {
       this.isLoggedInStatus$.next(false);
       return false;
     }
+
     this.isLoggedInStatus$.next(true);
 
     return true;
@@ -42,16 +42,19 @@ export class LoginService implements OnDestroy {
     this.subscription = this.authService.logIn(userData).subscribe({
       next: (data: Token) => {
         const { id: userId, login } = this.getUserDataFromToken(data.token);
-
-        this.userLogin$.next(login);
-
         this.localStorageService.saveInLocalStorage(
           LocalStorageKeys.token,
           data.token
         );
+
         this.localStorageService.saveInLocalStorage(
           LocalStorageKeys.userId,
           userId
+        );
+
+        this.localStorageService.saveInLocalStorage(
+          LocalStorageKeys.userLogin,
+          login
         );
 
         this.router.navigate([RoutesPath.mainPage]);
@@ -66,7 +69,6 @@ export class LoginService implements OnDestroy {
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getUserDataFromToken(token: string) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -82,8 +84,13 @@ export class LoginService implements OnDestroy {
     return JSON.parse(jsonPayload);
   }
 
+  getUserLogin(): string | null {
+    return this.localStorageService.getFromLocalStorage(
+      LocalStorageKeys.userLogin
+    );
+  }
+
   logOut(): void {
-    this.userLogin$.next('');
     this.localStorageService.clearLocalStorage();
     this.router.navigate([RoutesPath.welcomePage]);
   }

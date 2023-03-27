@@ -2,9 +2,7 @@
   <div class="container">
     <div class="header__wrapper">
       <div class="header__nav-left">
-        <!-- Logo -->
         <a routerLink="" class="logo">PMA</a>
-        <!-- Language -->
         <div class="header__language">
           <mat-button-toggle-group class="button-toggle-group" (change)="onSiteLanguageChange($event.value)"
             aria-label="Favorite Language">
@@ -12,12 +10,10 @@
             <mat-button-toggle class="button-toggle" value="ru">RU</mat-button-toggle>
           </mat-button-toggle-group>
         </div>
-        <!-- UserLogin -->
         <p class="header__userLogin" *ngIf="isAuthorized;"><mat-icon class="mat-icon"> perm_identity
-          </mat-icon>{{userLogin}}</p>
+          </mat-icon>{{loginService.getUserLogin()}}</p>
       </div>
       <div class="header__nav-right" *ngIf="!isAuthorized; else authorized">
-        <!-- Log In -->
         <button class="mat-raised-button" mat-raised-button color="primary" routerLink="/auth/signUp"><mat-icon
             class="mat-icon">person_add</mat-icon>{{t('signUp')}}</button>
         <button class="mat-raised-button" mat-raised-button color="primary" routerLink="/auth/login"><mat-icon
@@ -30,19 +26,16 @@
 
 <ng-template #authorized>
   <div class="header__nav-right" *transloco="let t">
-    <!-- New Board -->
     <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewBoard($event)" appClickStopPropagation>
       <a class="mat-raised-button" mat-raised-button color="primary" routerLink="/main"><mat-icon> add_to_photos
         </mat-icon>
         {{ t("newBoard") }}
       </a>
     </app-dialog>
-    <!-- Edit profile -->
     <a class="mat-raised-button" mat-raised-button color="primary" routerLink="/editProfile"><mat-icon class="mat-icon">
         settings </mat-icon>
       {{t('editProfile.editProfile')}}
     </a>
-    <!-- Log Out -->
     <button class="mat-raised-button" mat-raised-button color="primary" (click)="logOut()"><mat-icon class="mat-icon">
         exit_to_app </mat-icon>
       {{t('logOut')}}

@@ -36,7 +36,6 @@ export class CreateBoardComponent implements OnInit {
     });
   }
 
-  /* eslint-disable no-console */
   onSubmit() {
     if (this.formGroup?.valid) {
       const newFormData = this.formGroup.value;

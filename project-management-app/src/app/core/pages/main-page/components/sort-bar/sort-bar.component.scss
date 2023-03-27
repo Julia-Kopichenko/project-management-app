@@ -1,14 +1,8 @@
 .sort {
-  &__wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
   &__item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 14rem;
   }
   &__title {
     font-size: large;

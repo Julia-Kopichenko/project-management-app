@@ -83,7 +83,6 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
     this.titleColumn = currentColumnTitle;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   showTitleColumn(index: number): void {
     document
       .getElementsByClassName('column__title')

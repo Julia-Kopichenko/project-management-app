@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./sort-bar.component.scss'],
 })
 export class SortBarComponent implements OnInit, OnDestroy {
-  private subscription: Subscription[] = [];
+  private subscriptions: Subscription[] = [];
 
   sortOrder: string;
 
@@ -19,19 +19,19 @@ export class SortBarComponent implements OnInit, OnDestroy {
     private readonly mainPageService: MainPageService,
     private translocoService: TranslocoService
   ) {
-    this.subscription.push(
+    this.subscriptions.push(
       translocoService.langChanges$.subscribe((lang) => {
         if (lang === 'en') {
-          this.sortOrder = 'by A-Z';
+          this.sortOrder = 'Sort by A-Z';
         } else {
-          this.sortOrder = 'от А-Я';
+          this.sortOrder = 'Сортировать от А-Я';
         }
       })
     );
   }
 
   ngOnInit() {
-    this.subscription.push(
+    this.subscriptions.push(
       this.mainPageService.sortOrder.subscribe(
         // eslint-disable-next-line no-return-assign
         (data) => (this.sortOrder = data)
@@ -61,6 +61,6 @@ export class SortBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.forEach((subs) => subs.unsubscribe());
+    this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }

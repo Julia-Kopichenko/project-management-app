@@ -19,12 +19,6 @@ export class EditProfilePageComponent implements OnDestroy {
 
   data = 'Delete your profile?';
 
-  public currentUserData = {
-    name: '',
-    login: '',
-    password: '',
-  };
-
   constructor(
     private readonly editProfileService: EditProfileService,
     private location: Location,

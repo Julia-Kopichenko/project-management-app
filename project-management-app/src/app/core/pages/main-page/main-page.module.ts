@@ -5,12 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '@app/shared/pipes/search/search.pipe';
-
 import { DialogModule } from '@dialog/dialog.module';
-
-// import { SharedModule } from '../../../shared/shared.module';
 import { SharedModule } from '@shared/shared.module';
-
 import { SortPipe } from '@app/shared/pipes/sort/sort.pipe';
 import { MainPageComponent } from './main-page.component';
 import { BoardsListComponent } from './components/boards-list/boards-list.component';

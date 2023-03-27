@@ -8,7 +8,6 @@
       <button mat-button color="primary" class="board-page__btn_add-column" (click)="setIsOneFiledForm()"
         type="button"><mat-icon class="mat-icon"> add_to_photos </mat-icon>{{t('boardPage.btn.addColumn')}}</button>
     </app-dialog>
-    <!-- <app-search-bar class="mainPage__search"></app-search-bar> -->
   </div>
   <ul class="columns__container">
     <app-column-item *ngFor="let column of (columns$ | async); let index = index" [column]="column" [index]="index"

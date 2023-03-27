@@ -1,0 +1,102 @@
+{
+  "signUp": "Sign Up",
+  "logIn": "Log In",
+  "login": "Login",
+  "logOut": "Log Out",
+  "name": "Name",
+  "password": "Password",
+  "newBoard": "Create board",
+  "back": "Back",
+
+  "errorMessage": {
+    "somethingWrong": "Whoops! Something went wrong",
+    "token": "The token has expired, please login again",
+    "loginConflict": "Login already exist",
+    "authorizationError": "User was not found. Please, check login and password",
+    "noBords": "No bords",
+    "noColumns": "No columns",
+    "noTasks": "No tasks"
+  },
+  "successMessage": {
+    "editProfile": "Successes! Profile was changed"
+  },
+
+  "forms": {
+    "enterData": "Enter data",
+    "btnSubmit": "Submit",
+    "btnCancel": "Cancel",
+    "createBoard": {
+      "title": "Title",
+      "description": "Description"
+    },
+    "errors": {
+      "enterName": "Please enter your name",
+      "enterLogin": "Please enter a login",
+      "enterPassword": "Please enter a password",
+      "enterTitle": "Please enter a title",
+      "enterDescription": "Please enter a description",
+      "lengthName": "Name should be at least 3 characters",
+      "lengthLogin": "Login should be at least 5 characters",
+      "lengthPassword": "Password should be at least 8 characters",
+      "lengthTitle": "Title should be at least 3 characters",
+      "lengthDescription": "Description should be at least 3 characters"
+    }
+  },
+  "main": {
+    "title": "My boards",
+    "subtitle": "My boards",
+    "search-bar": {
+      "search": "search board"
+    },
+    "sort-bar": {
+      "sort": "Sort"
+    },
+    "board-list": {
+      "newBoard": "Create new board"
+    }
+  },
+  "confirmModal": {
+    "sure": "Are you sure?",
+    "buttons": {
+      "ok": "ok",
+      "cancel": "cancel"
+    }
+  },
+  "editProfile": {
+    "editProfile": "Edit profile",
+    "save": "Save",
+    "deleteProfile": "Delete profile"
+  },
+  "welcomePage": {
+    "h1": "Stay organized with",
+    "h1Continue": "Project Management Application",
+    "project": {
+      "tabTitle": "About the project",
+      "textContent1": "An application that will help teams solve work tasks efficiently. It will help organize the work so that everyone knows what to do. Track the progress of tasks, be aware of what is happening. Correctly plan the timing and scope of work.",
+      "textContent2": "Achieve your goals!",
+      "letStart": "Let start"
+    },
+    "developer": {
+      "tabTitle": "About the developer",
+      "textContent1": "Julia Kopichenko",
+      "textContent2": "I've been interested in Frontend development for over a year.",
+      "textContent3": "I am currently enrolled in a course Javascript/Front-end Mentoring Program (in English).",
+      "textContent4": "My goals are to deepen my knowledge of JavaScript, TypeScript, study Angular and successfully find a job in Europe.",
+      "textContent5": "I’m sociable person and a good team player. I have good organizational skills, able to deal with conflicts and compromise."
+    },
+    "course": {
+      "tabTitle": "About the course",
+      "textContent1": "Training Program",
+      "textContent2": "This tutorial project was developed as part of the free online course  'Javascript/Front-end Mentoring Program (in English)' from The Rolling Scopes community.",
+      "textContent3": "The training consists of 3 stages. There are strict requirements for the transition to each higher stage. This particular course of study takes place in the form of self-study. This means that students have access to pre-assessment of webinars and two-week live Q&A sessions with course trainers. Organizers provide students with a list of topics that must be covered for each stage with recommended deadlines.",
+      "textContent4": "After accomplishing all three stages of education, students will receive an electronic certificate of completion."
+    }
+  },
+  "boardPage": {
+    "btn": {
+      "addColumn": "Add column",
+      "newTask": "Add task"
+    },
+    "message-column-title": "Name must be from 3 to 20 characters"
+  }
+}

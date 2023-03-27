@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import { Pipe, PipeTransform } from '@angular/core';
 import { Board } from '@app/shared/models/interfaces/board-interface';
 

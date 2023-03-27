@@ -31,6 +31,7 @@ export class TaskItemComponent implements OnDestroy {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   deleteTask(confirmItem: any, columnId: string, taskId: string) {
     if (confirmItem.clicked) {
       this.taskService.deleteTask(columnId, taskId);

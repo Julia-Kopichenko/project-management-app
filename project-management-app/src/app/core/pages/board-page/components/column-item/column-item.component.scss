@@ -34,15 +34,12 @@
     }
   }
 }
-
 .edit-container {
   display: none;
   gap: 1rem;
   width: 90%;
   padding: 1rem;
 }
-
-// buttons
 .button-edit-input {
   width: 2.5rem;
   height: 2.5rem;
@@ -72,7 +69,6 @@
     padding-right: 1.5rem;
   }
 }
-
 .title-input {
   width: 15rem;
   border-color: white;
@@ -82,7 +78,6 @@
   padding: 0 1rem;
   color: $color-primary;
 }
-
 .hide {
   display: none;
 }

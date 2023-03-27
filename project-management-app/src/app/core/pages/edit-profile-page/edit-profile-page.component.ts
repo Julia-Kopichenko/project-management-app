@@ -61,6 +61,7 @@ export class EditProfilePageComponent implements OnDestroy {
     this.editProfileService.updateUser(userData);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   deleteUser(event: any): void {
     if (event.clicked) {
       this.editProfileService.deleteUser();

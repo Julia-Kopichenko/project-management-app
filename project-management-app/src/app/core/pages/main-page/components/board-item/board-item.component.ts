@@ -31,6 +31,7 @@ export class BoardItemComponent implements OnDestroy {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   deleteBoard(confirmItem: any, boardId: string) {
     if (confirmItem.clicked) {
       this.mainPageService.deleteBoard(boardId);

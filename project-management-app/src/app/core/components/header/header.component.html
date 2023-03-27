@@ -32,7 +32,8 @@
   <div class="header__nav-right" *transloco="let t">
     <!-- New Board -->
     <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewBoard($event)" appClickStopPropagation>
-      <a class="mat-raised-button" mat-raised-button color="primary" routerLink="/main"><mat-icon> add </mat-icon>
+      <a class="mat-raised-button" mat-raised-button color="primary" routerLink="/main"><mat-icon> add_to_photos
+        </mat-icon>
         {{ t("newBoard") }}
       </a>
     </app-dialog>

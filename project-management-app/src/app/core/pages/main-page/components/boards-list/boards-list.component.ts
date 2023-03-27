@@ -19,6 +19,8 @@ export class BoardsListComponent implements OnInit, OnDestroy {
 
   searchText: string;
 
+  sortOrder: string;
+
   constructor(
     private readonly mainPageService: MainPageService,
     private readonly modalService: ModalService
@@ -31,6 +33,13 @@ export class BoardsListComponent implements OnInit, OnDestroy {
       this.mainPageService.searchWord.subscribe(
         // eslint-disable-next-line no-return-assign
         (data) => (this.searchText = data)
+      )
+    );
+
+    this.subscriptions.push(
+      this.mainPageService.sortOrder.subscribe(
+        // eslint-disable-next-line no-return-assign
+        (data) => (this.sortOrder = data)
       )
     );
   }

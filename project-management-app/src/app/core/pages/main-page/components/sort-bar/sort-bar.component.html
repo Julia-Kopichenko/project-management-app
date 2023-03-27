@@ -1,1 +1,8 @@
-<p>sort-bar works!</p>
+<article class="sort">
+  <div class="sort__item">
+    <div class="sort__title"> {{ sortOrder }}</div>
+    <button class="sort__button" (click)="sort()" mat-icon-button type="button">
+      <mat-icon class="sort__icon" [ngClass]="{'sort__icon': rotateIcon}">sort</mat-icon>
+    </button>
+  </div>
+</article>

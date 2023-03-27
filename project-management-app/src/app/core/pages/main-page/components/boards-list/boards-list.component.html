@@ -7,7 +7,7 @@
             <mat-card-title class="board__title">
               {{ t('main.board-list.newBoard') }}
             </mat-card-title>
-            <mat-icon class="mat-icon">add</mat-icon>
+            <mat-icon class="mat-icon">add_to_photos</mat-icon>
           </mat-card-header>
           <mat-card-content class="board__img create-board__img">
           </mat-card-content>
@@ -15,7 +15,7 @@
       </app-dialog>
     </li>
 
-    <app-board-item *ngFor="let board of (boards$ | async)! | search: searchText" [board]="board">
+    <app-board-item *ngFor="let board of (boards$ | async)! | search: searchText | sort: sortOrder" [board]="board">
     </app-board-item>
   </ul>
 

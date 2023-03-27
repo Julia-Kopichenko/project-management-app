@@ -19,12 +19,6 @@ export class EditProfilePageComponent implements OnDestroy {
 
   data = 'Delete your profile?';
 
-  public currentUserData = {
-    name: '',
-    login: '',
-    password: '',
-  };
-
   constructor(
     private readonly editProfileService: EditProfileService,
     private location: Location,
@@ -61,6 +55,7 @@ export class EditProfilePageComponent implements OnDestroy {
     this.editProfileService.updateUser(userData);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   deleteUser(event: any): void {
     if (event.clicked) {
       this.editProfileService.deleteUser();

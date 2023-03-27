@@ -14,7 +14,7 @@ export class BoardItemComponent implements OnDestroy {
 
   @Input() board: Board | undefined;
 
-  data = 'Delete project?';
+  data = 'Delete board?';
 
   constructor(
     private readonly mainPageService: MainPageService,
@@ -23,14 +23,15 @@ export class BoardItemComponent implements OnDestroy {
     this.subscriptions.push(
       translocoService.langChanges$.subscribe((lang) => {
         if (lang === 'en') {
-          this.data = 'Delete project?';
+          this.data = 'Delete board?';
         } else {
-          this.data = 'Удалить проект?';
+          this.data = 'Удалить доску?';
         }
       })
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   deleteBoard(confirmItem: any, boardId: string) {
     if (confirmItem.clicked) {
       this.mainPageService.deleteBoard(boardId);

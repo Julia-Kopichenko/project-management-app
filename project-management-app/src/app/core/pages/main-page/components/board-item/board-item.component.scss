@@ -6,6 +6,7 @@
   box-shadow: 0px 2px 5px 1px $color-primary-light;
   transition: all ease 0.5s;
   cursor: pointer;
+  overflow: hidden;
   &__header {
     display: flex;
     justify-content: space-between;
@@ -13,15 +14,9 @@
     margin-bottom: 1rem;
   }
   &__title {
-    font-size: 2.5rem;
-  }
-  &__img {
-    background-image: url("../../../../../../assets/png/avatars.png");
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: contain;
-    height: 100%;
-    width: 60%;
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin: 0;
   }
   &:hover {
     box-shadow: $shadow-card;
@@ -31,9 +26,12 @@
       background-color: $color-accent-light;
     }
   }
+  hr {
+    height: 1px;
+    background-color: $color-accent-dark;
+    border: none;
+  }
 }
 .mat-icon {
   transform: scale(1.5);
 }
-
-

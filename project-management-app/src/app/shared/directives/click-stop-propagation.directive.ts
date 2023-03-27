@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import { Directive, HostListener } from '@angular/core';
 
 @Directive({
@@ -6,6 +5,7 @@ import { Directive, HostListener } from '@angular/core';
 })
 export class ClickStopPropagationDirective {
   @HostListener('click', ['$event'])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick(event: any): void {
     event.stopPropagation();
   }

@@ -1,20 +1,15 @@
 <ng-container *ngIf="formGroup">
   <mat-card *transloco="let t" class="card-form">
-    <!-- TITLE -->
     <mat-card-header class="card-form__header">
       <mat-card-title>
         {{t('forms.enterData')}}
       </mat-card-title>
     </mat-card-header>
-    <!-- FORM BODY -->
     <mat-dialog-content class="card-form__content">
       <form [formGroup]="formGroup">
-        <!-- TITLE -->
         <mat-form-field appearance="fill" class="card-form__field">
           <mat-label>{{t('forms.createBoard.title')}}</mat-label>
           <input matInput formControlName="title" />
-
-          <!-- error message -->
           <mat-error *ngIf="formGroup.get('title')?.invalid">
             <span *ngIf="formGroup.get('title')?.hasError('required')">
               {{ t("forms.errors.enterTitle") }}
@@ -22,13 +17,9 @@
             <span *ngIf="formGroup.get('title')?.errors?.['minlength']">{{ t("forms.errors.lengthTitle") }}</span>
           </mat-error>
         </mat-form-field>
-
-        <!-- Description -->
         <mat-form-field appearance="fill" class="card-form__field">
           <mat-label>{{t('forms.createBoard.description')}}</mat-label>
           <textarea matInput formControlName="description"></textarea>
-
-          <!-- error message -->
           <mat-error *ngIf="formGroup.get('description')?.invalid">
             <span *ngIf="formGroup.get('description')?.hasError('required')">
               {{ t("forms.errors.enterDescription") }}

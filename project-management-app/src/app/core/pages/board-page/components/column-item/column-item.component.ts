@@ -62,6 +62,7 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   deleteColumn(confirmItem: any, columnId: string): void {
     if (confirmItem.clicked) {
       this.columnService.deleteColumn(columnId);
@@ -82,7 +83,6 @@ export class ColumnItemComponent implements OnInit, OnDestroy {
     this.titleColumn = currentColumnTitle;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   showTitleColumn(index: number): void {
     document
       .getElementsByClassName('column__title')

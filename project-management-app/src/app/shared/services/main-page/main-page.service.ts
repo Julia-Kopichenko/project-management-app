@@ -21,6 +21,8 @@ export class MainPageService implements OnDestroy {
 
   searchWord = new BehaviorSubject<string>('');
 
+  sortOrder = new BehaviorSubject<string>('by A-Z');
+
   constructor(
     private readonly boardsDataService: BoardsDataService,
     private readonly localStorageService: LocalStorageService,

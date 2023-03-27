@@ -24,9 +24,12 @@
   &__userLogin {
     font-size: x-large;
     margin: 0;
+    .mat-icon {
+      transform: scale(1.5);
+      padding-right: 1rem;
+    }
   }
 }
-
 .logo {
   font-size: 5rem;
   line-height: 5rem;
@@ -76,8 +79,16 @@
     &__wrapper {
       padding: 1rem 0;
     }
+    &__nav-left {
+      gap: 1rem;
+    }
     &__nav-right {
       flex-wrap: wrap;
+    }
+    &__userLogin {
+      .mat-icon {
+        display: none;
+      }
     }
   }
 }

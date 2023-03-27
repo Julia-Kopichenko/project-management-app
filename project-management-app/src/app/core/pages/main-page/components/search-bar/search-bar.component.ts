@@ -9,7 +9,7 @@ import { MainPageService } from '@app/shared/services/main-page/main-page.servic
 export class SearchBarComponent {
   searchText = '';
 
-  constructor(private mainPageService: MainPageService) {}
+  constructor(private readonly mainPageService: MainPageService) {}
 
   search(event: Event): void {
     this.searchText = (event.target as HTMLInputElement).value;

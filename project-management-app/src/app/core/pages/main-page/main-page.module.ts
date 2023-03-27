@@ -11,6 +11,7 @@ import { DialogModule } from '@dialog/dialog.module';
 // import { SharedModule } from '../../../shared/shared.module';
 import { SharedModule } from '@shared/shared.module';
 
+import { SortPipe } from '@app/shared/pipes/sort/sort.pipe';
 import { MainPageComponent } from './main-page.component';
 import { BoardsListComponent } from './components/boards-list/boards-list.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
@@ -29,6 +30,7 @@ const routes: Routes = [{ path: '', component: MainPageComponent }];
     CreateBoardComponent,
     BoardItemComponent,
     SearchPipe,
+    SortPipe,
   ],
   imports: [
     CommonModule,

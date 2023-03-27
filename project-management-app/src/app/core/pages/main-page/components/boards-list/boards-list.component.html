@@ -15,7 +15,7 @@
       </app-dialog>
     </li>
 
-    <app-board-item *ngFor="let board of (boards$ | async)! | search: searchText" [board]="board">
+    <app-board-item *ngFor="let board of (boards$ | async)! | search: searchText | sort: sortOrder" [board]="board">
     </app-board-item>
   </ul>
 

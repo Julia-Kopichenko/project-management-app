@@ -1,0 +1,25 @@
+@import "variables";
+
+.main-page {
+  &__outer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  &__title {
+    font-size: 4rem;
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+@media (max-width: 550px) {
+  .main-page {
+    &__outer {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+}

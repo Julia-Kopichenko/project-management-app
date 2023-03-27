@@ -1,0 +1,61 @@
+<section *transloco="let t" >
+  <h1>{{t('welcomePage.h1')}}<br><span>{{t('welcomePage.h1Continue')}}</span></h1>
+  <mat-tab-group class="custom-tab-group">
+    <!-- ABOUT PROJECT -->
+    <mat-tab [label]="'welcomePage.project.tabTitle' | transloco">
+      <div class="info-container">
+        <div class="info-container__text">
+          <h2 class="info-container__title">PMA</h2>
+          <p>{{t('welcomePage.project.textContent1')}}</p>
+          <p>{{t('welcomePage.project.textContent2')}}</p>
+          <button mat-raised-button color="accent"
+            routerLink="/auth/signUp">{{t('welcomePage.project.letStart')}}</button>
+        </div>
+        <div class="info-container__img">
+          <img src="../../../../assets/png/TaskManagement-hero.webp" alt="welcome">
+        </div>
+      </div>
+    </mat-tab>
+    <!-- About the developer -->
+    <mat-tab [label]="'welcomePage.developer.tabTitle' | transloco">
+      <div class="info-container">
+        <div class="circle-image">
+          <img src="../../../../assets/png/my_photo.jpg" alt="avatar">
+        </div>
+        <div class="info-container__text">
+          <h2 class="info-container__title">{{t('welcomePage.developer.textContent1')}}</h2>
+          <h3 class="info-container__subTitle">Junior Front-End Developer</h3>
+          <p>🌱 {{t('welcomePage.developer.textContent2')}}</p>
+          <p>
+            ✍ {{t('welcomePage.developer.textContent3')}}
+          </p>
+          <p>
+            🔥 {{t('welcomePage.developer.textContent4')}}
+          </p>
+          <p>
+            💖 {{t('welcomePage.developer.textContent5')}}
+          </p>
+        </div>
+      </div>
+    </mat-tab>
+    <!-- About the course -->
+    <mat-tab [label]="'welcomePage.course.tabTitle' | transloco">
+      <div class="info-container">
+        <div class="info-container__text">
+          <h2 class="info-container__title">Javascript/Front-end Mentoring Program</h2>
+          <h3 class="info-container__subTitle">{{t('welcomePage.course.textContent1')}}</h3>
+          <p>
+            {{t('welcomePage.course.textContent2')}}
+          </p>
+          <p>
+            {{t('welcomePage.course.textContent3')}}
+          </p>
+          <p>{{t('welcomePage.course.textContent4')}}</p>
+        </div>
+        <div class="img-container course-img">
+          <img src="../../../../assets/svg/im-fine.svg" alt="RSSchool mem">
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</section>

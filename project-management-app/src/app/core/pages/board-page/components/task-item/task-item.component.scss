@@ -1,0 +1,30 @@
+@import "variables";
+
+.task {
+  width: 100%;
+  height: 10rem;
+  border: 1px solid $color-primary;
+  box-shadow: 0px 2px 5px 1px $color-primary-light;
+  transition: all ease 0.5s;
+  padding: 1rem;
+  overflow: hidden;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0;
+  }
+  &__title {
+    font-size: 2rem;
+  }
+  &__content {
+    padding: 0;
+  }
+}
+
+.button-delete {
+  mat-icon {
+    transform: scale(1.2);
+  }
+}

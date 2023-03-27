@@ -1,0 +1,48 @@
+<mat-card *transloco="let t" class="card-form">
+  <!-- TITLE -->
+  <mat-card-header class="card-form__header">
+    <mat-card-title>
+      {{t('forms.enterData')}}
+    </mat-card-title>
+  </mat-card-header>
+  <!-- FORM BODY -->
+  <mat-dialog-content class="card-form__content">
+    <form [formGroup]="form">
+      <!-- TITLE -->
+      <mat-form-field appearance="fill" class="card-form__field">
+        <mat-label>{{t('forms.createBoard.title')}}</mat-label>
+        <input matInput formControlName="title" maxlength="20" />
+
+        <!-- error message -->
+        <mat-error *ngIf="form.get('title')?.invalid">
+          <span *ngIf="form.get('title')?.hasError('required')">
+            {{ t("forms.errors.enterTitle") }}
+          </span>
+          <span *ngIf="form.get('title')?.errors?.['minlength']">{{ t("forms.errors.lengthTitle") }}</span>
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Description -->
+      <mat-form-field *ngIf="!isOneFieldForm" appearance="fill" class="card-form__field">
+        <mat-label>{{t('forms.createBoard.description')}}</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+
+        <!-- error message -->
+        <mat-error *ngIf="form.get('description')?.invalid">
+          <span *ngIf="form.get('description')?.hasError('required')">
+            {{ t("forms.errors.enterDescription") }}
+          </span>
+          <span *ngIf="form.get('description')?.errors?.['minlength']">{{ t("forms.errors.lengthDescription")
+            }}</span>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions class="card-form__actions">
+    <button class="btn" mat-raised-button (click)="onNoClick()">{{ t("forms.btnCancel") }}</button>
+    <button class="btn" mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="form.invalid"
+      (click)="form.valid && submit(form.value)">
+      {{t('forms.btnSubmit')}}
+    </button>
+  </mat-dialog-actions>
+</mat-card>

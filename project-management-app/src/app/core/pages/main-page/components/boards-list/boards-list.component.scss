@@ -1,0 +1,63 @@
+@import "variables";
+
+.boards-list {
+  padding: 3rem 0;
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: stretch;
+    gap: 3rem;
+    width: 100%;
+  }
+}
+.board {
+  min-width: 30rem;
+  height: 15rem;
+  border: 1px solid $color-primary;
+  box-shadow: 0px 2px 5px 1px $color-primary-light;
+  transition: all ease 0.5s;
+  cursor: pointer;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  &__title {
+    font-size: 2.5rem;
+  }
+
+  &:hover {
+    box-shadow: $shadow-card;
+  }
+}
+.create-board {
+  background-color: $color-accent-light;
+}
+.create-board__img {
+  background-image: url("../../../../../../assets/png/TaskManagement-hero.webp");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+  height: 100%;
+}
+.mat-icon {
+  transform: scale(1.5);
+}
+
+@media (max-width: 1400px) {
+  .boards-list__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 1024px) {
+  .boards-list__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 650px) {
+  .boards-list__container {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: stretch;
+  }
+}

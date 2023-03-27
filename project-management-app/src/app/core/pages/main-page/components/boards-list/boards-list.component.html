@@ -1,0 +1,22 @@
+<article class="boards-list" *transloco="let t">
+  <ul class="boards-list__container">
+    <li>
+      <app-dialog (click)="setIsOneFiledForm()" (emitText)="addNewBoard($event)" appClickStopPropagation>
+        <mat-card class="board create-board">
+          <mat-card-header class="board__header">
+            <mat-card-title class="board__title">
+              {{ t('main.board-list.newBoard') }}
+            </mat-card-title>
+            <mat-icon class="mat-icon">add_to_photos</mat-icon>
+          </mat-card-header>
+          <mat-card-content class="board__img create-board__img">
+          </mat-card-content>
+        </mat-card>
+      </app-dialog>
+    </li>
+
+    <app-board-item *ngFor="let board of (boards$ | async)! | search: searchText | sort: sortOrder" [board]="board">
+    </app-board-item>
+  </ul>
+
+</article>

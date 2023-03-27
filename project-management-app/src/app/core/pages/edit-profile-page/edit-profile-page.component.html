@@ -1,0 +1,62 @@
+<div *transloco="let t">
+  <mat-card class="modal__wrapper">
+    <mat-card-header class="modal__header">
+      <mat-card-title>
+        {{ t("editProfile.editProfile") }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="modal__content">
+      <form [formGroup]="form" (submit)="form.valid && onSubmit()">
+        <mat-form-field class="modal__field" appearance="fill">
+          <mat-label>{{ t("name") }}</mat-label>
+          <input matInput type="text" formControlName="name" maxlength="20" />
+          <mat-error *ngIf="form.get('name')?.invalid">
+            <span *ngIf="form.get('name')?.hasError('required')">
+              {{ t("forms.errors.enterName") }}
+            </span>
+            <span *ngIf="form.get('name')?.errors?.['minlength']">{{ t("forms.errors.lengthName") }}</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="modal__field" appearance="fill">
+          <mat-label>{{ t("login") }}</mat-label>
+          <input matInput type="login" formControlName="login" maxlength="20" />
+          <mat-error *ngIf="form.get('login')?.invalid">
+            <span *ngIf="form.get('login')?.hasError('required')">
+              {{ t("forms.errors.enterLogin") }}
+            </span>
+            <span *ngIf="form.get('login')?.errors?.['minlength']">{{ t("forms.errors.lengthLogin")
+              }}</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="modal__field" appearance="fill">
+          <mat-label>{{ t("password") }}</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" maxlength="20">
+          <button mat-icon-button color="accent" matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="form.get('password')?.invalid">
+            <span *ngIf="form.get('password')?.hasError('required')">
+              {{ t("forms.errors.enterPassword") }}
+            </span>
+            <span *ngIf="form.get('password')?.errors?.['minlength']">{{ t("forms.errors.lengthPassword")
+              }}</span>
+          </mat-error>
+        </mat-form-field>
+        <div class="modal__btns-wrapper">
+          <a class="btn" mat-raised-button color="primary" (click)="goBack()"><mat-icon class="mat-icon"> arrow_back
+            </mat-icon>{{ t("back")
+            }}</a>
+          <button class="btn" mat-raised-button color="accent" [disabled]="!form.valid" type="submit">
+            {{ t("editProfile.save") }}
+          </button>
+        </div>
+      </form>
+      <app-confirm-modal (emitConfirm)="deleteUser($event)" [data]="data">
+        <button class="btn btn-delete" mat-raised-button color="warn">
+          {{ t("editProfile.deleteProfile") }}
+        </button>
+      </app-confirm-modal>
+    </mat-card-content>
+  </mat-card>
+</div>

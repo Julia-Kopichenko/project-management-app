@@ -1,0 +1,37 @@
+@import "variables";
+.board {
+  min-width: 30rem;
+  height: 15rem;
+  border: 1px solid $color-primary;
+  box-shadow: 0px 2px 5px 1px $color-primary-light;
+  transition: all ease 0.5s;
+  cursor: pointer;
+  overflow: hidden;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  &__title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  &:hover {
+    box-shadow: $shadow-card;
+  }
+  &__button {
+    &:hover {
+      background-color: $color-accent-light;
+    }
+  }
+  hr {
+    height: 1px;
+    background-color: $color-accent-dark;
+    border: none;
+  }
+}
+.mat-icon {
+  transform: scale(1.5);
+}

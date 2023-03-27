@@ -1,0 +1,19 @@
+@import "variables";
+
+.dialog {
+  &__header {
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    background-color: $color-primary;
+    color: white;
+  }
+  &__content,
+  &__actions {
+    padding: 2rem;
+  }
+  &__actions {
+    justify-content: space-between;
+  }
+}

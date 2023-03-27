@@ -1,0 +1,41 @@
+@import "variables";
+
+.board-page {
+  &__outer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  &__btn_add-column,
+  &__btn-go-back {
+    font-size: large;
+    .mat-icon {
+      transform: scale(2);
+    }
+  }
+  &__title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
+  }
+}
+.columns__container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 3rem;
+  width: 93%;
+  overflow-x: auto;
+  margin: 0 auto;
+}
+
+@media (max-width: 550px) {
+  .board-page {
+    &__outer {
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
